@@ -1,0 +1,186 @@
+.containerofprofile {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  height: 91vh;
+  margin-top: 5rem;
+}
+.profleft {
+  text-align: left;
+  padding-top: 1rem;
+  padding-left: 3rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  line-height: 1rem;
+  width: 100%;
+  overflow-y: hidden;
+}
+#promh {
+  margin-bottom: 2rem;
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+#def {
+  text-align: left;
+  padding-left: .2rem;
+  color: gray;
+  /* margin-top: 3rem; */
+}
+.profright {
+  overflow-y: scroll;
+}
+#add--post {
+  display: flex;
+  outline: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #fff;
+  background-color: #f6851c;
+  border-style: solid;
+  border-width: 2px 2px 2px 2px;
+  border-color: rgba(255, 255, 255, 0.333);
+  border-radius: 40px 40px 40px 40px;
+  padding: 16px 24px 16px 28px;
+  transform: translate(0px, 0px) rotate(0deg);
+  transition: 0.2s;
+  position: fixed;
+  bottom: 3rem;
+  right: 5rem;
+  cursor: pointer;
+  transition: 0.5s;
+  box-shadow: -4px -2px 16px 0px #ffffff, 4px 2px 16px 0px rgb(95 157 231 / 48%);
+}
+#add--post:hover {
+  transform: scale(1.1);
+  color: #516d91;
+  background-color: #e5edf5;
+  box-shadow: -2px -1px 8px 0px #ffffff, 2px 1px 8px 0px rgb(95 157 231 / 48%);
+}
+#add--post:active {
+  box-shadow: none;
+}
+.profi {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 5px;
+}
+.ant-btn ant-btn-primary {
+  padding: 0.5rem;
+}
+.modalcontainer {
+  display: flex;
+}
+.modalLeft {
+  width: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  min-height: 40rem;
+}
+
+.modalRight {
+  width: 50%;
+  text-align: left;
+  padding-left: 3rem;
+}
+.rightiu {
+  line-height: 0.3rem;
+  font-weight: 500;
+}
+.rightium {
+  width: 90%;
+  outline: none;
+  border: none;
+  padding: 0.6rem;
+  margin-bottom: 2rem;
+}
+.rightium1 {
+  width: 94%;
+  outline: none;
+  border: none;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+}
+.mine {
+  /* padding-top: 1rem; */
+  padding-bottom: 1rem;
+  text-align: left;
+  padding-right: 2rem;
+  padding-left: 1rem;
+  margin-left: -3rem;
+  border-top-right-radius: 5rem;
+  width: 100%;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 3rem;
+}
+.mineactive {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: left;
+  padding-right: 2rem;
+  background-color: #f68e2c;
+  padding-left: 1rem;
+  margin-left: -3rem;
+  width: 100%;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 3rem;
+}
+.mine1 {
+  text-align: left;
+  cursor: pointer;
+  border-top-right-radius: 5rem;
+  font-weight: 500;
+  padding-right: 2rem;
+  margin-left: -3rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+.mine1active {
+  text-align: left;
+  cursor: pointer;
+  font-weight: 500;
+  padding-right: 2rem;
+  margin-left: -3rem;
+  background-color: #f68e2c;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+.mine2 {
+  text-align: left;
+  cursor: pointer;
+  font-weight: 500;
+  padding-right: 2rem;
+  margin-left: -3rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+.mine2:hover {
+  text-align: left;
+  cursor: pointer;
+  background-color: #f68e2c;
+  font-weight: 500;
+  padding-right: 2rem;
+  margin-left: -3rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+#head {
+  padding-top: 0rem;
+  padding-bottom: 1rem;
+  user-select: none;
+  font-size: 2rem;
+}
+#mhj{
+  border-bottom: .5px solid darkgray;
+  margin-top: 3rem;
+}

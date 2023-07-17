@@ -1,0 +1,9 @@
+.pro--container23{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 20rem;
+}
+.moin{
+    padding-left: 5rem;
+}

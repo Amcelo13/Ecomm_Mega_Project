@@ -1,0 +1,106 @@
+.container {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    height: 100vh;
+  }
+  
+  .left {
+    background-color: #f6851c;
+    opacity: 1;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  }
+  
+  .logo {
+    margin-top: 4rem;
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+    transition: 0.6s;
+    width: 400px;
+    height: 300px;
+  }
+  
+  .logo.enter {
+    animation: enterAnimation .7s forwards;
+  }
+  .yolu.enter{
+    animation: enterAnimation3 .8s forwards;
+  }
+  .headf.enter{
+    animation: enterAnimation2 .7s forwards;
+  }
+
+  @keyframes  enterAnimation2{
+    0% {
+      transform: translateY(150%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes enterAnimation {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  @keyframes enterAnimation3 {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  #h1style {
+    color: white;
+    font-size: 4rem;
+    opacity: 0.6;
+    user-select: none;
+  }
+  .custom-radio-group   .ant-radio-wrapper {
+    /* background-color: #febd69; */
+  }
+  .custom-radio-group{
+    /* background-color: #febd69; */
+    margin-top: 3rem;
+    /* margin-left: 30rem; */
+  }
+  .rad{
+    margin-bottom: 1rem;
+    padding-bottom: 3rem;
+    margin-left: -4rem;
+    /* width: 400px; */
+   
+    /* padding-right: 20rem;   */
+  }
+  .rad11{
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+    width: 400px;
+    
+    /* padding-right: 20rem;   */
+  }
+  #aler{
+    width: 30rem;
+    padding-left: 9rem;
+    font-weight: 600;
+    
+  }
+  .vb{
+    display: flex;
+    justify-content: center;
+  }
+  .rff{
+    font-weight: 600;
+    /* margin-left: 30rem; */
+    padding-left: 5rem;
+  }
+  #bg{
+    font-size: 15px;
+    
+  }

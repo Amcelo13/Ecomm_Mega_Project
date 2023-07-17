@@ -1,0 +1,108 @@
+.productPageContainer {
+  margin-top: 5rem;
+}
+
+.prodInfo {
+  display: flex;
+  margin-left: 3rem;
+  margin-top: 3rem;
+}
+.leftu {
+  margin-top: 2rem;
+  width: 25%;
+  padding-top: 5rem;
+  text-align: left;
+  padding-left: 3rem;
+  padding-right: 2rem;
+}
+
+.leftu.enter {
+  animation: enterAnimation6 0.7s forwards;
+}
+
+@keyframes enterAnimation6 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.imn {
+  width: 40rem;
+  border-radius: 1rem;
+  margin-top: 3rem;
+  border-radius: 1rem;
+}
+.nu {
+  height: 700px;
+  border-radius: 1rem;
+}
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  justify-content: center;
+}
+.nnu1 {
+  color: white;
+  background-color: black;
+  width: 10rem;
+  cursor: pointer;
+  padding: 0.8rem;
+  transition: 1.1s;
+  border-radius: 0.1rem;
+  font-weight: 600;
+  margin-right: 1rem;
+}
+.nnu2 {
+  color: white;
+  background-color: #febd69;
+  border: none;
+  width: 10rem;
+  color: white;
+  transition: 1.1s;
+  cursor: pointer;
+  padding: 0.8rem;
+  border-radius: 0.1rem;
+  font-weight: 600;
+}
+.nnu1:hover {
+  color: white;
+  background-color: white;
+  width: 10rem;
+  font-weight: 600;
+  color: black;
+  outline: none;
+}
+.nnu2:hover {
+  color: white;
+  background-color: black;
+  width: 10rem;
+  font-weight: 600;
+  color: white;
+  outline: none;
+}
+#vb {
+  width: 3rem;
+  outline: none;
+  margin-left: 13.5rem;
+  margin-bottom: 4rem;
+  padding: 1rem;
+  
+}
+#nmi {
+  font-weight: 500;
+}
+.seller{
+  padding-top: 3rem;
+}
+.gy{
+  text-align: left;
+  padding-left: 4rem;
+  font-weight: 300;
+
+}
+.nmi1{
+  font-weight: 600;
+}
