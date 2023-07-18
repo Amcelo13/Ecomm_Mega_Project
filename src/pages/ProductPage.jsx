@@ -249,9 +249,7 @@ function ProductPage() {
                   <p className="gy">
                     <b>Name</b> &nbsp; &nbsp;&nbsp; {vendorData?.name}
                   </p>
-                  <p className="gy">
-                    <b>Address</b>
-                  </p>
+
                   <p className="gy">
                     <b>Email</b> &nbsp; &nbsp;&nbsp; {prod.vendorID}
                   </p>

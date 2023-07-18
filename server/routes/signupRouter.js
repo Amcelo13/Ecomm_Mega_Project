@@ -11,19 +11,15 @@ router.post("/signup", async (req, res) => {
     if (user) {
       res.statusMessage = "User already exists";
       res.status(209).send("User already exists");
-    } else {
-      const newUser = new userModel({
-        name,
-        email,
-        password,
-        designation,
-        jointime,
-        uid,
-      });
-      await newUser.save(); // Wait for the save operation to complete
+    } 
+    else {
+      const newUser = new userModel({name,email,password,designation,jointime,uid});
+      await newUser.save(); 
       res.status(200).send("Registered successfully");
     }
-  } catch (err) {
+  } 
+  
+  catch (err) {
     if (err.name === "ValidationError") {
       console.log(err.errors);
     }
@@ -51,12 +47,20 @@ router.post("/login", async (req, res) => {
 router.post("/goomglepost", async (req, res) => {
   const { name, email, password, designation, jointime, uid } = req.body; //from frontend
   const user = await userModel.findOne({ email });
+
   if (user) {
     // User already exists, update the jointime
-    user.jointime = jointime;
-    await user.save();
-    res.status(200).send("Jointime updated successfully");
-  } else {
+    if(user.status === true){
+      user.jointime = jointime;
+      await user.save();
+      res.status(200).send("Jointime updated successfully");
+    }
+    else{
+      res.status(204).send('User Banned')
+    }
+  } 
+  
+  else {
     const newUser = new userModel({
       name,
       email,
@@ -73,13 +77,20 @@ router.post("/goomglepost", async (req, res) => {
 router.post("/goomglepostlogin", async (req, res) => {
   const { email, jointime } = req.body; //from frontend
   const user = await userModel.findOne({ email });
-
   if (user) {
     // User already exists, update the jointime
-    user.jointime = jointime;
-    await user.save();
-    res.status(200).json(user);
-  } else {
+    if(user.status === true){
+      user.jointime = jointime;
+      await user.save();
+      res.status(200).json(user);
+    }
+
+    else{
+      res.status(204).send('User Banned')
+    }
+  } 
+  
+  else {
     res.status(203).send("Register a role first");
   }
 });

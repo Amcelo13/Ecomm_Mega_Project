@@ -1,20 +1,19 @@
 .NAVCONATINER {
-  width: 100vw;
+  width: 102vw;
   height: auto;
   display: flex;
   justify-content: space-between;
-  background-color: #f6851c;
+  background-color: rgba(0, 0, 0, 0.8); /* Translucent black background */
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   opacity: 1;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+
   z-index: 3;
   position: fixed;
   top: 0;
-  /* margin-bottom: rem; */
 }
+
 .left--nav {
   width: 20%;
   color: white;

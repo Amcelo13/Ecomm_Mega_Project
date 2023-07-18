@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+  import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import "./Profile.css";
 import { useSelector } from "react-redux";
@@ -49,7 +49,7 @@ function Profile() {
   const showModal = () => {
     setIsModalOpen(true);
   };
- 
+  
   return (
     <>
       <Navbar />

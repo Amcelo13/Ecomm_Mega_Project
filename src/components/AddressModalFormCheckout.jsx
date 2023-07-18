@@ -26,7 +26,7 @@ const success = () => {
   });
 };
 
-function AddressModalForm({ isModalOpen, setIsModalOpen, orderTotal,cartItems }) {
+function AddressModalForm({ isModalOpen, setIsModalOpen,cartItems }) {
   const [open, setOpen] = useState(false);
 
   const userEmail = useSelector((state) => state.users.email);
@@ -246,7 +246,7 @@ function AddressModalForm({ isModalOpen, setIsModalOpen, orderTotal,cartItems })
           paddingLeft: "35px",
           paddingRight: "35px",
           height: "40px",
-          backgroundColor: "#f6851c",
+          backgroundColor: "#2e2d2d",
         }}
       >
         Order Now{" "}

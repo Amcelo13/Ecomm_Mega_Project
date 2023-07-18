@@ -35,6 +35,11 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+    
+  sales: {
+    type: Number,
+    default: 0,
+  },
 
   isDraft: {
     type: Boolean,

@@ -186,7 +186,7 @@ function ProductModalForm({ open, setOpen, formValues, outOfStockActivator }) {
                     paddingTop: ".6rem",
                     marginRight: "2rem",
                     cursor: "pointer",
-                    backgroundColor: "#f6851c",
+                    backgroundColor: "#2e2d2d",
                     color: "white",
                     marginTop: "4rem",
                     border: "none",

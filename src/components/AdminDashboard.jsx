@@ -27,17 +27,12 @@ function AdminDashboard() {
     const getData = async () => {
       const vendorDetails = await getVendorDetails();
       setVendorHistory(vendorDetails.data);
-    };
+    };  
 
     getData();
     //After getting the new state of status of vendor we enable the switch
     setRandomState(false);
   }, [sample]);
-
-  //To cancel the order for some reason
-  const handleVendorActivation = (vendorID, statusBoolean) => {
-    vendorActivation(vendorID, statusBoolean);
-  };
 
   const columns = [
     {

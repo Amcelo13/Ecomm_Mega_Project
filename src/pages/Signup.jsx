@@ -99,7 +99,7 @@ function Signup() {
 
     try {
       await axios.post("http://localhost:4000/signup", obn).then((res) => {
-        if (res.status === 200) {
+        if (res.status === 200 ) {
           navigate("/login", { state: values.name });
         } else {
           setErr("User Already found Please Log In");
@@ -117,8 +117,6 @@ function Signup() {
       const res = await signInWithPopup(auth, googleProvider);
       const data = res._tokenResponse;
       const pass = res.user.uid;
-      const id = v4();
-      console.log(data);
 
       const obn = {
         name: data.displayName,
@@ -142,8 +140,13 @@ function Signup() {
               jointime: new Date(),
               uid: pass,
             })
-          );
+          );  
         }
+
+      else if(res.status === 204) {
+        setErr('You are unauthorized by the Admin')
+      }
+
       });
     } catch (err) {
       console.log(err);
@@ -298,8 +301,10 @@ function Signup() {
                 <p
                   style={{
                     color: "red",
-                    paddingLeft: "1rem",
-                    fontWeight: "600",
+                    paddingLeft: "13rem",
+                    fontWeight: "700",
+                    fontSize:'1.5rem',  
+                    marginBottom:'1rem'
                   }}
                 >
                   {err}

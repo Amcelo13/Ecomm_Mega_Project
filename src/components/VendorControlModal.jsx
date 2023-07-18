@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Button, message } from "antd";
 import { setStatus } from "../utils/setStatus.js";
 
-function VendorControlModal({ open, setOpen, orderID }) {
+function VendorControlModal({ open, setOpen, orderID, sample, setSample }) {
   const [messageApi, contextHolder] = message.useMessage();
   const success = () => {
     messageApi.open({
@@ -14,13 +14,14 @@ function VendorControlModal({ open, setOpen, orderID }) {
   const handleShipped = (orderID) => {
     setStatus(orderID, "shipped");
     success();
-
+    setSample(!sample);
     setOpen(false);
   };
 
   const handleDelivered = (orderID) => {
     setStatus(orderID, "delivered");
     success();
+    setSample(!sample);
     setOpen(false);
   };
   return (

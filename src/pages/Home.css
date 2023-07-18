@@ -1,0 +1,15 @@
+#proda{
+    position: absolute;
+    top: 43rem;
+    left: 41%;
+    font-weight: 500;
+    background-color: transparent;
+    padding: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    border: .5px solid white;
+    color: white;
+    padding-left: 1.3rem;
+    padding-right: 1.3rem;
+
+}

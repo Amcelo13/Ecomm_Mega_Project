@@ -9,6 +9,7 @@ import VendorControlModal from "./VendorControlModal";
 function DashBoard() {
   const [messageApi, contextHolder] = message.useMessage();
   const [open, setOpen] = useState(false);
+  const [sample, setSample] = useState(false)
   const [currentOrderID, setCurrentOrderID] = useState("");
   const [totalOrderQuantity, setTotalOrderQuantity] = useState(0);
   const [myEarnings, setMyEarnings] = useState(0);
@@ -54,28 +55,31 @@ function DashBoard() {
               }
           })
             setMyEarnings(totalEarnings)
-
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
-  console.log(totalOrderQuantity);
+  }, [sample]);
+
+  const   cancelActivation = (status) => {
+    return status === "cancelled" || status === "delivered" ? true : false;
+  };
+
   //Handle order  status change 'ordered', 'shipped', 'delivered'
-  const handleOrderStatus = (orderID) => {
+  const handleOrderStatus = (orderID, status) => {
     setCurrentOrderID(orderID);
-    setOpen(true);
+      if(!cancelActivation(status)) {
+        setOpen(true);
+      }
   };
 
   //To cancel the order for some reason
   const handleOrderCancellation = (orderID) => {
     error();
     cancelTheOrder(orderID);
+    setSample(!sample)
   };
 
-  const cancelActivation = (status) => {
-    return status === "cancelled" || status === "delivered" ? true : false;
-  };
 
   const columns = [
     {
@@ -88,6 +92,11 @@ function DashBoard() {
       title: "Status",
       dataIndex: `status`,
       key: "status",
+    },
+    {
+      title: "Email",
+      dataIndex: `userId`,
+      key: "userId",
     },
     {
       title: "Address",
@@ -161,7 +170,7 @@ function DashBoard() {
         <Space size="middle">
           <a
             disabled={cancelActivation(record.status)}
-            onClick={() => handleOrderStatus(record._id)}
+            onClick={() => handleOrderStatus(record._id, record.status)}
           >
             Change Status
           </a>
@@ -169,6 +178,7 @@ function DashBoard() {
       ),
     },
   ];
+
   return (
     <>
       {contextHolder}
@@ -186,7 +196,7 @@ function DashBoard() {
         </div>
         <Table columns={columns} dataSource={vendorOrderHistory} />;
         <div className="orderr--left1">
-          <VendorControlModal
+          <VendorControlModal sample =  {sample}  setSample={setSample}
             orderID={currentOrderID}
             open={open}
             setOpen={setOpen}

@@ -1,27 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import {
-  Radio,
-  Button,
-  Form,
-  Input,
-
-  Modal,
-} from "antd";
+import { Radio, Button, Form, Input, Modal } from "antd";
 import GOG from "../assets/google.svg";
 import "./Signup.css";
 import { LoadingOutlined } from "@ant-design/icons";
 //redux
 
-import { useDispatch,  } from "react-redux";
-import {
-  setLogin,
-} from "../app/features/templateSlice";
+import { useDispatch } from "react-redux";
+import { setLogin } from "../app/features/templateSlice";
 import axios from "axios";
 import { auth, googleProvider } from "../utils/firebase";
-import {
-  signInWithPopup,
-} from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 
 import LOG from "../assets/LOG.svg";
 
@@ -104,7 +93,6 @@ function Login() {
   const onFinish = async (values) => {
     setloading(true);
     try {
-
       const ob = {
         email: values.email,
         password: values.password,
@@ -113,7 +101,6 @@ function Login() {
         .post("http://localhost:4000/login", ob)
         .then((response) => {
           if (response.status === 200) {
-          
             dispatch(
               setLogin({
                 name: response.data.name,
@@ -124,7 +111,7 @@ function Login() {
                 uid: response.data.uid,
               })
             );
-            navigate("/", {state:state?.state});
+            navigate("/", { state: state?.state });
           } else if (response.status === 204) {
             setErr(response.statusText);
           } else {
@@ -171,6 +158,10 @@ function Login() {
             );
             navigate("/");
           } 
+          
+          else if(response.status === 204){
+            setErr('You are unauthorized by the Admin')
+          }
           else {
             setIsModalOpen(true);
           }
@@ -185,7 +176,6 @@ function Login() {
       const res = await signInWithPopup(auth, googleProvider);
       const data = res._tokenResponse;
       const pass = res.user.uid;
-   
 
       const obn = {
         name: data.displayName,
@@ -195,12 +185,13 @@ function Login() {
         jointime: new Date(),
         uid: pass,
       };
-      
+
       await axios.post("http://localhost:4000/goomglepost", obn).then((res) => {
         if (res.status === 200) {
           navigate("/");
           dispatch(setLogin(obn));
         }
+        
       });
     } catch (err) {
       console.log(err);
@@ -347,9 +338,10 @@ function Login() {
                 style={{ padding: ".6rem" }}
               />
             </Form.Item>
-            <p style={{ color: "red", marginLeft: "-5rem", fontWeight: "600" }}>
+            <p style={{ color: "red", marginLeft: "12rem", fontWeight: "700" ,fontSize:"1.4rem",
+          marginBottom:"1.7rem"}}>
               {err}
-            </p>{" "}
+            </p>{" "} 
             <div
               style={{
                 display: "flex",

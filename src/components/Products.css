@@ -1,6 +1,6 @@
 .pro--container {
   /* padding-top: 6rem; */
-  padding-bottom: 3rem;
+  padding-bottom: 4rem;
 }
 .top--selling-heading {
  margin-top: 3rem;
@@ -14,7 +14,7 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-left: 4rem;
-  height: 61vh;
+  height: 64vh;
   transition: .5s;
 }
 .prodDiv.enter{

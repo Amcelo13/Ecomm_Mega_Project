@@ -52,8 +52,8 @@ function Products() {
                       id="prodimage"
                     />
                     <div className="info">
-                      <h3 style={{ textAlign: "left", paddingLeft:'1rem' }}>{prod.name}</h3>
-                      <h4 style={{ color: "gray", paddingRight:'1rem' }}>₹{prod.price}</h4>
+                      <h3 style={{ textAlign: "left", paddingLeft:'1.5rem' }}>{prod.name}</h3>
+                      <h4 style={{ color: "gray", paddingRight:'1.3rem' }}>₹{prod.price}</h4>
                     </div>
                     <p id="cat">{prod.category}</p>
                   </div>
