@@ -1,6 +1,6 @@
 import axios from "axios"
 export const addToCart = async(prod, vendorData,quanValue, userEmail) =>{
-    console.log(vendorData)
+
 
     const obj = {
         name: prod.name,
@@ -9,7 +9,8 @@ export const addToCart = async(prod, vendorData,quanValue, userEmail) =>{
         userId:userEmail,
         quantity:quanValue,
         vendorEmail:vendorData.email,
-        productID:prod._id
+        productID:prod._id,
+        images:prod.images
     }
 
     await axios.post('http://localhost:4000/addToCart', obj).then((response)=>{

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {  Modal } from "antd";
+import { Modal } from "antd";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import "./AddressModalForm.scss";
@@ -7,19 +7,19 @@ import NoDatar from "../assets/NoData.png";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { deleteAddress } from "../utils/deleteAddress";
 import { addOrdersInOrderCollection } from "../utils/addOrdersInOrderCollection";
-import {incrementProductSales } from "../utils/incrementProductSales"
+import { incrementProductSales } from "../utils/incrementProductSales";
 import EditAddressModal from "./EditAddressModal";
 import { useNavigate } from "react-router-dom";
 
 const success = () => {
   Modal.success({
-    content: 'Your Order has been placed successfully',
+    content: "Your Order has been placed successfully",
   });
 };
 
-function AddressModalFormCheckout({ isModalOpen, setIsModalOpen,cartItems }) {
+function AddressModalFormCheckout({ isModalOpen, setIsModalOpen, cartItems }) {
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const userEmail = useSelector((state) => state.users.email);
   const userName = useSelector((state) => state.users.name);
   const [gettedAddressData, setGettedAddressData] = useState([]);
@@ -29,22 +29,34 @@ function AddressModalFormCheckout({ isModalOpen, setIsModalOpen,cartItems }) {
 
   const handleAddressClick = (addressId) => {
     setSelectedAddressId(addressId);
-    const selectedAddress = gettedAddressData.find((address) => address._id === addressId);
+    const selectedAddress = gettedAddressData.find(
+      (address) => address._id === addressId
+    );
     setSelectedAddress(selectedAddress);
   };
 
   //Add order to inventory of orders collection
-  const finalOrder = (cartItems, userName, selectedAddress, userEmail) => {
-    success()
-    setIsModalOpen(false)
+  const finalOrder = (
+    cartItems,
+    userName,
+    selectedAddress,
+    userEmail
+  ) => {
+    success();
+    setIsModalOpen(false);
     incrementProductSales(cartItems);
-    addOrdersInOrderCollection(cartItems, userName, selectedAddress, userEmail);  //going in orderModel
+    addOrdersInOrderCollection(
+      cartItems,
+      userName,
+      selectedAddress,
+      userEmail
+    ); //going in orderModel
     setTimeout(() => {
-      navigate('/')
+      navigate("/");
     }, 2000);
-  }
-  
-  //Getaddress
+  };
+
+  //Get address
   useEffect(() => {
     const getAddress = async () => {
       await axios
@@ -94,10 +106,12 @@ function AddressModalFormCheckout({ isModalOpen, setIsModalOpen,cartItems }) {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  
-  //IMPORTANT---------------------------------------------------------------->
+
+  // Handle Edit Click
   const handleEditClick = (addressId) => {
-    const selectedAddress = gettedAddressData.find((address) => address._id === addressId);
+    const selectedAddress = gettedAddressData.find(
+      (address) => address._id === addressId
+    );
     setSelectedAddress(selectedAddress);
     setOpen(true);
   };
@@ -159,7 +173,7 @@ function AddressModalFormCheckout({ isModalOpen, setIsModalOpen,cartItems }) {
           <input
             name="state"
             type="text"
-            maxLength="6"
+            maxLength={6}
             value={addressData.state}
             onChange={handleChange}
             required
@@ -168,6 +182,7 @@ function AddressModalFormCheckout({ isModalOpen, setIsModalOpen,cartItems }) {
           <input
             name="pincode"
             type="text"
+            pattern="[0-9]*"
             value={addressData.pincode}
             onChange={handleChange}
             required
@@ -177,7 +192,7 @@ function AddressModalFormCheckout({ isModalOpen, setIsModalOpen,cartItems }) {
 
         <div className="addright">
           <h2 className="text-2xl mb-10 font-bold tracking-tight text-gray-900">
-           Select from Address List
+            Select from Address List
           </h2>
           {gettedAddressData ? (
             gettedAddressData.map((add) => {
@@ -202,10 +217,17 @@ function AddressModalFormCheckout({ isModalOpen, setIsModalOpen,cartItems }) {
                   </pre>
 
                   <div className="classy">
-                    <EditOutlined   className={`edity ${isActive ? "active" : ""}`}   onClick={() => handleEditClick(add._id)}
+                    <EditOutlined
+                      className={`edity ${isActive ? "active" : ""}`}
+                      onClick={() => handleEditClick(add._id)}
                     />
 
-                    <DeleteOutlined onClick={()=>deleteAddress(add._id, userEmail, setSample)} className={`delety ${isActive ? "active" : ""}`} />
+                    <DeleteOutlined
+                      onClick={() =>
+                        deleteAddress(add._id, userEmail, setSample)
+                      }
+                      className={`delety ${isActive ? "active" : ""}`}
+                    />
                   </div>
                 </div>
               );
@@ -216,33 +238,35 @@ function AddressModalFormCheckout({ isModalOpen, setIsModalOpen,cartItems }) {
             </>
           )}
           <EditAddressModal
-          open={open}
-          userEmail={userEmail}
-          selectedAddressId={selectedAddressId}
-          setOpen={setOpen}
-          selectedAddress={selectedAddress}
-          setSelectedAddress={setSelectedAddress}
-          setSample = {setSample}
-          sample = {sample}
-        />
+            open={open}
+            userEmail={userEmail}
+            selectedAddressId={selectedAddressId}
+            setOpen={setOpen}
+            selectedAddress={selectedAddress}
+            setSelectedAddress={setSelectedAddress}
+            setSample={setSample}
+            sample={sample}
+          />
         </div>
         <button
-        onClick={()=>finalOrder(cartItems, userName, selectedAddress, userEmail)}
-        style={{
-          marginTop: "20px",
-          color: "white",
-          marginLeft:"3rem",
-          marginRight:"4rem",
-          border: "none",
-          cursor: "pointer",
-          paddingLeft: "35px",
-          paddingRight: "35px",
-          height: "40px",
-          backgroundColor: "#2e2d2d",
-        }}
-      >
-        Order Now{" "}
-      </button>
+          onClick={() =>
+            finalOrder(cartItems, userName, selectedAddress, userEmail)
+          }
+          style={{
+            marginTop: "20px",
+            color: "white",
+            marginLeft: "3rem",
+            marginRight: "4rem",
+            border: "none",
+            cursor: "pointer",
+            paddingLeft: "35px",
+            paddingRight: "35px",
+            height: "40px",
+            backgroundColor: "#2e2d2d",
+          }}
+        >
+          Order Now
+        </button>
       </div>
     </Modal>
   );

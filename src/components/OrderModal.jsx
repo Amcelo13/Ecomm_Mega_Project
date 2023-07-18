@@ -14,7 +14,6 @@ function OrderModal({ open, setOpen, specificOrderInfo, setSample, sample }) {
     if (specificOrderInfo) {
       const { status, createdAt, isCancel } = specificOrderInfo;
 
- 
       switch (status) {
         case "ordered":
           setLogisticsStatus(0);
@@ -67,6 +66,7 @@ function OrderModal({ open, setOpen, specificOrderInfo, setSample, sample }) {
   }
 
   const { orderItems, address, createdAt, isCancel } = specificOrderInfo;
+
   const orderTime = new Date(createdAt).toLocaleString();
 
   return (
@@ -106,7 +106,7 @@ function OrderModal({ open, setOpen, specificOrderInfo, setSample, sample }) {
         {orderItems.map((item) => (
           <div key={item._id} className="order-item">
             <img
-              src={item.prodImage}
+              src={item.images[0]}
               alt={item.name}
               className="order-item-image"
             />

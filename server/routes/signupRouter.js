@@ -162,7 +162,7 @@ router.post("/updateUserInfo/:uid", async (req, res) => {
 
 //Cart addition of user
 router.post("/addToCart", async (req, res) => {
-  const { name, prodImage, quantity, price, userId,vendorEmail, productID } = req.body;
+  const { name, prodImage, quantity, price, userId,vendorEmail, productID , images} = req.body;
 
   try {
     const user = await userModel.findOne({ email: userId });
@@ -177,7 +177,7 @@ router.post("/addToCart", async (req, res) => {
       } 
       
       else {
-        user.cartItems.push({ name, prodImage, quantity, price , vendorEmail, productID});
+        user.cartItems.push({ name, prodImage, quantity, price , vendorEmail, productID, images});
       }
 
       await user.save();
@@ -363,5 +363,8 @@ router.post('/setVendorActivation/:vendorID', async(req, res)=>{
   }
 
 })
+
+
+
 
 module.exports = router;

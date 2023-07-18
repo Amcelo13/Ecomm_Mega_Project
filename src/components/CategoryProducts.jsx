@@ -4,7 +4,6 @@ import "./Products.css";
 import { useNavigate } from "react-router-dom";
 
 function CategoryProducts({ cateGory }) {
-  console.log(cateGory);
   const [product, setProduct] = useState([]);
   const navigate = useNavigate();
   //Getting Category Products
@@ -46,7 +45,7 @@ function CategoryProducts({ cateGory }) {
                   onClick={() => goToProductPage(prod._id)}
                 >
                   <img
-                    src={prod.prodImage}
+                    src={prod.images[0]}
                     alt="err"
                     width="95%"
                     id="prodimage"

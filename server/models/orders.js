@@ -12,6 +12,7 @@ const orderSchema = new mongoose.Schema({
         prodImage: String,
         quantity: Number,
         price: Number,
+        images: [],
         vendorEmail: String,
       },
     ],
