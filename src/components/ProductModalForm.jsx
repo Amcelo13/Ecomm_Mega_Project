@@ -55,11 +55,6 @@ function ProductModalForm({ open, setOpen, formValues, outOfStockActivator }) {
     }
   }, [sample, formValues]);
 
-  const handleFile = (e) => {
-    const newFile = e.target.files;
-    setFile([...file, newFile]);
-  };
-
   // Adding/Editing
   const handleSubmit = async (e) => {
     setLoading(true);
@@ -72,6 +67,7 @@ function ProductModalForm({ open, setOpen, formValues, outOfStockActivator }) {
       category: productCategory,
       vendorID: vendorEmail,
       isDraft: isDraft,
+      images:image,
       prodImage:
         "https://www.aptronixindia.com/media/catalog/product/i/p/iphone1164gbpurple_2.png",
     };

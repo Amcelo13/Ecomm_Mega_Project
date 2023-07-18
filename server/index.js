@@ -9,6 +9,7 @@ const path=require("path")
 
 const port = 4000; 
 const app = express();
+app.use(cors());
 
 const storage = multer.diskStorage({
     destination:'./uploads/',
@@ -29,7 +30,6 @@ app.post('/uploads', upload.single('image'),(req,res)=>{
 
 
 app.use(express.json());
-app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
