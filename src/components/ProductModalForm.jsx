@@ -4,7 +4,8 @@ import LoadingOutlined from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { handleOutOfStock } from "../utils/handleOutOfStock";
-import { Upload } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import { Upload } from "antd";
 
 function ProductModalForm({ open, setOpen, formValues, outOfStockActivator }) {
   const vendorEmail = useSelector((state) => state.users.email);
@@ -14,11 +15,33 @@ function ProductModalForm({ open, setOpen, formValues, outOfStockActivator }) {
   const [productDescription, setProductDescription] = useState("");
   const [productCategory, setProductCategory] = useState("Appliances");
   const [file, setFile] = useState(null);
+
   const [isDraft, setIsDraft] = useState(false);
   const [someData, setSomeData] = useState(false);
   const [sample, setSample] = useState(false);
   const [randomState, setRandomState] = useState(false);
 
+  //Upload Props
+  const [image, setImage] = useState([]);
+  const [fileList, setFileList] = useState([]);
+
+  const handleChange1 = ({ file: newFile, fileList: newFileList }) => {
+    setFileList(newFileList);
+    newFile.status === "done" &&
+      setImage([...image, `http://localhost:4000/${newFile.response}`]);
+  };
+  const uploadButton = (
+    <div>
+      <PlusOutlined />
+      <div
+        style={{
+          marginTop: "8",
+        }}
+      >
+        Upload
+      </div>
+    </div>
+  );
   //Prepopulation of MOdal form
   useEffect(() => {
     if (formValues) {
@@ -86,30 +109,20 @@ function ProductModalForm({ open, setOpen, formValues, outOfStockActivator }) {
         <form onSubmit={handleSubmit}>
           <div className="modalcontainer">
             <div className="modalLeft">
-              <input
-                filename={file}
-                onChange={(e) => handleFile(e)}
-                type="file"
-                accept="image/*"
-              />
-              <input
-                filename={file}
-                onChange={(e) => handleFile(e)}
-                type="file"
-                accept="image/*"
-              />
-              <input
-                filename={file}
-                onChange={(e) => handleFile(e)}
-                type="file"
-                accept="image/*"
-              />
-              <input
-                filename={file}
-                onChange={(e) => setFile(e.target.files[4])}
-                type="file"
-                accept="image/*"
-              />
+              <Upload
+                action="http://localhost:4000/uploads"
+                listType="picture-circle"
+                fileList={fileList}
+                onChange={handleChange1}
+                name="image"
+                showUploadList={{
+                  showPreviewIcon: false,
+                  showDownloadIcon: false,
+                  showRemoveIcon: false,
+                }}
+              >
+                {fileList.length >= 4 ? null : uploadButton}
+              </Upload>
             </div>
 
             <div className="modalRight">
