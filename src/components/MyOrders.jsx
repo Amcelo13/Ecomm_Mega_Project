@@ -6,6 +6,7 @@ import "./MyOrder.css";
 import KOKO from "../assets/order.svg";
 import { getCartSubtotal } from "../utils/getCartSubtotal.js";
 import { getSpecificOrder } from "../utils/getSpecificOrder.js";
+import NOM from "../assets/NoData.png"
 
 function MyOrders() {
   const userEmail = useSelector((state) => state.users.email);

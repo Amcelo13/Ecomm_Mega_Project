@@ -5,7 +5,7 @@ import Mobile from "../components/Mobile";
 import "./Signup.css";
 import GOG from "../assets/google.svg";
 import { LoadingOutlined } from "@ant-design/icons";
-import { v4 } from "uuid";
+
 //redux
 import { useDispatch } from "react-redux";
 import { setLogin } from "../app/features/templateSlice";
@@ -322,7 +322,7 @@ function Signup() {
                       type="primary"
                       htmlType="submit"
                       style={{
-                        backgroundColor: "#f6851c",
+                        backgroundColor: "#2e2d2d",
                         border: "none",
                         fontWeight: "600",
                       }}
@@ -346,7 +346,7 @@ function Signup() {
                 Already In Use{" "}
                 <span
                   style={{
-                    color: "#f6851c",
+                    color: "#578aff",
                     fontWeight: "500",
                     cursor: "pointer",
                   }}

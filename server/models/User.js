@@ -41,6 +41,7 @@ const UserSchema = new mongoose.Schema({
       quantity: Number,
       price: Number,
       vendorEmail: String,
+      productID: String,
     },
   ],
 

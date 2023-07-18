@@ -3,13 +3,23 @@ import axios from "axios";
 import "./VendorProducts.css";
 import { useSelector } from "react-redux";
 import { EyeOutlined, DeleteOutlined } from "@ant-design/icons/lib/icons";
-import NuData from "../assets/NoData.png";
+import NOM from "../assets/NoData.png"
 import ProductModalForm from "./ProductModalForm";
 
 function VendorProducts({outOfStockActivator}) {
   const vendEmail = useSelector((state) => state.users.email);
   const [products, setProducts] = useState([]);
   const [singleModelProps, setsingleModelProps] = useState(null);
+  
+  const handleDelete = async (id) => {
+    
+    try {
+      await axios.post("http://localhost:4000/deleteDraft", { id });
+      console.log("Draft deleted SUCCESSFUL");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // Vendor Specific Products
   useEffect(() => {
@@ -38,21 +48,12 @@ function VendorProducts({outOfStockActivator}) {
     setsingleModelProps(index);
   };
 
-  const handleDelete = async (id) => {
-    try {
-      await axios.post("http://localhost:4000/deleteDraft", { id });
-      console.log("Draft deleted SUCCESSFUL");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
 
     <div className="pro--container">
       <p id="head">My Drafts</p>
       <div className="prodDiv1" id="prof">
-        {products ? (
+        {products.length !==0 ? (
           products.map((prod, index) => {
             if (prod.isDraft === true) {
               return (
@@ -97,8 +98,9 @@ function VendorProducts({outOfStockActivator}) {
             }
             return null;
           })
-        ) : (
-          <img src={NuData} alt="No data" />
+        ) : ( <>
+          <img src={NOM} alt="No data"  style={{width:'50%', height:"100%", marginLeft:"23%"}}/>
+          </>
         )}
       </div>
     </div>

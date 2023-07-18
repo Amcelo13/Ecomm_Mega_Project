@@ -1,10 +1,5 @@
-import axios from "axios"
-export const handleOutOfStock = async(productID) => {
+import axios from "axios";
 
-    await axios.get(`http://localhost:4000/markOutOfStock/${productID}`).then((response) =>{
-        console.log('Updated out of stock')
-
-    }).catch((error) =>{
-        console.log(error)
-    })
-}
+export const handleOutOfStock = async(productID, boolValue) => {
+ await axios.put(`http://localhost:4000/markOutOfStock1`, { boolValue, productID });
+};

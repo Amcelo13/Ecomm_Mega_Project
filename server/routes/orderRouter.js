@@ -103,12 +103,5 @@ router.get("/getVendorOrders/:vendorEmail", async (req, res) => {
   }
 });
   
-//Most sold order
-router.get("/mostSoldOrder/:productID", async (req, res) => {
-  const productID = req.params.productID;
-
-  //TODO: TAO BE DONE for top selling orders
-  
-})
 
 module.exports = router;

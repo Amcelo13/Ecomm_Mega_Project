@@ -3,16 +3,24 @@ import axios from "axios";
 import "./VendorProducts.css";
 import { useSelector } from "react-redux";
 import { EyeOutlined, DeleteOutlined } from "@ant-design/icons/lib/icons";
-import NuData from "../assets/NoData.png";
+import NOM from "../assets/NoData.png"
 import ProductModalForm from "./ProductModalForm";
-
 function VendorProducts({outOfStockActivator}) {
   const vendEmail = useSelector((state) => state.users.email);
   const [products, setProducts] = useState([]);
   const [singleModelProps, setsingleModelProps] = useState(null);
   const [sample, setSample] = useState(false);
 
+  const handleDelete = async (id) => {
+    try {
+      await axios.post("http://localhost:4000/deleteDraft", { id });
+    } catch (error) {
+      console.log(error);
+    }
+    setSample(!sample)
+
   
+  };
   // Vendor Specific Products
   useEffect(() => {
     const getProducts = async () => {
@@ -27,7 +35,9 @@ function VendorProducts({outOfStockActivator}) {
     };
     getProducts();
 
+    console.log('Statment again running');
   }, [sample]);
+
 
   useEffect(() => { 
     // Animations
@@ -37,16 +47,8 @@ function VendorProducts({outOfStockActivator}) {
       productElement.classList.remove("enter");
     };
   },[])
-  const handleDelete = async (id) => {
-    try {
-      await axios.post("http://localhost:4000/deleteDraft", { id });
-      console.log("Draft deleted succcessfully");
-      setSample(!sample)
-    } catch (error) {
-      console.log(error);
-    }
-  
-  };
+
+//Edit MODAL 
   const handleEdit = (index) => {
     setsingleModelProps(index);
   };
@@ -55,7 +57,7 @@ function VendorProducts({outOfStockActivator}) {
     <div className="pro--container">
       <p id="head">My Products</p>
       <div className="prodDiv1" id="prof">
-        {products ? (
+        {products.length !==0  ? (
           products.map((prod, index) => {
             if (prod.isDraft === false) {
               return (
@@ -108,8 +110,9 @@ function VendorProducts({outOfStockActivator}) {
             }
             return null;
           })
-        ) : (
-          <img src={NuData} alt="No data" />
+        ) : (<>
+          <img src={NOM} alt="No data"  style={{width:'50%', height:"100%", marginLeft:"23%"}}/>
+          </>
         )}
       </div>
     </div>

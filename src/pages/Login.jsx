@@ -199,7 +199,7 @@ function Login() {
   };
   //going to signup page
   const gotosignup = () => {
-    navigate("/");
+    navigate("/signup");
   };
   return (
     <div className="container">
@@ -355,7 +355,7 @@ function Login() {
                   type="primary"
                   htmlType="submit"
                   style={{
-                    backgroundColor: "#f6851c",
+                    backgroundColor: "#2e2d2d",
                     border: "none",
                     fontWeight: "600",
                   }}
@@ -378,7 +378,7 @@ function Login() {
             New here{" "}
             <span
               style={{
-                color: "#f6851c",
+                color: "#578aff",
                 fontWeight: "500",
                 paddingLeft: ".6rem",
                 cursor: "pointer",

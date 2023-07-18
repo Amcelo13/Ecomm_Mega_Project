@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { getCartItems } from "../utils/getCartItem";
 import { DeleteOutlined } from "@mui/icons-material";
 import { message } from "antd";
+import NOM from "../assets/ECART.png"
 import AddressModalFormCheckout from "../components/AddressModalFormCheckout";
 function CartPage() {
   
@@ -194,54 +195,56 @@ function CartPage() {
           <p id="cvvf">CART</p>
 
           <div className="contc">
-            {cartItems && cartItems.map((item) => {
-                return (
-                  <>
-                    <div className={`cartI ${animate ? 'slide-up' : ''}`}>
-                      <img src={item.prodImage} alt="" id="nb" />
+            {cartItems.length !==0 ? (cartItems.map((item) => {
+              return (
+                <>
+                  <div className={`cartI ${animate ? 'slide-up' : ''}`}>
+                    <img src={item.prodImage} alt="" id="nb" />
 
-                      <div style={{ marginLeft: "5rem", paddingTop: "3rem" }}>
-                        <h4 id="new">{item.name}</h4>
-                        <p id="gb">Quantity</p>
-                        <button
-                          className="mko"
-                          disabled={item.quantity === 1 && true}
-                          onClick={() => decreaseQuantity(item.name)}
-                        >
-                          -
-                        </button>
-                        <input
-                          type="number"
-                          name=""
-                          id="sel"
-                          value={item.quantity}
-                        />
-                        <button
-                          className="mko"
-                          onClick={() => increaseQuantity(item.name)}
-                        >
-                          +
-                        </button>
-                      </div>
-                      <p id="df"> ₹ {`${item.price * item.quantity}`}</p>
-                      <DeleteOutlined
-                        onClick={() =>
-                          handleDeleteCartProduct(item.name, userEmail)
-                        }
-                        id="deleteed"
-                        style={{
-                          transition: "1s ease",
-                          color: "red",
-                          fontSize: "30px",
-                          marginLeft: "auto",
-                          paddingTop: "6rem",
-                          paddingRight: "3rem",
-                        }}
+                    <div style={{ marginLeft: "5rem", paddingTop: "3rem" }}>
+                      <h4 id="new">{item.name}</h4>
+                      <p id="gb">Quantity</p>
+                      <button
+                        className="mko"
+                        disabled={item.quantity === 1 && true}
+                        onClick={() => decreaseQuantity(item.name)}
+                      >
+                        -
+                      </button>
+                      <input
+                        type="number"
+                        name=""
+                        id="sel"
+                        value={item.quantity}
                       />
+                      <button
+                        className="mko"
+                        onClick={() => increaseQuantity(item.name)}
+                      >
+                        +
+                      </button>
                     </div>
-                  </>
-                );
-              })}
+                    <p id="df"> ₹ {`${item.price * item.quantity}`}</p>
+                    <DeleteOutlined
+                      onClick={() =>
+                        handleDeleteCartProduct(item.name, userEmail)
+                      }
+                      id="deleteed"
+                      style={{
+                        transition: "1s ease",
+                        color: "red",
+                        fontSize: "30px",
+                        marginLeft: "auto",
+                        paddingTop: "6rem",
+                        paddingRight: "3rem",
+                      }}
+                    />
+                  </div>
+                </>
+              );
+            })):(<>
+              <img src={NOM} alt="No data"  style={{width:'50%', height:"100%", marginLeft:"23%"}}/>
+              </>)}
           </div>
         </div>
 
@@ -300,7 +303,7 @@ function CartPage() {
             <p id="ct" style={{ textAlign: "left", paddingLeft: "1rem" }}>
               FREE SHIP{" "}
             </p>
-            <p style={{ textAlign: "left", paddingLeft: "1rem" }}>
+            <p style={{ textAlign: "left", paddingLeft: "1rem" , paddingBottom:'2rem'}}>
               Free Shiping this month!
             </p>
 
@@ -314,14 +317,15 @@ function CartPage() {
               ></div>
             </div>
 
-            <p id="ct" style={{ textAlign: "left", paddingLeft: "1rem" }}>
+            <p id="ct" style={{ textAlign: "left", paddingLeft: "1rem" , paddingTop:'2rem'}}>
               Hola{" "}
             </p>
             <p
               style={{
                 textAlign: "left",
                 paddingLeft: "1rem",
-                paddingBottom: "1rem",
+                paddingBottom: "2rem",
+                
               }}
             >
               Happy 300Rs Off on everything{" "}

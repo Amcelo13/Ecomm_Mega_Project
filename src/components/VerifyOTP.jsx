@@ -85,7 +85,7 @@ function VerifyOTP({ name, expandForm, setExpandForm, fullPhoneNumber, value3,})
               type="submit"
               disabled={isLoading} // Disable the button when isLoading is true
               style={{
-                backgroundColor: "#FEBD69",
+                backgroundColor: "#2e2d2d",
                 border: "none",
                 color: "white",
                 cursor: "pointer",

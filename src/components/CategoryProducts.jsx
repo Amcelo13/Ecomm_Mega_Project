@@ -38,7 +38,7 @@ function CategoryProducts({ cateGory }) {
       <div className="prodDiv" id="prof">
         {product &&
           product.map((prod) => {
-            if (prod.stock === 1) {
+            if (prod.stock === true) {
               return (
                 <div
                   className="one-prod"

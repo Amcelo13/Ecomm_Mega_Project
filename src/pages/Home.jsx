@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import Navbar1 from "../components/Navbar1";
+
 import "../components/Products.css";
 import { useLocation } from "react-router-dom";
 import Products from "../components/Products";
@@ -11,7 +11,7 @@ function Home() {
   const location = useLocation();
 
   const scrollDown = () => {
-    const scrollAmount = 230 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const scrollAmount = 120.9 * parseFloat(getComputedStyle(document.documentElement).fontSize);
     window.scrollTo({
       top: window.scrollY + scrollAmount,
       behavior: "smooth"
@@ -36,7 +36,7 @@ function Home() {
         <div>
           <img
             style={{ borderRadius: "2rem", width: "100%", height: "100vh" }}
-            src="https://images.pexels.com/photos/8553173/pexels-photo-8553173.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            src="https://r.lvmh-static.com/uploads/2014/10/cover-15-2800x1312.jpg"
           />
         </div>
       </Carousel>
@@ -51,7 +51,7 @@ function Home() {
         ></video>{" "}
       </div>
 
-      <h1 className="top--selling-heading">Top Selling Products</h1>
+      <h1 className="top--selling-heading" style={{textAlign:'center'}}>Top Selling Products</h1>
       <Products />
 
       <button id="proda" onClick={scrollDown}>

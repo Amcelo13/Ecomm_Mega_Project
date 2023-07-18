@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Checkbox } from "antd";
+import { Modal, Checkbox, Switch } from "antd";
 import LoadingOutlined from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { handleOutOfStock } from "../utils/handleOutOfStock";
+
 function ProductModalForm({ open, setOpen, formValues, outOfStockActivator }) {
   const vendorEmail = useSelector((state) => state.users.email);
   const [loading, setLoading] = useState(false);
-  const [loadingOutOfStock, setloadingOutOfStock] = useState(false);
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState();
   const [productDescription, setProductDescription] = useState("");
@@ -15,6 +15,8 @@ function ProductModalForm({ open, setOpen, formValues, outOfStockActivator }) {
   const [file, setFile] = useState(null);
   const [isDraft, setIsDraft] = useState(false);
   const [someData, setSomeData] = useState(false);
+  const [sample, setSample] = useState(false);
+  const [randomState, setRandomState] = useState(false);
 
   //Prepopulation of MOdal form
   useEffect(() => {
@@ -25,8 +27,9 @@ function ProductModalForm({ open, setOpen, formValues, outOfStockActivator }) {
       setProductCategory(formValues.category || "Appliances");
       setIsDraft(formValues.isDraft || false);
       setSomeData(true);
+      setRandomState(false);
     }
-  }, [formValues]);
+  }, [sample, formValues]);
 
   const handleFile = (e) => {
     const newFile = e.target.files;
@@ -63,12 +66,12 @@ function ProductModalForm({ open, setOpen, formValues, outOfStockActivator }) {
     setOpen(false);
   };
 
-  const OutOfStock = (productID) => {
-    setloadingOutOfStock(true);
-    handleOutOfStock(productID);
-    setloadingOutOfStock(false);
-    setOpen(false);
+  const onChange = async (productID, statusBoolean) => {
+    setRandomState(true);
+    await handleOutOfStock(productID, statusBoolean);
+    setSample(!sample);
   };
+
   return (
     <Modal
       title={someData ? "Edit Product" : "Add Product"}
@@ -109,7 +112,9 @@ function ProductModalForm({ open, setOpen, formValues, outOfStockActivator }) {
             </div>
 
             <div className="modalRight">
-              <p className="rightiu">Product Name</p>
+              <p className="rightiu" style={{ paddingBottom: "1rem" }}>
+                Product Name
+              </p>
               <input
                 type="text"
                 className="rightium"
@@ -117,12 +122,15 @@ function ProductModalForm({ open, setOpen, formValues, outOfStockActivator }) {
                 value={productName}
                 onChange={(e) => setProductName(e.target.value)}
               />
-              <p className="rightiu">Product Category</p>
+              <p className="rightiu" style={{ paddingBottom: "1rem" }}>
+                Product Category
+              </p>
               <select
                 name=""
                 id=""
                 required
                 className="rightium1"
+                style={{ paddingBottom: "1rem" }}
                 value={productCategory}
                 onChange={(e) => setProductCategory(e.target.value)}
               >
@@ -133,7 +141,9 @@ function ProductModalForm({ open, setOpen, formValues, outOfStockActivator }) {
                 <option value="Bags">Bags</option>
               </select>
 
-              <p className="rightiu">Description</p>
+              <p className="rightiu" style={{ paddingBottom: "1rem" }}>
+                Description
+              </p>
               <textarea
                 required
                 name=""
@@ -147,7 +157,9 @@ function ProductModalForm({ open, setOpen, formValues, outOfStockActivator }) {
                 onChange={(e) => setProductDescription(e.target.value)}
               ></textarea>
 
-              <p className="rightiu">Price</p>
+              <p className="rightiu" style={{ paddingBottom: "1rem" }}>
+                Price
+              </p>
               <input
                 required
                 type="number"
@@ -168,7 +180,14 @@ function ProductModalForm({ open, setOpen, formValues, outOfStockActivator }) {
                   </p>
                 </Checkbox>
               </span>
-             {formValues?.stock === 0 ? ( <b style={{color:'red', marginLeft:"10rem"}}>It is Marked Out of Stock </b>):''}
+
+              {formValues?.stock === 0 ? (
+                <b style={{ color: "red", marginLeft: "10rem" }}>
+                  It is Marked Out of Stock{" "}
+                </b>
+              ) : (
+                ""
+              )}
               <input
                 type="text"
                 minValue="0"
@@ -201,30 +220,29 @@ function ProductModalForm({ open, setOpen, formValues, outOfStockActivator }) {
                   )}
                 </button>
 
+                {/*Means on edit and outofstockactivator is used for products not drafts*/}
+
                 {someData && outOfStockActivator ? (
-                  <button
-                    // type="submit"  removing this not requires in out od stock
-                    id="add-new-product"
-                    style={{
-                      width: "40%",
-                      paddingBottom: ".6rem",
-                      paddingTop: ".6rem",
-                      cursor: "pointer",
-                      backgroundColor: "red",
-                      color: "white",
-                      marginTop: "4rem",
-                      border: "none",
-                      borderRadius: ".3rem",
-                    }}
-                    onClick={() => OutOfStock(formValues._id)}
-                    disabled={loadingOutOfStock}
-                  >
-                    {loading ? (
-                      <LoadingOutlined style={{ color: "white" }} />
-                    ) : (
-                      "Mark Out of Stock"
-                    )}
-                  </button>
+                  <>
+                    <p
+                      style={{
+                        marginTop: "auto",
+                        paddingRight: "1.4rem",
+                        fontWeight: "600",
+                        color: "gray",
+                      }}
+                    >
+                      Mark Out of Stock
+                    </p>
+                    <Switch
+                      style={{ marginTop: "4.5rem" }}
+                      defaultChecked={!formValues.stock}
+                      onChange={() =>
+                        onChange(formValues?._id, !formValues?.stock)
+                      }
+                      disabled={randomState}
+                    />
+                  </>
                 ) : (
                   ""
                 )}

@@ -73,7 +73,7 @@ function AddressModalFormBuy({
     setAddressData({ ...addressData, [e.target.name]: e.target.value });
   };
 
-  const gotoCart = (prod, vendorData, quanValue) => {
+  const gotoCart = (prod, vendorData, quanValue, userEmail) => {
     addToCart(prod, vendorData, quanValue, userEmail);
     navigate("/cartPage");
   };
@@ -204,7 +204,7 @@ function AddressModalFormBuy({
           {length ? (
             <>
               <button
-                onClick={() => gotoCart(prod, vendorData, quanValue)}
+                onClick={() => gotoCart(prod, vendorData, quanValue, userEmail)}
                 style={{
                   marginTop: "20px",
                   color: "white",

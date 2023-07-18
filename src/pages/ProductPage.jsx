@@ -90,7 +90,7 @@ function ProductPage() {
     getAddress();
   }, []);
 
-  //Cart Addition Handling
+  //Cart Addition Handling 
   const handleAddToCart = (prod, vendorData, quanValue, userEmail) => {
     addToCart(prod, vendorData, quanValue, userEmail);
     setLoading(true);

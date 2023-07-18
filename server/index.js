@@ -4,9 +4,30 @@ const signupRouter = require("./routes/signupRouter");
 const productRouter = require("./routes/productRouter");
 const orderRouter = require("./routes/orderRouter");
 const mongoose = require("mongoose");
-const port = 4000; 
+const multer=require("multer");
+const path=require("path")
 
+const port = 4000; 
 const app = express();
+
+const storage = multer.diskStorage({
+    destination:'./uploads/',
+      // Specify the destination folder where uploaded files will be saved
+    filename:  (req, file, cb)=> {
+        cb(null, Date.now() + '-' + file.originalname); // Set the filename to be unique (using the current timestamp) and preserve the original filename
+    }   
+});
+const upload = multer({ storage });
+app.use(express.static(path.join(__dirname,"/uploads")))
+
+//MULTER Router
+app.post('/uploads', upload.single('image'),(req,res)=>{
+    console.log(req.file)
+    const pic=req.file.filename;
+    res.send(pic);
+})
+
+
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));

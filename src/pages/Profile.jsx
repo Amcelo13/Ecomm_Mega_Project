@@ -18,7 +18,7 @@ import axios from "axios";
 
 function Profile() {
   const user = useSelector((state) => state.users);
-  const [draftOption, setDraftOption] = useState(5); //for  toggle
+  const [draftOption, setDraftOption] = useState(-1); //for  toggle
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const nameFromRedux = useSelector((state) => state.users.name);

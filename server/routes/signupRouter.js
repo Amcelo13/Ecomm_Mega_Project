@@ -162,7 +162,7 @@ router.post("/updateUserInfo/:uid", async (req, res) => {
 
 //Cart addition of user
 router.post("/addToCart", async (req, res) => {
-  const { name, prodImage, quantity, price, userId,vendorEmail } = req.body;
+  const { name, prodImage, quantity, price, userId,vendorEmail, productID } = req.body;
 
   try {
     const user = await userModel.findOne({ email: userId });
@@ -174,8 +174,10 @@ router.post("/addToCart", async (req, res) => {
 
       if (existingCartItem) {
         existingCartItem.quantity += parseInt(quantity);
-      } else {
-        user.cartItems.push({ name, prodImage, quantity, price , vendorEmail});
+      } 
+      
+      else {
+        user.cartItems.push({ name, prodImage, quantity, price , vendorEmail, productID});
       }
 
       await user.save();
@@ -348,15 +350,14 @@ router.get('/getAllVendors', async(req, res)=>{
 })
 
 //Setting vendor active status
-router.put('/setVendorActivation/:vendorID', async(req, res)=>{
+router.post('/setVendorActivation/:vendorID', async(req, res)=>{
   const {boolValue} = req.body
-    console.log(req.params.vendorID)
-  
-
+  const vendorID = req.params.vendorID
   try{
-      await userModel.findByIdAndUpdate(req.params.vendorID , {status : boolValue})
+      await userModel.findByIdAndUpdate(vendorID , {status : boolValue})
     res.status(200).send('Vendor activation/disabled updated');
   }
+
   catch(err){
     res.status(404).send("Vendor not found");
   }

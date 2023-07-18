@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Modal } from "antd";
+import {  Modal } from "antd";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import "./AddressModalForm.scss";
@@ -7,28 +7,19 @@ import NoDatar from "../assets/NoData.png";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { deleteAddress } from "../utils/deleteAddress";
 import { addOrdersInOrderCollection } from "../utils/addOrdersInOrderCollection";
+import {incrementProductSales } from "../utils/incrementProductSales"
 import EditAddressModal from "./EditAddressModal";
-const info = () => {
-  Modal.info({
-    title: 'This is a notification message',
-    content: (
-      <div>
-        <p>some messages...some messages...</p>
-        <p>some messages...some messages...</p>
-      </div>
-    ),
-    onOk() {},
-  });
-};
+import { useNavigate } from "react-router-dom";
+
 const success = () => {
   Modal.success({
     content: 'Your Order has been placed successfully',
   });
 };
 
-function AddressModalForm({ isModalOpen, setIsModalOpen,cartItems }) {
+function AddressModalFormCheckout({ isModalOpen, setIsModalOpen,cartItems }) {
   const [open, setOpen] = useState(false);
-
+  const navigate = useNavigate()
   const userEmail = useSelector((state) => state.users.email);
   const userName = useSelector((state) => state.users.name);
   const [gettedAddressData, setGettedAddressData] = useState([]);
@@ -44,11 +35,12 @@ function AddressModalForm({ isModalOpen, setIsModalOpen,cartItems }) {
 
   //Add order to inventory of orders collection
   const finalOrder = (cartItems, userName, selectedAddress, userEmail) => {
-    console.log(cartItems)
     success()
-    addOrdersInOrderCollection(cartItems, userName, selectedAddress, userEmail);
+    setIsModalOpen(false)
+    incrementProductSales(cartItems);
+    addOrdersInOrderCollection(cartItems, userName, selectedAddress, userEmail);  //going in orderModel
     setTimeout(() => {
-      setIsModalOpen(false)
+      navigate('/')
     }, 2000);
   }
   
@@ -256,4 +248,4 @@ function AddressModalForm({ isModalOpen, setIsModalOpen,cartItems }) {
   );
 }
 
-export default AddressModalForm;
+export default AddressModalFormCheckout;

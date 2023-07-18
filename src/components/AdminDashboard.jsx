@@ -57,7 +57,6 @@ function AdminDashboard() {
             defaultChecked={record.status}
             onChange={() => onChange(record._id, !record.status)}
             disabled={randomState}
-            // onClick={() => handleVendorActivation(record._id, statusBoolean)}
           />
         </Space>
       ),
@@ -71,13 +70,7 @@ function AdminDashboard() {
           <h2 id="vcvc">Admin Dashboard</h2>
         </div>
         <Table columns={columns} dataSource={vendorHistory} />;
-        <div className="orderr--left1">
-          <VendorControlModal
-            orderID={currentOrderID}
-            open={open}
-            setOpen={setOpen}
-          />
-        </div>
+      
       </div>
     </>
   );
