@@ -135,13 +135,16 @@
 .mine1 {
   text-align: left;
   cursor: pointer;
-  border-top-right-radius: 5rem;
   font-weight: 500;
   padding-right: 2rem;
   margin-left: -3rem;
   padding-left: 1rem;
   padding-bottom: 1rem;
   padding-top: 1rem;
+}
+.mine1:hover {
+  background-color: black;
+  color: white;
 }
 .mine1active {
   text-align: left;
@@ -170,6 +173,7 @@
   cursor: pointer;
   background-color: #2e2d2d;
   font-weight: 500;
+  color: white;
   padding-right: 2rem;
   margin-left: -3rem;
   padding-left: 1rem;

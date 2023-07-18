@@ -4,6 +4,7 @@ import LoadingOutlined from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { handleOutOfStock } from "../utils/handleOutOfStock";
+import { Upload } from 'antd';
 
 function ProductModalForm({ open, setOpen, formValues, outOfStockActivator }) {
   const vendorEmail = useSelector((state) => state.users.email);
