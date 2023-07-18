@@ -18,6 +18,9 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + '-' + file.originalname); // Set the filename to be unique (using the current timestamp) and preserve the original filename
     }   
 });
+
+
+
 const upload = multer({ storage });
 app.use(express.static(path.join(__dirname,"/uploads")))
 
@@ -46,6 +49,7 @@ try {
     });
     console.log('Connected to MongoDB server');
 } 
+
 catch (err) {
     console.log(err);
 }

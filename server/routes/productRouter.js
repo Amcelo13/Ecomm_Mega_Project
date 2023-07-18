@@ -10,6 +10,7 @@ router.post("/products", async (req, res) => {
     name,
     description,
     prodImage,
+    images,
     price,
     category,
     quantity,
@@ -26,6 +27,7 @@ router.post("/products", async (req, res) => {
       prod.description = description;
       prod.price = price;
       prod.category = category;
+      prod.images = images;
       prod.isDraft = isDraft;
       await prod.save();
       res.status(209).send("Product details exists and updated");
@@ -35,6 +37,7 @@ router.post("/products", async (req, res) => {
         description,
         prodImage,
         price,
+        images,
         category,
         quantity,
         vendorID,
@@ -62,8 +65,8 @@ router.get("/products", async (req, res) => {
 //Get Best selling products
 router.get("/bestproducts", async (req, res) => {
   try {
-    const ans = await productModel.find().sort({ sales:-1})
- 
+    const ans = await productModel.find().sort({ sales: -1 });
+
     res.status(200).json(ans);
   } catch (err) {
     res.status(400).send("Unable to fetch products: " + err.message);
