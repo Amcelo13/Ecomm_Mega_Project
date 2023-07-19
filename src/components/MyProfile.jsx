@@ -86,11 +86,16 @@ function MyProfile({ namefromNavigate , sample , setSample}) {
 
     try {
       const response = await axios.post(`http://localhost:4000/updateUserInfo/${user.uid}`,values );
-
+       if(response.status === 200) {
+        success();
+       }
+       else{
+        message.error(response.data)
+       }
     } catch (err) {
       console.log(err);
     }
-    success();
+ 
     setSample(!sample);
 
   };

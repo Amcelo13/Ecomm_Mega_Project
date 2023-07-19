@@ -91,6 +91,14 @@
 
       setLoading(false);
       setOpen(false);
+
+
+      setProductName("");
+      setProductPrice();
+      setProductDescription("");
+      setProductCategory("Appliances");
+      setProductImages([]);
+      setIsDraft( false);
     };
 
     const onChange = async (productID, statusBoolean) => {
@@ -98,13 +106,21 @@
       await handleOutOfStock(productID, statusBoolean);
       setSample(!sample);
     };
+    const onkhaali =  ()  =>{
+      setOpen(false )
+      setProductName("");
+      setProductPrice("");
+      setProductDescription("");
+      setProductCategory("Appliances");
+      setProductImages([]);
+    }
 
     return (
       <Modal
         title={someData ? "Edit Product" : "Add Product"}
         centered
         open={open}
-        onCancel={() => setOpen(false)}
+        onCancel={() => onkhaali()}
         width={1200}
         footer={null}
       >
@@ -122,7 +138,7 @@
                   showUploadList={{
                     showPreviewIcon: false,
                     showDownloadIcon: false,
-                    showRemoveIcon: true,
+
                   }}
                   style={{ padding: "4rem" }}
                 >

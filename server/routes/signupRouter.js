@@ -137,18 +137,24 @@ router.get("/findVendorInfobyuid/:uid", async (req, res) => {
 //Updating the user Info
 router.post("/updateUserInfo/:uid", async (req, res) => {
   const uid = req.params.uid;
-  // const { password, phone, email, name, profileImg } = req.body;
-  console.log(req.body);
-  try {
-    const user = await userModel.findOneAndUpdate(
-      { uid },
-      { ...req.body },
-      { new: true }
-    );
+  const phoneNumber = await userModel.findOne({ phone: req.body.phone });
 
-    res.status(200).json(user);
-  } catch (err) {
-    console.log(err);
+  if (phoneNumber) {
+    res.status(202).send("Phone Already Exists");
+  } 
+  
+  else {
+    try {
+      const user = await userModel.findOneAndUpdate(
+        { uid },
+        { ...req.body },
+        { new: true }
+      );
+
+      res.status(200).json(user);
+    } catch (err) {
+      console.log(err);
+    }
   }
 });
 
