@@ -95,7 +95,7 @@ function Signup() {
       jointime: new Date(),
       uid: values.password, 
     
-    };
+    }; 
 
     try {
       await axios.post("http://localhost:4000/signup", obn).then((res) => {
