@@ -56,57 +56,52 @@ function VendorProducts({outOfStockActivator}) {
     <div className="pro--container">
       <p id="head">My Drafts</p>
       <div className="prodDiv1" id="prof">
-        {products.length !==0 ? (
-          products.map((prod, index) => {
-            if (prod.isDraft === true) {
-              return (
-                <div className="one-prod1" key={prod.name}>
-                  <img
-                    src={prod.images[0]}
-                    alt="err"
-                    width="95%"
-                    id="prodimage1"
-                  />
-                  <div className="info">
-                  <h3 style={{ textAlign: "left", paddingLeft:'1.5rem' }}>{prod.name}</h3>
-                  <h4 style={{ color: "gray" ,  paddingRight:'1rem'}}>₹{prod.price}</h4>
-                  </div>
-                  <p id="cat">{prod.category}</p>
-                  <ModeEditOutlineOutlinedIcon
-                    onClick={() => handleEdit(index)}
-                    className="qp"
-                    style={{
-                      fontSize: "2rem",
-                      marginRight: "2rem",
-                      paddingTop: "1rem",
-                    }}
-                  />
-                {/*Opening the Modal*/}
- 
-                  {singleModelProps === index && (
-                    <ProductModalForm
-                    sample = {sample}
-                    setSample =  {setSample}
-                    outOfStockActivator= {outOfStockActivator}
-                      open={true}
-                      setOpen={() => setsingleModelProps(null)}
-                      formValues={prod}
-                    />
-                  )}
-                  <DeleteOutlined
-                    onClick={() => handleDelete(prod._id)}
-                    className="qp"
-                    style={{ fontSize: "2rem", color: "red", paddingTop: "1rem" }}
-                  />
+        {products.length !==0 &&      products.map((prod, index) => {
+          if (prod.isDraft === true) {
+            return (
+              <div className="one-prod1" key={prod.name}>
+                <img
+                  src={prod.images[0]}
+                  alt="err"
+                  width="95%"
+                  id="prodimage1"
+                />
+                <div className="info">
+                <h3 style={{ textAlign: "left", paddingLeft:'1.5rem' }}>{prod.name}</h3>
+                <h4 style={{ color: "gray" ,  paddingRight:'1rem'}}>₹{prod.price}</h4>
                 </div>
-              );
-            }
-            return null;
-          })
-        ) : ( <>
-          <img src={NOM} alt="No data"  style={{width:'50%', height:"100%", marginLeft:"23%"}}/>
-          </>
-        )}
+                <p id="cat">{prod.category}</p>
+                <ModeEditOutlineOutlinedIcon
+                  onClick={() => handleEdit(index)}
+                  className="qp"
+                  style={{
+                    fontSize: "2rem",
+                    marginRight: "2rem",
+                    paddingTop: "1rem",
+                  }}
+                />
+              {/*Opening the Modal*/}
+
+                {singleModelProps === index && (
+                  <ProductModalForm
+                  sample = {sample}
+                  setSample =  {setSample}
+                  outOfStockActivator= {outOfStockActivator}
+                    open={true}
+                    setOpen={() => setsingleModelProps(null)}
+                    formValues={prod}
+                  />
+                )}
+                <DeleteOutlined
+                  onClick={() => handleDelete(prod._id)}
+                  className="qp"
+                  style={{ fontSize: "2rem", color: "red", paddingTop: "1rem" }}
+                />
+              </div>
+            );
+          }
+          return null;
+        })}
       </div>
     </div>
     
