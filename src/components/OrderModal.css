@@ -1,5 +1,7 @@
 /* OrderModal.css */
-
+#btncancel:hover{
+  transform: scale(1.1);
+}
 .order-details--container {
     padding: 20px;
     overflow-x: hidden;

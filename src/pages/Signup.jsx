@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Form, Input, Radio, Checkbox } from "antd";
+import { Button, Form, Input, Radio, Checkbox, notification } from "antd";
 import Mobile from "../components/Mobile";
 import "./Signup.css";
 import GOG from "../assets/google.svg";
@@ -12,7 +12,7 @@ import { setLogin } from "../app/features/templateSlice";
 import axios from "axios";
 import { auth, googleProvider } from "../utils/firebase";
 import { signInWithPopup } from "firebase/auth";
-
+import { v4 } from "uuid";
 import LOG from "../assets/LOG.svg";
 const formItemLayout = {
   labelCol: {
@@ -55,6 +55,13 @@ const options = [
   },
 ];
 function Signup() {
+  const [api, contextHolder] = notification.useNotification();
+  const openNotificationWithIcon = (type) => {
+    api[type]({
+      message: 'Please choose a role first',
+     
+    });
+  };
   const navigate = useNavigate();
   const [isloading, setloading] = useState(false);
   const [err, setErr] = useState("");
@@ -68,6 +75,7 @@ function Signup() {
     setValue3(value);
     setIsButtonDisabled(false);
   };
+
 
   //Animatins
   useEffect(() => {
@@ -87,28 +95,34 @@ function Signup() {
   //On Sign UP of the form
   const onFinish = async (values) => {
     setloading(true);
-    const obn = {
-      name: values.name,
-      email: values.email,
-      password: values.password,
-      designation: value3,
-      jointime: new Date(),
-      uid: values.password, 
-    
-    }; 
-
-    try {
-      await axios.post("http://localhost:4000/signup", obn).then((res) => {
-        if (res.status === 200 ) {
-          navigate("/login", { state: values.name });
-        } else {
-          setErr("User Already found Please Log In");
+    const id = v4()
+        if(value3 !== ""){
+          const obn = {
+            name: values.name,
+            email: values.email,
+            password: values.password,
+            designation: value3,
+            jointime: new Date(),
+            uid: id, 
+          }; 
+      
+          try {
+            await axios.post("http://localhost:4000/signup", obn).then((res) => {
+              if (res.status === 200 ) {
+                navigate("/login", { state: values.name });
+              } 
+              else {
+                setErr("User Already found Please Log In");
+              }
+          
+            });
+          } catch (err) {
+            console.log(err);
+          }
         }
+        else{
+          openNotificationWithIcon('error')        }
         setloading(false);
-      });
-    } catch (err) {
-      console.log(err);
-    }
   };
 
   //Continuing with google
@@ -160,6 +174,7 @@ function Signup() {
 
   return (
     <div className="container">
+    {contextHolder}
       <div className="left">
         <img src={LOG} alt="" id="LOMG" className="logo" />
         <h1 id="h1style" className="headf">
@@ -233,6 +248,7 @@ function Signup() {
               </Checkbox>
             </span>
           </div>
+
           {!isMobileSign ? (
             <>
               <Form
@@ -318,7 +334,7 @@ function Signup() {
                   }}
                 >
                   <Form.Item {...tailFormItemLayout}>
-                    <Button
+                    <Button 
                       type="primary"
                       htmlType="submit"
                       style={{

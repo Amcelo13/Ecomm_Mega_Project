@@ -4,6 +4,16 @@
   height: 91vh;
   margin-top: 5rem;
 }
+.changeImg{
+  background: transparent;
+  position: absolute;
+  color: #5d6b85;
+  left: 4.5rem;
+  top: 4.4rem;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
 .profleft {
   text-align: left;
   padding-top: 1rem;

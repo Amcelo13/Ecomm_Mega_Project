@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Products.css";
 import { useNavigate } from "react-router-dom";
-
+import NOM from '../assets/NoData.png'
 function CategoryProducts({ cateGory }) {
   const [product, setProduct] = useState([]);
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ function CategoryProducts({ cateGory }) {
   return (
     <div className="pro--container">
       <div className="prodDiv" id="prof">
-        {product &&
+        {product.length !==0  ?(
           product.map((prod) => {
             if (prod.stock === true) {
               return (
@@ -62,7 +62,12 @@ function CategoryProducts({ cateGory }) {
                 </div>
               );
             }
-          })}
+          })
+        ):(
+          <img src={NOM} alt="No data"  style={{width:'50%', height:"100%", marginLeft:"23%"}}/>
+
+        )
+        }
       </div>
     </div>
   );

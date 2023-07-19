@@ -30,25 +30,6 @@ app.post("/uploads", productImgUpload.single("image"), (req, res) => {
   res.send(productImage);
 });
 
-// Multer Implementation for profile image upload
-// const profileImgStorage = multer.diskStorage({
-//   destination: "./uploads/profile",
-//   filename: (req, file, cb) => {
-//     cb(null, Date.now() + "-" + file.originalname);
-//   },
-// });
-
-// const profileImgUpload = multer({ storage: profileImgStorage });
-
-// // Middleware to handle profile image upload
-// app.post("/profileUpload", profileImgUpload.single("profileImg"), (req, res) => {
-//   const profileImage = req.file.filename;
-//   // Save the profile image to the database or perform other operations
-//   res.send(profileImage);
-// });
-
-// Remaining code
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -90,8 +90,10 @@ function ProductPage() {
     getAddress();
   }, []);
 
-  //Cart Addition Handling 
+  //Cart Addition Handling
   const handleAddToCart = (prod, vendorData, quanValue, userEmail) => {
+   if(userEmail ){
+
     addToCart(prod, vendorData, quanValue, userEmail);
     setLoading(true);
 
@@ -101,25 +103,33 @@ function ProductPage() {
     setTimeout(() => {
       setLoading(false);
     }, 2000);
+   }
+
+   else{
+    navigate('/signup')
+   }
   };
-  
+
   const handleBuyButtonClick = (prod, vendorData, quanValue, userEmail) => {
-    setLoadingBuy(true);
+    if (userEmail) {
+      setLoadingBuy(true);
 
-    if (addressLength) {
-      addToCart(prod, vendorData, quanValue, userEmail);
+      if (addressLength) {
+        addToCart(prod, vendorData, quanValue, userEmail);
 
-      setTimeout(() => {
-        success();
-      }, 1000);
-      setTimeout(() => {
+        setTimeout(() => {
+          success();
+        }, 1000);
+        setTimeout(() => {
+          setLoadingBuy(false);
+          navigate("/cartPage");
+        }, 2000);
+      } else {
+        setIsModalOpen(true);
         setLoadingBuy(false);
-        navigate("/cartPage");
-      }, 2000);
-    } 
-    else {
-      setIsModalOpen(true);
-      setLoadingBuy(false);
+      }
+    } else {
+      navigate("/signup");
     }
   };
   return (
@@ -133,7 +143,7 @@ function ProductPage() {
             <div className="prodInfo">
               <div className="leftu" id="LOMGu">
                 <h2>{prod.name}</h2>
-                <p 
+                <p
                   style={{
                     color: "gray",
                     fontSize: "15px",
@@ -198,8 +208,8 @@ function ProductPage() {
                     fontWeight: "500",
                     textAlign: "left",
                     paddingLeft: "12rem",
-                    marginBottom:"3rem",
-                    paddingLeft:"12rem",
+                    marginBottom: "3rem",
+                    paddingLeft: "12rem",
                   }}
                 >
                   &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; ₹ {prod.price}
@@ -218,7 +228,14 @@ function ProductPage() {
                 <div>
                   <button
                     className="nnu1"
-                    onClick={() => handleBuyButtonClick(prod, vendorData, quanValue, userEmail)}
+                    onClick={() =>
+                      handleBuyButtonClick(
+                        prod,
+                        vendorData,
+                        quanValue,
+                        userEmail
+                      )
+                    }
                   >
                     {loadingBuy ? (
                       <LoadingOutlined />
@@ -237,7 +254,9 @@ function ProductPage() {
                   />
                   <button
                     className="nnu2"
-                    onClick={() => handleAddToCart(prod, vendorData, quanValue, userEmail)}
+                    onClick={() =>
+                      handleAddToCart(prod, vendorData, quanValue, userEmail)
+                    }
                   >
                     {loading ? <LoadingOutlined /> : "Add to Cart"}
                   </button>

@@ -39,7 +39,7 @@ function VerifyOTP({ name, expandForm, setExpandForm, fullPhoneNumber, value3,})
           .then((response) => {
             dispatch(setLogin(obn));
             console.log(response.status);
-            navigate("/home");
+            navigate("/");
           })
           .catch((error) => {
             console.log(error);

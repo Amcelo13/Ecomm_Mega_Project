@@ -8,6 +8,7 @@ const initialState = {
   CurrentUser: "",
   CurrentUserId: -1,
   currentReciever: {},
+  userPresent: false, 
 };
 
 export const templateSlice = createSlice({
@@ -17,7 +18,7 @@ export const templateSlice = createSlice({
       setLogin: (state, action) => {
         state.isLoggedIn = true;
         state.users = action.payload;
-        //   state.currentNumber = action.payload.currentNumber;
+        state.userPresent = true;
       },
       setNewName:(state, action) => {
       state.users = {...state.users, name: action.payload } 
@@ -25,6 +26,7 @@ export const templateSlice = createSlice({
       setLogout:(state, action) => {
         state.isLoggedIn = false;
         state.users = {}
+        state.userPresent = false
       }
     },
   });

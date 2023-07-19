@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
 import CategoryPage from "./pages/CategoryPage";
 import CartPage from "./pages/CartPage";
+
 function App() {
   const signed_state = useSelector((state) => state.isLoggedIn);
   let public1 = [
@@ -17,23 +18,16 @@ function App() {
       path: "/login",
       element: <Login />,
     },
-    {
-      path: "/",
-      element: <Home />,
-    },
+  
   ];
 
   let private1 = [
-
    
     {
       path: "/profile",
       element: <Profile />,
     },
-    {
-      path: "/productPage",
-      element: <ProductPage />,
-    },
+   
     {
       path: "/categoryPage",
       element: <CategoryPage />,
@@ -49,6 +43,11 @@ function App() {
     <div className="App">
     <BrowserRouter>
     <Routes>
+
+    <Route path="/" element={<Home/>}/>
+    <Route path="/productPage" element={<ProductPage/>}/>
+
+
       {private1.map((e, i) => {
         return (
           <Route
@@ -67,7 +66,10 @@ function App() {
           <Route
             key={i}
             path={e.path}
-            element={e.element}/>
+            element={
+              <Protected signed_state={!signed_state}>{e.element}</Protected>
+            }
+          />
         );
       })}
     </Routes>

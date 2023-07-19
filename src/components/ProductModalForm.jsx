@@ -122,7 +122,7 @@
                   showUploadList={{
                     showPreviewIcon: false,
                     showDownloadIcon: false,
-                    showRemoveIcon: false,
+                    showRemoveIcon: true,
                   }}
                   style={{ padding: "4rem" }}
                 >
@@ -157,6 +157,7 @@
                   type="text"
                   className="rightium"
                   required
+                  maxLength={20}
                   value={productName}
                   onChange={(e) => setProductName(e.target.value)}
                 />
@@ -187,7 +188,7 @@
                   name=""
                   id=""
                   cols="20"
-                  // maxLength="30"
+               
                   className="rightium"
                   style={{ resize: "none" }}
                   rows="10"
@@ -201,7 +202,8 @@
                 <input
                   required
                   type="number"
-                  minValue="0"
+                  minValue="0"         
+                  maxlength = "6"
                   className="rightium"
                   value={productPrice}
                   onChange={(e) => setProductPrice(e.target.value)}

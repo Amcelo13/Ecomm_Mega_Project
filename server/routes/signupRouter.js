@@ -11,15 +11,19 @@ router.post("/signup", async (req, res) => {
     if (user) {
       res.statusMessage = "User already exists";
       res.status(209).send("User already exists");
-    } 
-    else {
-      const newUser = new userModel({name,email,password,designation,jointime,uid});
-      await newUser.save(); 
+    } else {
+      const newUser = new userModel({
+        name,
+        email,
+        password,
+        designation,
+        jointime,
+        uid,
+      });
+      await newUser.save();
       res.status(200).send("Registered successfully");
     }
-  } 
-  
-  catch (err) {
+  } catch (err) {
     if (err.name === "ValidationError") {
       console.log(err.errors);
     }
@@ -50,17 +54,14 @@ router.post("/goomglepost", async (req, res) => {
 
   if (user) {
     // User already exists, update the jointime
-    if(user.status === true){
+    if (user.status === true) {
       user.jointime = jointime;
       await user.save();
       res.status(200).send("Jointime updated successfully");
+    } else {
+      res.status(204).send("User Banned");
     }
-    else{
-      res.status(204).send('User Banned')
-    }
-  } 
-  
-  else {
+  } else {
     const newUser = new userModel({
       name,
       email,
@@ -79,18 +80,14 @@ router.post("/goomglepostlogin", async (req, res) => {
   const user = await userModel.findOne({ email });
   if (user) {
     // User already exists, update the jointime
-    if(user.status === true){
+    if (user.status === true) {
       user.jointime = jointime;
       await user.save();
       res.status(200).json(user);
+    } else {
+      res.status(204).send("User Banned");
     }
-
-    else{
-      res.status(204).send('User Banned')
-    }
-  } 
-  
-  else {
+  } else {
     res.status(203).send("Register a role first");
   }
 });
@@ -125,7 +122,6 @@ router.get("/findVendorInfo/:email", async (req, res) => {
   }
 });
 
-
 //Find vendor info by passing uid
 router.get("/findVendorInfobyuid/:uid", async (req, res) => {
   const uid = req.params.uid;
@@ -141,21 +137,16 @@ router.get("/findVendorInfobyuid/:uid", async (req, res) => {
 //Updating the user Info
 router.post("/updateUserInfo/:uid", async (req, res) => {
   const uid = req.params.uid;
-  const { password, phone, email , name, profileImg} = req.body;
-
+  // const { password, phone, email, name, profileImg } = req.body;
+  console.log(req.body);
   try {
-    const user = await userModel.findOne({ uid });
-    if (user) {
-      user.name = name;
-      user.password = password;
-      user.email = email;
-      user.phone = phone;
-      user.profileImg = profileImg;
-      const ans = await user.save();
-      res.status(200).json(ans);
-    } else {
-      res.status(404).send("User not found");
-    }
+    const user = await userModel.findOneAndUpdate(
+      { uid },
+      { ...req.body },
+      { new: true }
+    );
+
+    res.status(200).json(user);
   } catch (err) {
     console.log(err);
   }
@@ -163,7 +154,16 @@ router.post("/updateUserInfo/:uid", async (req, res) => {
 
 //Cart addition of user
 router.post("/addToCart", async (req, res) => {
-  const { name, prodImage, quantity, price, userId,vendorEmail, productID , images} = req.body;
+  const {
+    name,
+    prodImage,
+    quantity,
+    price,
+    userId,
+    vendorEmail,
+    productID,
+    images,
+  } = req.body;
 
   try {
     const user = await userModel.findOne({ email: userId });
@@ -175,10 +175,16 @@ router.post("/addToCart", async (req, res) => {
 
       if (existingCartItem) {
         existingCartItem.quantity += parseInt(quantity);
-      } 
-      
-      else {
-        user.cartItems.push({ name, prodImage, quantity, price , vendorEmail, productID, images});
+      } else {
+        user.cartItems.push({
+          name,
+          prodImage,
+          quantity,
+          price,
+          vendorEmail,
+          productID,
+          images,
+        });
       }
 
       await user.save();
@@ -339,33 +345,26 @@ router.post("/updateAddress/:addressId", async (req, res) => {
 });
 
 //Getting all the vendors
-router.get('/getAllVendors', async(req, res)=>{
-  const allVendors = await userModel.find({designation : 'Vendor'})
-  
-  if(allVendors){
-    res.status(200).json(allVendors)
-  }
-  else{
+router.get("/getAllVendors", async (req, res) => {
+  const allVendors = await userModel.find({ designation: "Vendor" });
+
+  if (allVendors) {
+    res.status(200).json(allVendors);
+  } else {
     res.status(404).send("No Vendor found");
   }
-})
+});
 
 //Setting vendor active status
-router.post('/setVendorActivation/:vendorID', async(req, res)=>{
-  const {boolValue} = req.body
-  const vendorID = req.params.vendorID
-  try{
-      await userModel.findByIdAndUpdate(vendorID , {status : boolValue})
-    res.status(200).send('Vendor activation/disabled updated');
-  }
-
-  catch(err){
+router.post("/setVendorActivation/:vendorID", async (req, res) => {
+  const { boolValue } = req.body;
+  const vendorID = req.params.vendorID;
+  try {
+    await userModel.findByIdAndUpdate(vendorID, { status: boolValue });
+    res.status(200).send("Vendor activation/disabled updated");
+  } catch (err) {
     res.status(404).send("Vendor not found");
   }
-
-})
-
-
-
+});
 
 module.exports = router;

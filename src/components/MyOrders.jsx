@@ -7,7 +7,6 @@ import KOKO from "../assets/order.svg";
 import { getCartSubtotal } from "../utils/getCartSubtotal.js";
 import { getSpecificOrder } from "../utils/getSpecificOrder.js";
 
-
 function MyOrders() {
   const userEmail = useSelector((state) => state.users.email);
   const [orderData, setOrderData] = useState([]);
@@ -15,7 +14,7 @@ function MyOrders() {
   const [animate, setAnimate] = useState(true);
   const [specificOrderInfo, setSpecificOrderInfo] = useState();
   const [open, setOpen] = useState(false);
-
+  const [loading, setLoading] = useState(true);
   // Getting the order items  //TODO: Good sorting method defined here for latest orders
   useEffect(() => {
     const getOrderInfo = getOrderItems(userEmail);
@@ -62,54 +61,61 @@ function MyOrders() {
         {orderData &&
           orderData.map((order) => {
             return (
-              <div
-                key={order._id}
+
+              <div  
                 className="cartI1"
+                key={order._id}
                 onClick={() => openSelectedOrder(order._id)}
               >
+
                 <div className="order-item-row">
                   {order.orderItems.map((item) => {
                     return (
-                      <div key={item._id} className="order-item">
+
+                      <div key={item._id} className="order-item" >  
+
                         <img
                           src={item.images[0]}
                           alt=""
+                          
                           id="nb1"
                           width="90px"
-                          
                         />
-                        {order.isCancel ? (
-                          <p style={{ color: "red" }} id="df3">
-                          <h3 >This Order was Cancelled </h3>
-                          </p>
-                        ) : (
-                          ""
-                        )}
+
                         <div style={{ marginLeft: "5rem", paddingTop: "3rem" }}>
                           <h4 id="new1">{item.name}</h4>
                           <p id="gb1">Quantity: {item.quantity}</p>
-                          <p id="df1">
-                            <b>₹ {item.price * item.quantity}</b>
-                          </p>
+                          <p id="df1"><b>₹ {item.price * item.quantity}</b></p>
                         </div>
+
                       </div>
                     );
                   })}
                 </div>
+
+            
+
                 <p id="fum">Ordered On: {orderTime(order.createdAt)}</p>
-                <p id="df2">
-                  <b>Cart Subtotal: </b>₹ {getCartSubtotal(order.orderItems)}
-                </p>
+                <p id="df2"><b>Cart Subtotal: </b>₹ {getCartSubtotal(order.orderItems)}</p>
+
+
+                {order.isCancel ? (
+                  <p style={{ color: "red" }} id="df3">
+                    <h3>This Order was Cancelled </h3>
+                  </p>
+                ) : (
+                  ""
+                )}
               </div>
             );
           })}
       </div>
 
-      <OrderModal
+      <OrderModal loading = {loading} setLoading  = {setLoading}
         specificOrderInfo={specificOrderInfo}
         open={open}
-        setSample= {setSample}
-        sample= {sample}
+        setSample={setSample}
+        sample={sample}
         setOpen={setOpen}
       />
 

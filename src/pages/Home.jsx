@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 
 import "../components/Products.css";
@@ -9,6 +9,15 @@ import "./Home.css";
 
 function Home() {
   const location = useLocation();
+  const [sample, setSample] = useState();
+
+
+  useEffect(() => {
+    // Scroll to the top of the page when the user navigates to a new page.
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+  }, [sample]);
+
 
   const scrollDown = () => {
     const scrollAmount = 120.9 * parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -51,8 +60,8 @@ function Home() {
         ></video>{" "}
       </div>
 
-      <h1 className="top--selling-heading" style={{textAlign:'center'}}>Top Selling Products</h1>
-      <Products />
+      
+      <Products sample= {sample} setSample = {setSample} />
 
       <button id="proda" onClick={scrollDown}>
         Discover Collection

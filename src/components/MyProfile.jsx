@@ -4,6 +4,7 @@ import { Form, Input, Button, Image, Spin, InputNumber, message } from "antd";
 import "./VendorProducts.css";
 import "./MyProfile.css";
 import { useSelector } from "react-redux";
+import PROFILEE from "../assets/Circle-icons-profile.svg.png"
 
 const formItemLayout = {
   labelCol: {
@@ -36,16 +37,17 @@ const tailFormItemLayout = {
   },
 };
 
-function MyProfile({ namefromNavigate }) {
+function MyProfile({ namefromNavigate , sample , setSample}) {
+
   const [messageApi, contextHolder] = message.useMessage();
   const success = () => {
     messageApi.open({
       type: "success",
-      content: "Order Status updated",
+      content: "Profile Status updated",
     });
   };
   const [form] = Form.useForm();
-  const [sample, setSample] = useState(false);
+
   const [isLoading, setIsLoading] = useState(true);
   const user = useSelector((state) => state.users);
 
@@ -54,15 +56,14 @@ function MyProfile({ namefromNavigate }) {
     const handleFill = (data) => {
       form.setFieldsValue({
         name: `${!namefromNavigate ? data.name || "" : namefromNavigate || ""}`,
-        phone: data?.phone || "",
-        email: data?.email || "",
+        phone: data.phone ,
+        email: data.email ,
         designation: data.designation,
-        profilePic:
-          "https://static.vecteezy.com/system/resources/previews/000/390/524/original/modern-company-logo-design-vector.jpg",
-      });
+        profilePic:data.profileImg
 
+      });
       setIsLoading(false);
-   
+
     };
 
     const getProfileDetails = async (req, res) => {
@@ -70,35 +71,34 @@ function MyProfile({ namefromNavigate }) {
         const response = await axios.get(
           `http://localhost:4000/findVendorInfobyuid/${user.uid}`
         );
+
         handleFill(response.data);
       } catch (err) {
         console.log(err);
       }
     };
     getProfileDetails();
-  }, []);
+  }, [sample]);
 
   //On Details Updation
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
 
     try {
-      const response = await axios.post(
-        `http://localhost:4000/updateUserInfo/${user.uid}`,
-        values
-      );
-      console.log(response.data);
-      setSample(!sample);
+      const response = await axios.post(`http://localhost:4000/updateUserInfo/${user.uid}`,values );
+
     } catch (err) {
       console.log(err);
     }
     success();
+    setSample(!sample);
+
   };
 
   return (
     <>
       {contextHolder}
-      <p id="head" className="moin">
+      <p id="head" className="moin" >
         My Profile
       </p>
       <div className="pro--container23">
@@ -118,7 +118,7 @@ function MyProfile({ namefromNavigate }) {
             ) : (
               <Image
                 style={{ marginLeft: "10rem", borderRadius: "50%" }}
-                src={form.getFieldValue("profilePic")}
+                src={form.getFieldValue("profilePic") ? form.getFieldValue("profilePic") : PROFILEE}
                 alt="Profile Picture"
               />
             )}

@@ -254,7 +254,7 @@ function CartPage() {
             
             <div className="flexg">
               <p id="ct">Cart Total: </p>
-              <p>₹{cartTotal}</p>
+              <p >₹{cartTotal}</p>
             </div>
             <div className="flexg">
               <p id="ct">Coupon Discount: </p>
@@ -268,7 +268,7 @@ function CartPage() {
               <p id="ct1">Order Total: </p>
               <p
                 style={{
-                  paddingTop: "1rem",
+                  paddingTop: "3rem",
                   fontWeight: "500",
                   fontSize: "1.5rem",
                 }}

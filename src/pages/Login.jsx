@@ -75,6 +75,8 @@ function Login() {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+  
   //GETTING THE USERS
   useEffect(() => {
     const logoElement = document.getElementById("LOMG");
@@ -174,6 +176,7 @@ function Login() {
   const signUpWithGoogle = async () => {
     try {
       const res = await signInWithPopup(auth, googleProvider);
+      const uid = res.user.uid;
       const data = res._tokenResponse;
       const pass = res.user.uid;
 
@@ -183,7 +186,7 @@ function Login() {
         password: pass,
         designation: value3,
         jointime: new Date(),
-        uid: pass,
+        uid: uid,
       };
 
       await axios.post("http://localhost:4000/goomglepost", obn).then((res) => {
