@@ -11,9 +11,10 @@ const port = 4000;
 const app = express();
 app.use(cors());
 
+app.use(express.static(path.join(__dirname, "/uploads")));
 // Multer Implementation for product image upload
 const productImgStorage = multer.diskStorage({
-  destination: "./uploads/product",
+  destination: "./uploads",
   filename: (req, file, cb) => {
     cb(null, Date.now() + "-" + file.originalname);
   },
@@ -22,31 +23,29 @@ const productImgStorage = multer.diskStorage({
 const productImgUpload = multer({ storage: productImgStorage });
 
 // Serve static files from the uploads directory
-app.use(express.static(path.join(__dirname, "/uploads")));
 
 // Middleware to handle product image upload
 app.post("/uploads", productImgUpload.single("image"), (req, res) => {
   const productImage = req.file.filename;
-  // Save the product image to the database or perform other operations
   res.send(productImage);
 });
 
 // Multer Implementation for profile image upload
-const profileImgStorage = multer.diskStorage({
-  destination: "./uploads/profile",
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
-});
+// const profileImgStorage = multer.diskStorage({
+//   destination: "./uploads/profile",
+//   filename: (req, file, cb) => {
+//     cb(null, Date.now() + "-" + file.originalname);
+//   },
+// });
 
-const profileImgUpload = multer({ storage: profileImgStorage });
+// const profileImgUpload = multer({ storage: profileImgStorage });
 
-// Middleware to handle profile image upload
-app.post("/profileUpload", profileImgUpload.single("profileImg"), (req, res) => {
-  const profileImage = req.file.filename;
-  // Save the profile image to the database or perform other operations
-  res.send(profileImage);
-});
+// // Middleware to handle profile image upload
+// app.post("/profileUpload", profileImgUpload.single("profileImg"), (req, res) => {
+//   const profileImage = req.file.filename;
+//   // Save the profile image to the database or perform other operations
+//   res.send(profileImage);
+// });
 
 // Remaining code
 

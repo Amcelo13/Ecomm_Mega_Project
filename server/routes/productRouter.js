@@ -20,7 +20,7 @@ router.post("/products", async (req, res) => {
 
   try {
     const prod = await productModel.findOne({ name });
-
+    
     if (prod) {
       res.statusMessage = "Product details exists and updated";
       prod.name = name;
@@ -28,7 +28,6 @@ router.post("/products", async (req, res) => {
       prod.price = price;
       prod.category = category;
       prod.images = images;
-
       prod.isDraft = isDraft;
       await prod.save();
       res.status(209).send("Product details exists and updated");
@@ -88,7 +87,7 @@ router.get("/products/:id", async (req, res) => {
 router.post("/deleteDraft", async (req, res) => {
   try {
     const ans = await productModel.findByIdAndDelete({ _id: req.body.id });
-    await ans.save();
+
     res.status(200).send("Deleted Successfully");
   } catch (err) {
     console.log(err);

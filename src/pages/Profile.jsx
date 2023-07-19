@@ -8,12 +8,13 @@ import VendorDrafts from "../components/VendorDrafts";
 import MyProfie from "../components/MyProfile";
 import MyOrders from "../components/MyOrders";
 import AdminDashboard from "../components/AdminDashboard";
-import AllVendorsProductsForAdmin from '../components/AllVendorsProductsForAdmin'
+import AllVendorsProductsForAdmin from "../components/AllVendorsProductsForAdmin";
 import DashBoard from "../components/DashBoard";
 import ProductModalForm from "../components/ProductModalForm";
 import AddressModalForm from "../components/AddressModalForm";
 import { useForm } from "rc-field-form";
 import axios from "axios";
+import { Upload } from "antd";
 
 function Profile() {
   const user = useSelector((state) => state.users);
@@ -26,7 +27,7 @@ function Profile() {
   const [form] = useForm();
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState("");
 
   useEffect(() => {
     const getProfileDetails = async () => {
@@ -38,6 +39,7 @@ function Profile() {
         setIsRole(response.data.designation);
         setEmail(response.data.email);
         setPhone(response.data.phone);
+        setAvatar(response.data.profileImg);
       } catch (err) {
         console.log(err);
       }
@@ -48,24 +50,23 @@ function Profile() {
   const showModal = () => {
     setIsModalOpen(true);
   };
+  const handleChange = ({ file: newFile }) => {
+    newFile.status === "done" && onFinish(`http://localhost:4000/${newFile.response}`);
 
-  const handleAvatarChange = (e) => {
-    const file = e.target.files[0];
-    setAvatar(file);
   };
+  const onFinish = async (imgURL) => {
 
-  const handleAvatarUpload = () => {
-    const formData = new FormData();
-    formData.append("profileImg", avatar);
-
-    axios
-      .post("http://localhost:4000/profileUpload", formData)
-      .then((response) => {
-        console.log("Avatar uploaded successfully");
-      })
-      .catch((error) => {
-        console.error("Error uploading avatar:", error);
-      });
+    try {
+      const response = await axios.post(
+        `http://localhost:4000/updateUserInfo/${user.uid}`,
+        {profileImg: imgURL}
+      );
+        console.log(response);
+    
+    } catch (err) {
+      console.log(err);
+    }
+  
   };
 
   return (
@@ -73,36 +74,21 @@ function Profile() {
       <Navbar />
       <div className="containerofprofile">
         <div className="profleft">
-          <div className="imgflex" style={{ display: "flex", marginTop: "2rem" }}>
-            <label htmlFor="avatarInput">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Circle-icons-profile.svg"
-                alt=""
-                width="50px"
-                style={{ marginRight: "1.5rem", cursor: "pointer" }}
-              />
-            </label>
-            <input
-              type="file"
-              id="avatarInput"
-              accept="image/*"
-              style={{ display: "none" }}
-              onChange={handleAvatarChange}
-            />
-            {avatar && (
-              <span className="edit-icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-pencil"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M1 10.814V15h4.186L14.63 6.555 9.444 1.37 1 9.814zm5.185 1.185l-.22.22-1.389.464a.657.657 0 0 1-.847-.848l.464-1.389.22-.22L6.315 11zM14.63 5.27L10.73 1.37a1 1 0 0 0-1.414 0L1.37 9.317a1 1 0 0 0-.196.356l-.523 1.57a1 1 0 0 0 1.17 1.17l1.57-.523a1 1 0 0 0 .356-.196l7.95-7.9a1 1 0 0 0 0-1.415z" />
-                </svg>
-              </span>
-            )}
+          <div
+            className="imgflex"
+            style={{ display: "flex", marginTop: "2rem" }}
+          >
+            <img src={avatar} alt="" /> <br />
+            <Upload
+              action="http://localhost:4000/uploads"
+              onChange={handleChange}
+              name="image"
+              maxCount={1}
+              multiple={false}
+              showUploadList={false}
+            >
+              <button className="changeImg">Change Profile</button>
+            </Upload>
             <h1>{location.state ? location.state : nameFromRedux}</h1>
           </div>
 
@@ -113,7 +99,11 @@ function Profile() {
             </div>
           </div>
 
-          <p className={draftOption === -1 ? "mine1active" : "mine1"} id="mhj" onClick={() => setDraftOption(-1)}>
+          <p
+            className={draftOption === -1 ? "mine1active" : "mine1"}
+            id="mhj"
+            onClick={() => setDraftOption(-1)}
+          >
             My Profile
           </p>
 
@@ -121,7 +111,11 @@ function Profile() {
             ""
           ) : (
             <>
-              <p className={draftOption === 3 ? "mine1active" : "mine1"} id="mhjq" onClick={() => setDraftOption(3)}>
+              <p
+                className={draftOption === 3 ? "mine1active" : "mine1"}
+                id="mhjq"
+                onClick={() => setDraftOption(3)}
+              >
                 My DashBoard
               </p>
             </>
@@ -131,7 +125,11 @@ function Profile() {
             ""
           ) : (
             <>
-              <p className={draftOption === 5 ? "mine1active" : "mine1"} id="mhjq" onClick={() => setDraftOption(5)}>
+              <p
+                className={draftOption === 5 ? "mine1active" : "mine1"}
+                id="mhjq"
+                onClick={() => setDraftOption(5)}
+              >
                 DashBoard
               </p>
             </>
@@ -141,7 +139,10 @@ function Profile() {
             ""
           ) : (
             <>
-              <p className={draftOption === 0 ? "mine1active" : "mine1"} onClick={() => setDraftOption(0)}>
+              <p
+                className={draftOption === 0 ? "mine1active" : "mine1"}
+                onClick={() => setDraftOption(0)}
+              >
                 Products
               </p>
             </>
@@ -149,7 +150,10 @@ function Profile() {
 
           {role === "Vendor" ? (
             <>
-              <p className={draftOption === 1 ? "mine1active" : "mine1"} onClick={() => setDraftOption(1)}>
+              <p
+                className={draftOption === 1 ? "mine1active" : "mine1"}
+                onClick={() => setDraftOption(1)}
+              >
                 My Drafts
               </p>
             </>
@@ -159,7 +163,10 @@ function Profile() {
 
           {role === "Admin" ? (
             <>
-              <p className={draftOption === 4 ? "mine1active" : "mine1"} onClick={() => setDraftOption(4)}>
+              <p
+                className={draftOption === 4 ? "mine1active" : "mine1"}
+                onClick={() => setDraftOption(4)}
+              >
                 All Products
               </p>
             </>
@@ -167,14 +174,20 @@ function Profile() {
             ""
           )}
 
-          <p className={draftOption === 2 ? "mine1active" : "mine1"} onClick={() => setDraftOption(2)}>
+          <p
+            className={draftOption === 2 ? "mine1active" : "mine1"}
+            onClick={() => setDraftOption(2)}
+          >
             My Orders
           </p>
 
           <p className="mine2" onClick={showModal}>
             My Addresses
           </p>
-          <AddressModalForm isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+          <AddressModalForm
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+          />
         </div>
 
         <div className="profright">
@@ -191,7 +204,11 @@ function Profile() {
           ""
         ) : (
           <>
-            <button id="add--post" onClick={() => setOpen(true)} style={{ position: "fixed" }}>
+            <button
+              id="add--post"
+              onClick={() => setOpen(true)}
+              style={{ position: "fixed" }}
+            >
               <svg
                 viewBox="0 0 24 24"
                 width="24"

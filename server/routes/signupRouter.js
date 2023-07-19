@@ -141,7 +141,7 @@ router.get("/findVendorInfobyuid/:uid", async (req, res) => {
 //Updating the user Info
 router.post("/updateUserInfo/:uid", async (req, res) => {
   const uid = req.params.uid;
-  const { password, phone, email , name} = req.body;
+  const { password, phone, email , name, profileImg} = req.body;
 
   try {
     const user = await userModel.findOne({ uid });
@@ -150,6 +150,7 @@ router.post("/updateUserInfo/:uid", async (req, res) => {
       user.password = password;
       user.email = email;
       user.phone = phone;
+      user.profileImg = profileImg;
       const ans = await user.save();
       res.status(200).json(ans);
     } else {

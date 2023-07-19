@@ -67,7 +67,6 @@
     const handleSubmit = async (e) => {
       setLoading(true);
       e.preventDefault();
-
       const productObj = {
         name: productName,
         price: productPrice,
@@ -75,7 +74,7 @@
         category: productCategory,
         vendorID: vendorEmail,
         isDraft: isDraft,
-        images: image.length > 0 ? image : formValues?.images || [], // Set images to formValues.images if available, otherwise set it to the image state
+        images: image.length > 0 ? image : formValues?.images || [],      // Set images to formValues.images if available, otherwise set it to the image state
         prodImage:
           "https://www.aptronixindia.com/media/catalog/product/i/p/iphone1164gbpurple_2.png",
       };
