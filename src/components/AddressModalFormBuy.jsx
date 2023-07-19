@@ -72,7 +72,9 @@ function AddressModalFormBuy({
 
   const gotoCart = (prod, vendorData, quanValue, userEmail) => {
     addToCart(prod, vendorData, quanValue, userEmail);
-    navigate("/cartPage");
+    setTimeout(() => {
+      navigate("/cartPage");
+    }, 1500);
   };
 
   const handleOk = () => {

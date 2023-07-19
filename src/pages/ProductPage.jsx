@@ -48,8 +48,8 @@ function ProductPage() {
           });
       } catch (err) {
         console.log(err);
-      }
-          setLoading(false)
+      } 
+          setLoading(false) 
     };
 
     //TODO: Firstly THIS EXECUTES THEN

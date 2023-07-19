@@ -31,8 +31,10 @@ function MyOrders() {
       })
       .catch((err) => {
         console.log(err);
-        setLoading(false); 
       });
+      setTimeout(() => {
+          setLoading(false);
+      }, 2000);
   }, [sample, userEmail]);
 
   // Animate
