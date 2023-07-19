@@ -137,7 +137,7 @@ function MyProfile({ namefromNavigate , sample , setSample}) {
         >
           <Form.Item style={{ marginLeft: "3rem" }}>
             {isLoading ? (
-              <Spin size="large" />
+              <Spin size="large"/>
             ) : (
               <Image
                 style={{ marginLeft: "10rem", borderRadius: "50%" , width:"24rem", height:"23rem"}}
