@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import { useLocation, useNavigate } from "react-router-dom";
+import { resolvePath, useLocation, useNavigate } from "react-router-dom";
 import "./ProductPage.css";
 import axios from "axios";
 import { Carousel, Image, Tooltip } from "antd";
@@ -34,11 +34,13 @@ function ProductPage() {
   //Get specific product info and getting the vendor information alongside by calling its function
   useEffect(() => {
     const getVendor = async (vendID) => {
+      console.log(vendID);
       try {
         await axios
           .get(`http://localhost:4000/findVendorInfo/${vendID}`)
           .then((response) => {
             setVendorData(response.data);
+            console.log(response.data)
           })
           .catch((error) => {
             console.log(error);
@@ -93,7 +95,6 @@ function ProductPage() {
   //Cart Addition Handling
   const handleAddToCart = (prod, vendorData, quanValue, userEmail) => {
    if(userEmail ){
-
     addToCart(prod, vendorData, quanValue, userEmail);
     setLoading(true);
 
@@ -113,7 +114,7 @@ function ProductPage() {
   const handleBuyButtonClick = (prod, vendorData, quanValue, userEmail) => {
     if (userEmail) {
       setLoadingBuy(true);
-
+ 
       if (addressLength) {
         addToCart(prod, vendorData, quanValue, userEmail);
 
@@ -169,6 +170,7 @@ function ProductPage() {
                 <Carousel autoplay effect="fade" className="imn">
                   <div className="nu" style={{ borderRadius: "1rem" }}>
                     <Image
+                    preview={true}
                       width={"90%"}
                       height={"90%"}
                       style={{ borderRadius: "1rem" }}
@@ -203,17 +205,18 @@ function ProductPage() {
               </div>
 
               <div className="actionButtons">
-                <p
-                  style={{
-                    fontWeight: "500",
-                    textAlign: "left",
-                    paddingLeft: "12rem",
-                    marginBottom: "3rem",
-                    paddingLeft: "12rem",
-                  }}
-                >
-                  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; ₹ {prod.price}
-                </p>
+               <b> <p
+               style={{
+                 fontWeight: "600",
+                 fontSize:"2rem",
+                 textAlign: "left",
+            
+                 marginBottom: "3rem",
+                 paddingLeft: "8rem",
+               }}
+             >
+               &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; ₹ {prod.price}
+             </p></b>
 
                 <p id="nmi"> Quantity</p>
                 <input

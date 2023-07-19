@@ -1,7 +1,6 @@
 import axios from "axios"
 export const addToCart = async(prod, vendorData,quanValue, userEmail) =>{
 
-
     const obj = {
         name: prod.name,
         price: prod.price,

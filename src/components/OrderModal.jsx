@@ -44,9 +44,7 @@ function OrderModal({
       const currentTime = new Date();
       const orderCreationTime = new Date(createdAt);
       const timeDifference = currentTime - orderCreationTime;
-      const timeDifferenceInHours = Math.floor(
-        timeDifference / (1000 * 60 * 60)
-      );
+      const timeDifferenceInHours = Math.floor(timeDifference / (1000 * 60 * 60));
 
       // Set the order status and cancellation based on the time difference
       if (timeDifferenceInHours <= 24 && status !== "delivered") {
@@ -65,7 +63,6 @@ function OrderModal({
   const handleCancelOrder = () => {
     cancelTheOrder(specificOrderInfo?._id);
     setSample(!sample);
-
     setTimeout(() => {
       setOpen(false);
     }, 1000);
@@ -78,13 +75,22 @@ function OrderModal({
   const { orderItems, address, createdAt, isCancel } = specificOrderInfo;
 
   const orderTime = new Date(createdAt).toLocaleString();
+  const isOrderDelivered = logisticsStatus === 2;
 
   return (
     <>
       {loading ? (
         <p style={{ marginTop: "0.2rem" }}>
           {" "}
-          <LoadingOutlined style={{position:"absolute" ,left:"50%", top:"50%", color:"#2e2e2e" , fontSize:"5rem"}}/>
+          <LoadingOutlined
+            style={{
+              position: "absolute",
+              left: "50%",
+              top: "50%",
+              color: "#2e2e2e",
+              fontSize: "5rem",
+            }}
+          />
         </p>
       ) : (
         <Modal
@@ -100,7 +106,6 @@ function OrderModal({
             <Steps
               progressDot
               current={logisticsStatus}
-              // status ={'error'}
               items={[
                 {
                   title: "Ordered",
@@ -111,8 +116,8 @@ function OrderModal({
                   description: "🚚 On Ship",
                 },
                 {
-                  title: `${cancel ? "Cancelled" : "Delivered"}`,
-                  description: `${cancel ? "❌Cancelled" : "✅Delivered"}`,
+                  title: `${isOrderDelivered ? "Delivered" : "Cancelled"}`,
+                  description: `${isOrderDelivered ? "✅Delivered" : "❌Cancelled"}`,
                 },
               ]}
             />
@@ -154,19 +159,30 @@ function OrderModal({
             ) : (
               <>
                 <div className="flet">
-                  <p style={{ color: "gray" }}>
-                    You can cancel the order only within 24hrs
-                  </p>
+                  {cancel ? (
+                    <p style={{ color: "gray" }}>
+                      You can cancel the order only within 24hrs
+                    </p>
+                  ) : (
+                    <p style={{ color: "gray" }}>Order can't be cancelled</p>
+                  )}
 
-                  <Button
-                  id="btncancel"
-                    style={{color: "white", backgroundColor: "red", border:"none", fontWeight:"600", transition:"1s"}}
-                    onClick={handleCancelOrder}
-                    disabled={cancel}
-                  >
-                    Cancel Order
-                    
-                  </Button>
+                  {!isOrderDelivered && !cancel && (
+                    <Button
+                      id="btncancel"
+                      style={{
+                        color: "white",
+                        backgroundColor: "red",
+                        border: "none",
+                        fontWeight: "600",
+                        transition: "1s",
+                      }}
+                      onClick={handleCancelOrder}
+                      disabled={cancel}
+                    >
+                      Cancel Order
+                    </Button>
+                  )}
                 </div>
               </>
             )}

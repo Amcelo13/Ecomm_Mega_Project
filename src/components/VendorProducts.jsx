@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { EyeOutlined, DeleteOutlined } from "@ant-design/icons/lib/icons";
 import NOM from "../assets/NoData.png"
 import ProductModalForm from "./ProductModalForm";
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 
 function VendorProducts({outOfStockActivator}) {
   const vendEmail = useSelector((state) => state.users.email);
@@ -36,8 +37,7 @@ function VendorProducts({outOfStockActivator}) {
     };
     getProducts();
 
-    console.log('Statment again running');
-  }, []);
+  }, [sample]);
 
 
   useEffect(() => { 
@@ -78,19 +78,22 @@ function VendorProducts({outOfStockActivator}) {
                     </h4>
                   </div>
                   <p id="cat">{prod.category}</p>
-                  <EyeOutlined
+                  <ModeEditOutlineOutlinedIcon 
                     onClick={() => handleEdit(index)}
                     className="qp"
                     style={{
-                      fontSize: "2rem",
+                      fontSize: "2.1rem",
                       marginRight: "2rem",
-                      paddingTop: "1rem",
+                      paddingTop: "2rem",
+                      cursor:"pointer",
                     }}
                   />
 
                   {/*Opening the Modal*/}
                   {singleModelProps === index && (
                     <ProductModalForm
+                    sample = {sample}
+                    setSample =  {setSample}
                     outOfStockActivator ={outOfStockActivator}
                       open={true}
                       setOpen={() => setsingleModelProps(null)} //means if the setsingleModelProps is null then the modal closes

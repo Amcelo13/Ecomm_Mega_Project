@@ -47,7 +47,7 @@ function CartPage() {
   );
 
   const showModal = () => {
-    setIsModalOpen(true);
+   {cartItems.length !== 0 ?  setIsModalOpen(true): message.error('No Items in Cart to CheckOut')}
   };
 
   const increaseQuantity = async (name) => {
@@ -285,7 +285,7 @@ function CartPage() {
                 value={coupon}
                 onChange={(e) => setCoupon(e.target.value)}
               />
-              <button className="ccc" onClick={handleApply}>
+              <button className="ccc" onClick={handleApply} disa>
                 Apply
               </button>
             </div>

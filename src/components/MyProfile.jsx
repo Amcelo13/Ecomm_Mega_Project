@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Form, Input, Button, Image, Spin, InputNumber, message } from "antd";
+import { Form, Input, Button, Image, Spin, InputNumber, message,notification } from "antd";
 import "./VendorProducts.css";
 import "./MyProfile.css";
 import { useSelector } from "react-redux";
@@ -80,6 +80,24 @@ function MyProfile({ namefromNavigate , sample , setSample}) {
     getProfileDetails();
   }, [sample]);
 
+  const validatePhoneNumber = (_, value) => {
+    if (!value) {
+      return Promise.reject(new Error('Please input your phone number!'));
+    }
+    if (!/^\d+$/.test(value.toString().replace(/\s/g, ''))) {
+      return Promise.reject(new Error('Please enter a valid phone number'));
+    }
+    return Promise.resolve();
+  };
+
+  // Validation function for name and description fields to handle blank spaces
+  const validateNoBlankSpace = (_, value) => {
+    if (!value || value.trim().length === 0) {
+      return Promise.reject(new Error('Please enter a valid value'));
+    }
+    return Promise.resolve();
+  };
+
   //On Details Updation
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
@@ -122,9 +140,10 @@ function MyProfile({ namefromNavigate , sample , setSample}) {
               <Spin size="large" />
             ) : (
               <Image
-                style={{ marginLeft: "10rem", borderRadius: "50%" }}
+                style={{ marginLeft: "10rem", borderRadius: "50%" , width:"24rem", height:"23rem"}}
                 src={form.getFieldValue("profilePic") ? form.getFieldValue("profilePic") : PROFILEE}
                 alt="Profile Picture"
+                      preview={false} 
               />
             )}
           </Form.Item>
@@ -154,9 +173,10 @@ function MyProfile({ namefromNavigate , sample , setSample}) {
                 message: "Please input your nickname!",
                 whitespace: true,
               },
+             
             ]}
           >
-            <Input style={{ width: "500px" }} />
+            <Input style={{ width: "500px" }} maxLength={24}/>
           </Form.Item>
 
           <Form.Item
@@ -164,8 +184,11 @@ function MyProfile({ namefromNavigate , sample , setSample}) {
             label="Phone Number"
             rules={[
               {
-                required: false,
+                required: true,
                 message: "Please input your phone number!",
+              },
+              {
+                validator: validatePhoneNumber,
               },
             ]}
           >
@@ -173,7 +196,7 @@ function MyProfile({ namefromNavigate , sample , setSample}) {
               style={{
                 width: "500px ",
               }}
-              maxLength={13}
+              maxLength={10}
             />
           </Form.Item>
 
@@ -189,6 +212,8 @@ function MyProfile({ namefromNavigate , sample , setSample}) {
             ]}
           >
             <Input
+            maxLength={13}
+
               style={{ width: "500px" }}
               placeholder="Enter the password you want to set make sure to remember it"
             />

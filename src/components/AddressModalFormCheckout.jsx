@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal } from "antd";
+import { Modal, message } from "antd";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import "./AddressModalForm.scss";
@@ -29,9 +29,7 @@ function AddressModalFormCheckout({ isModalOpen, setIsModalOpen, cartItems }) {
 
   const handleAddressClick = (addressId) => {
     setSelectedAddressId(addressId);
-    const selectedAddress = gettedAddressData.find(
-      (address) => address._id === addressId
-    );
+    const selectedAddress = gettedAddressData.find((address) => address._id === addressId);
     setSelectedAddress(selectedAddress);
   };
 
@@ -42,22 +40,30 @@ function AddressModalFormCheckout({ isModalOpen, setIsModalOpen, cartItems }) {
     selectedAddress,
     userEmail
   ) => {
-    success();
-    setIsModalOpen(false);
-    incrementProductSales(cartItems);
-    addOrdersInOrderCollection(
-      cartItems,
-      userName,
-      selectedAddress,
-      userEmail
-    ); //going in orderModel
-    setTimeout(() => {
-      navigate("/");
-    }, 2000);
+
+
+    if(selectedAddress){
+      success();
+      setIsModalOpen(false);
+      incrementProductSales(cartItems);
+      addOrdersInOrderCollection(
+        cartItems,
+        userName,
+        selectedAddress,
+        userEmail
+      ); //going in orderModel
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    }
+  else{
+    message.error("Please Select an address");
+  }
   };
 
   //Get address
   useEffect(() => {
+    console.log(selectedAddress)
     const getAddress = async () => {
       await axios
         .get(`http://localhost:4000/getAddress/${userEmail}`)

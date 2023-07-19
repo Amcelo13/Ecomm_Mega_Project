@@ -5,12 +5,14 @@ import { useSelector } from "react-redux";
 import { EyeOutlined, DeleteOutlined } from "@ant-design/icons/lib/icons";
 import NOM from "../assets/NoData.png"
 import ProductModalForm from "./ProductModalForm";
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 
 function VendorProducts({outOfStockActivator}) {
   const vendEmail = useSelector((state) => state.users.email);
   const [products, setProducts] = useState([]);
   const [singleModelProps, setsingleModelProps] = useState(null);
-  
+  const [sample, setSample] = useState(false);
+
   const handleDelete = async (id) => {
     
     try {
@@ -19,6 +21,7 @@ function VendorProducts({outOfStockActivator}) {
     } catch (error) {
       console.log(error);
     }
+    setSample(!sample)
   };
 
   // Vendor Specific Products
@@ -42,7 +45,7 @@ function VendorProducts({outOfStockActivator}) {
     return () => {
       productElement.classList.remove("enter");
     };
-  }, []);
+  }, [sample]);
 
   const handleEdit = (index) => {
     setsingleModelProps(index);
@@ -69,7 +72,7 @@ function VendorProducts({outOfStockActivator}) {
                   <h4 style={{ color: "gray" ,  paddingRight:'1rem'}}>₹{prod.price}</h4>
                   </div>
                   <p id="cat">{prod.category}</p>
-                  <EyeOutlined
+                  <ModeEditOutlineOutlinedIcon
                     onClick={() => handleEdit(index)}
                     className="qp"
                     style={{
@@ -82,6 +85,8 @@ function VendorProducts({outOfStockActivator}) {
  
                   {singleModelProps === index && (
                     <ProductModalForm
+                    sample = {sample}
+                    setSample =  {setSample}
                     outOfStockActivator= {outOfStockActivator}
                       open={true}
                       setOpen={() => setsingleModelProps(null)}

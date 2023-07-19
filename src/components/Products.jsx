@@ -34,9 +34,7 @@ function Products({sample , setSample}) {
           console.log(error);
         });
     };
-
     getBestProducts();
-
 
     //Animations
       const productElement = document.getElementById("prof")
@@ -48,7 +46,6 @@ function Products({sample , setSample}) {
       }
   }, []);
   
-
   //going to product page
   const goToProductPage = (id) => {
     navigate('/productPage', {state:id})
