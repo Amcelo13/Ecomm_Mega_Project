@@ -61,7 +61,7 @@ function Products() {
               return (
                 <div className="one-prod" key={prod.name}  onClick={()=>goToProductPage(prod._id)}>
                   <img
-                    src={prod.prodImage}
+                    src={prod.images[0]}
                     alt="err"
                     width="95%"
                     id="prodimage"
@@ -90,7 +90,7 @@ function Products() {
               return (
                 <div className="one-prod" key={prod.name}  onClick={()=>goToProductPage(prod._id)}>
                   <img
-                    src={prod.prodImage}
+                    src={prod.images[0]}
                     alt="err"
                     width="95%"
                     id="prodimage"

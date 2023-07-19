@@ -28,6 +28,7 @@ router.post("/products", async (req, res) => {
       prod.price = price;
       prod.category = category;
       prod.images = images;
+
       prod.isDraft = isDraft;
       await prod.save();
       res.status(209).send("Product details exists and updated");
@@ -65,7 +66,7 @@ router.get("/products", async (req, res) => {
 //Get Best selling products
 router.get("/bestproducts", async (req, res) => {
   try {
-    const ans = await productModel.find().sort({ sales: -1 });
+    const ans = await productModel.find().sort({ sales: -1 }).limit(10);
 
     res.status(200).json(ans);
   } catch (err) {

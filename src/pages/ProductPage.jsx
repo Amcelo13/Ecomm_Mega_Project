@@ -133,7 +133,7 @@ function ProductPage() {
             <div className="prodInfo">
               <div className="leftu" id="LOMGu">
                 <h2>{prod.name}</h2>
-                <p
+                <p 
                   style={{
                     color: "gray",
                     fontSize: "15px",
@@ -160,9 +160,9 @@ function ProductPage() {
                   <div className="nu" style={{ borderRadius: "1rem" }}>
                     <Image
                       width={"90%"}
-                      height={"100%"}
+                      height={"90%"}
                       style={{ borderRadius: "1rem" }}
-                      src="https://images.pexels.com/photos/17491276/pexels-photo-17491276.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                      src={prod.images[0]}
                     />{" "}
                   </div>
                   <div className="nu">
@@ -170,7 +170,7 @@ function ProductPage() {
                       width={"90%"}
                       height={"100%"}
                       style={{ borderRadius: "1rem" }}
-                      src="https://images.pexels.com/photos/13661636/pexels-photo-13661636.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                      src={prod.images[1]}
                     />{" "}
                   </div>
                   <div className="nu">
@@ -178,7 +178,7 @@ function ProductPage() {
                       style={{ borderRadius: "1rem" }}
                       width={"90%"}
                       height={"100%"}
-                      src="https://images.pexels.com/photos/17077791/pexels-photo-17077791/free-photo-of-person-walking-on-sunlit-pier.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                      src={prod.images[2]}
                     />
                   </div>
                   <div className="nu">
@@ -186,7 +186,7 @@ function ProductPage() {
                       style={{ borderRadius: "1rem" }}
                       width={"90%"}
                       height={"100%"}
-                      src="https://images.pexels.com/photos/13661636/pexels-photo-13661636.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                      src={prod.images[3]}
                     />{" "}
                   </div>
                 </Carousel>

@@ -208,7 +208,7 @@ function MyProfile({ namefromNavigate }) {
               type="primary"
               htmlType="submit"
               style={{
-                backgroundColor: "#f9ab61",
+                backgroundColor: "#2e2e2e", 
                 outline: "none",
                 border: "none",
               }}

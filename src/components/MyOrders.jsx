@@ -6,7 +6,7 @@ import "./MyOrder.css";
 import KOKO from "../assets/order.svg";
 import { getCartSubtotal } from "../utils/getCartSubtotal.js";
 import { getSpecificOrder } from "../utils/getSpecificOrder.js";
-import NOM from "../assets/NoData.png"
+
 
 function MyOrders() {
   const userEmail = useSelector((state) => state.users.email);
@@ -72,10 +72,11 @@ function MyOrders() {
                     return (
                       <div key={item._id} className="order-item">
                         <img
-                          src={item.prodImage}
+                          src={item.images[0]}
                           alt=""
                           id="nb1"
-                          width="80px"
+                          width="90px"
+                          
                         />
                         {order.isCancel ? (
                           <p style={{ color: "red" }} id="df3">

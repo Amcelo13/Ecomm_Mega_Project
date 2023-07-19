@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { EyeOutlined, DeleteOutlined } from "@ant-design/icons/lib/icons";
 import NOM from "../assets/NoData.png"
 import ProductModalForm from "./ProductModalForm";
+
 function VendorProducts({outOfStockActivator}) {
   const vendEmail = useSelector((state) => state.users.email);
   const [products, setProducts] = useState([]);
@@ -36,7 +37,7 @@ function VendorProducts({outOfStockActivator}) {
     getProducts();
 
     console.log('Statment again running');
-  }, [sample]);
+  }, []);
 
 
   useEffect(() => { 
@@ -63,7 +64,7 @@ function VendorProducts({outOfStockActivator}) {
               return (
                 <div className="one-prod1" key={prod.name}>
                   <img
-                    src={prod.prodImage}
+                    src={prod.images[0]}
                     alt="err"
                     width="95%"
                     id="prodimage1"

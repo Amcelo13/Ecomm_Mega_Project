@@ -20,6 +20,10 @@ const UserSchema = new mongoose.Schema({
   uid: {
     type: String,
   },
+  profileImg: {
+    type: String,
+    
+  },
 
   address: [
     {
@@ -38,6 +42,7 @@ const UserSchema = new mongoose.Schema({
     {
       name: String,
       prodImage: String,
+      images: [],
       quantity: Number,
       price: Number,
       vendorEmail: String,

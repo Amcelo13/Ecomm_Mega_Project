@@ -8,6 +8,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { deleteAddress } from "../utils/deleteAddress";
 import { addToCart } from "../utils/addToCart";
 import { useNavigate } from "react-router-dom";
+
 function AddressModalFormBuy({
   isModalOpen,
   setIsModalOpen,
@@ -24,22 +25,17 @@ function AddressModalFormBuy({
   const handleAddressClick = (addressId) => {
     setSelectedAddressId(addressId);
   };
-  //Getaddress
+
+  // Get address
   useEffect(() => {
     const getAddress = async () => {
-      await axios
-        .get(`http://localhost:4000/getAddress/${userEmail}`)
-        .then((response) => {
-          setGettedAddressData(response.data);
-          if (response.data.length >= 1) {
-            setLength(1);
-          } else {
-            setLength(0);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      try {
+        const response = await axios.get(`http://localhost:4000/getAddress/${userEmail}`);
+        setGettedAddressData(response.data);
+        setLength(response.data.length);
+      } catch (error) {
+        console.log(error);
+      }
     };
     getAddress();
   }, [sample]);
@@ -55,20 +51,21 @@ function AddressModalFormBuy({
   });
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     const obn = {
       addressData: addressData,
       email: userEmail,
     };
-    e.preventDefault();
+
     try {
       await axios.post("http://localhost:4000/addAddress", obn);
     } catch (err) {
       console.log(err);
     }
+
     setSample(!sample);
   };
 
-  //Address
   const handleChange = (e) => {
     setAddressData({ ...addressData, [e.target.name]: e.target.value });
   };
@@ -77,6 +74,7 @@ function AddressModalFormBuy({
     addToCart(prod, vendorData, quanValue, userEmail);
     navigate("/cartPage");
   };
+
   const handleOk = () => {
     setIsModalOpen(false);
   };
@@ -142,7 +140,8 @@ function AddressModalFormBuy({
           <input
             name="state"
             type="text"
-            maxLength="6"
+            // maxLength="6"
+            pattern="[A-Za-z]{2,}"
             value={addressData.state}
             onChange={handleChange}
             required
@@ -153,8 +152,11 @@ function AddressModalFormBuy({
             type="text"
             value={addressData.pincode}
             onChange={handleChange}
+            pattern="[0-9]*" // Allow only numbers
+            maxLength={6} // Limit length to 6 characters
             required
           />
+          
           <button>Add Address</button>
         </form>
 

@@ -199,7 +199,7 @@ function CartPage() {
               return (
                 <>
                   <div className={`cartI ${animate ? 'slide-up' : ''}`}>
-                    <img src={item.prodImage} alt="" id="nb" />
+                    <img  src={item.images[0]} alt="" id="nb" />
 
                     <div style={{ marginLeft: "5rem", paddingTop: "3rem" }}>
                       <h4 id="new">{item.name}</h4>

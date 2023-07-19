@@ -47,7 +47,8 @@
 #nb {
   background-size: cover;
   width: 30%;
-  height: 100%;
+  margin-top: .6rem;
+  height: 90%;
 }
 #deleteed:hover {
   opacity: 0.7;
