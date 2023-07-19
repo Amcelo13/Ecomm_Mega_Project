@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./VendorProducts.css";
 import { useSelector } from "react-redux";
-import { EyeOutlined, DeleteOutlined } from "@ant-design/icons/lib/icons";
-import NOM from "../assets/NoData.png"
+import {  DeleteOutlined } from "@ant-design/icons/lib/icons";
 import ProductModalForm from "./ProductModalForm";
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 
