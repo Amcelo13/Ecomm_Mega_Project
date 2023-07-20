@@ -12,7 +12,7 @@ const Page404 = () => {
       title="404"
       subTitle="Sorry, the page you visited does not exist."
       extra={
-        <Button type="primary" onClick={() => navigatetohome()}>
+        <Button type="primary" style={{backgroundColor:"black"}} onClick={() => navigatetohome()}>
           Back Home
         </Button>
       }
