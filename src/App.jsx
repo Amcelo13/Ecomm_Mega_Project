@@ -3,6 +3,7 @@ import Protected from "./Protected";
 import "./App.css";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
+import Page404 from "./pages/Page404.jsx";
 import Profile from "./pages/Profile.jsx";
 import {  useSelector } from 'react-redux';
 import Home from "./pages/Home";
@@ -46,6 +47,7 @@ function App() {
 
     <Route path="/" element={<Home/>}/>
     <Route path="/productPage" element={<ProductPage/>}/>
+    <Route path="/*" element={<Page404/>}/>
 
 
       {private1.map((e, i) => {
