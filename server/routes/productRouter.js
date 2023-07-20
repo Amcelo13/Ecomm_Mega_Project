@@ -106,6 +106,7 @@ router.get("/getProducts/:id", async (req, res) => {
 
 //  Get the specific products according to category page
 router.get("/getCategoryProducts/:category", async (req, res) => {
+  
   try {
     const ans = await productModel.find({ category: req.params.category });
     res.status(200).json(ans);

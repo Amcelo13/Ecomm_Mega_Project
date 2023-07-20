@@ -90,13 +90,6 @@ function MyProfile({ namefromNavigate , sample , setSample}) {
     return Promise.resolve();
   };
 
-  // Validation function for name and description fields to handle blank spaces
-  const validateNoBlankSpace = (_, value) => {
-    if (!value || value.trim().length === 0) {
-      return Promise.reject(new Error('Please enter a valid value'));
-    }
-    return Promise.resolve();
-  };
 
   //On Details Updation
   const onFinish = async (values) => {
@@ -121,7 +114,7 @@ function MyProfile({ namefromNavigate , sample , setSample}) {
   return (
     <>
       {contextHolder}
-      <p id="head" className="moin" >
+      <p id="head112" className="moin" >
         My Profile
       </p>
       <div className="pro--container23">

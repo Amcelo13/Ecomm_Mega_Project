@@ -37,7 +37,6 @@ function DashBoard() {
         let totalquantity = 0;
         let totalEarnings = 0;
 
-
         //Adding the quantities of all the vendor sales collections
         sortedOrderData?.map((order) => order.orderItems.forEach((e) => {
             totalquantity += e.quantity;
@@ -54,6 +53,7 @@ function DashBoard() {
                 })
               }
           })
+
             setMyEarnings(totalEarnings)
       })
       .catch((error) => {
@@ -92,6 +92,7 @@ function DashBoard() {
       title: "Status",
       dataIndex: `status`,
       key: "status",
+      render: (status) => <Tag color={status === 'ordered' ||status === 'shipped' ||status === 'delivered' ? "green" : "red"}>{status}</Tag>
     },
     {
       title: "Email",
@@ -127,7 +128,7 @@ function DashBoard() {
       render: (orderItems) => {
         if (orderItems) {
           const { name } = orderItems[0];
-          return <Tag color="blue">{name}</Tag>;
+          return <p color="blue">{name}</p>;
         } else {
           return "";
         }

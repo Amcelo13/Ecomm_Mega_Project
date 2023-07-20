@@ -3,11 +3,15 @@ import axios from "axios";
 import "./Products.css";
 import { useNavigate } from "react-router-dom";
 import NOM from '../assets/NoData.png'
+
 function CategoryProducts({ cateGory }) {
   const [product, setProduct] = useState([]);
   const navigate = useNavigate();
+
+
   //Getting Category Products
   useEffect(() => {
+   
     const getProducts = async () => {
       await axios
         .get(`http://localhost:4000/getCategoryProducts/${cateGory}`)

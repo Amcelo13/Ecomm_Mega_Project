@@ -102,9 +102,9 @@ function Navbar(props) {
               </li>
               <li
                 className="li2"
-                onClick={() => gotoCategoryPage("SmartPhones")}
+                onClick={() => gotoCategoryPage("Smartphones")}
               >
-                SmartPhones{" "}
+                Smartphones{" "}
               </li>
               <li className="li1" onClick={() => gotoCategoryPage("Bags")}>
                 Bags{" "}
