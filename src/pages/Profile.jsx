@@ -57,7 +57,7 @@ function Profile() {
 
   const handleChange = ({ file: newFile }) => {
     newFile.status === "done" && onFinish(`http://localhost:4000/${newFile.response}`);
-    setSample(!sample)
+   
   };
 
 
