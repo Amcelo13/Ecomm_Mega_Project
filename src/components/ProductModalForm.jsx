@@ -13,7 +13,7 @@ function ProductModalForm({
   formValues,
   outOfStockActivator,
   sample,
-  setSample
+  setSample,
 }) {
   const vendorEmail = useSelector((state) => state.users.email);
   const [loading, setLoading] = useState(false);
@@ -43,9 +43,8 @@ function ProductModalForm({
   const [image, setImage] = useState([]);
   const [fileList, setFileList] = useState([]);
 
-  
   const handleChange1 = ({ file: newFile, fileList: newFileList }) => {
-    setFileList(newFileList);                       //Also appending the local list to keep track
+    setFileList(newFileList); //Also appending the local list to keep track
     //If send then go and hit the api method
     newFile.status === "done" &&
       setImage([...image, `http://localhost:4000/${newFile.response}`]);
@@ -105,20 +104,19 @@ function ProductModalForm({
       .catch((error) => {
         console.log(error);
       });
-
-      setLoading(false);
-      setOpen(false);
-      setProductName("");
-      setProductPrice();
-      setProductDescription("");
-      setProductCategory("Appliances");
-      setProductImages([]);
-      setIsDraft(false);
-      setSample(!sample);
+    setSample(!sample);
+    setLoading(false);
+    setOpen(false);
+    setProductName("");
+    setProductPrice();
+    setProductDescription("");
+    setProductCategory("Appliances");
+    setProductImages([]);
+    setIsDraft(false);
   };
   const handlePriceChange = (value) => {
     // Remove any non-numeric characters from the input value
-    const numericValue = value.replace(/[^0-9]/g, '');
+    const numericValue = value.replace(/[^0-9]/g, "");
     // Limit the input length to a maximum of 6 digits
     const limitedValue = numericValue.slice(0, 6);
     // Update the state with the limited numeric value
@@ -128,7 +126,7 @@ function ProductModalForm({
   const onChange = async (productID, statusBoolean) => {
     setRandomState(true);
     await handleOutOfStock(productID, statusBoolean);
-    setSample(!sample);
+    // setSample(!sample);
   };
 
   const onkhaali = () => {
@@ -267,30 +265,30 @@ function ProductModalForm({
                 Price
               </p>
               <input
-              required
-              type="text" // Use text type to handle the custom validation
-              className="rightium"
-              value={productPrice}
-              onChange={(e) => handlePriceChange(e.target.value)}
-              onKeyDown={(e) => {
-                // Allow only numeric inputs (0-9) and prevent other characters
-                if (
-                  !(
-                    (e.key >= "0" && e.key <= "9") ||
-                    e.key === "Backspace" || 
-                    e.key === "Delete" || 
-                    e.key === "Tab" ||
-                    e.key === "Enter" ||
-                    e.key === "ArrowLeft" || 
-                    e.key === "ArrowRight" || 
-                    e.key === "Home" || 
-                    e.key === "End" 
-                  )
-                ) {
-                  e.preventDefault();
-                }
-              }}
-            />
+                required
+                type="text" // Use text type to handle the custom validation
+                className="rightium"
+                value={productPrice}
+                onChange={(e) => handlePriceChange(e.target.value)}
+                onKeyDown={(e) => {
+                  // Allow only numeric inputs (0-9) and prevent other characters
+                  if (
+                    !(
+                      (e.key >= "0" && e.key <= "9") ||
+                      e.key === "Backspace" ||
+                      e.key === "Delete" ||
+                      e.key === "Tab" ||
+                      e.key === "Enter" ||
+                      e.key === "ArrowLeft" ||
+                      e.key === "ArrowRight" ||
+                      e.key === "Home" ||
+                      e.key === "End"
+                    )
+                  ) {
+                    e.preventDefault();
+                  }
+                }}
+              />
 
               <span>
                 {" "}

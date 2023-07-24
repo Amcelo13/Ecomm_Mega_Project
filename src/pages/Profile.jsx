@@ -15,10 +15,11 @@ import AddressModalForm from "../components/AddressModalForm";
 import { useForm } from "rc-field-form";
 import axios from "axios";
 import { Upload } from "antd";
-import PROFILEE from "../assets/Circle-icons-profile.svg.png"
+import PROFILEE from "../assets/Circle-icons-profile.svg.png";
 import { EditOutlined } from "@ant-design/icons";
 
 function Profile() {
+
   const user = useSelector((state) => state.users);
   const [draftOption, setDraftOption] = useState(-1);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,7 +39,7 @@ function Profile() {
         const response = await axios.get(
           `http://localhost:4000/findVendorInfobyuid/${user.uid}`
         );
-     
+
         setIsRole(response.data.designation);
         setEmail(response.data.email);
         setPhone(response.data.phone);
@@ -48,34 +49,30 @@ function Profile() {
       }
     };
     getProfileDetails();
-  }, [sample]); 
+  }, [sample]);
 
   const showModal = () => {
     setIsModalOpen(true);
   };
 
-
   const handleChange = ({ file: newFile }) => {
-    newFile.status === "done" && onFinish(`http://localhost:4000/${newFile.response}`);
-   
+    newFile.status === "done" &&
+      onFinish(`http://localhost:4000/${newFile.response}`);
   };
 
-
-  //On change this function get the recieved img url and call the update api 
+  //On change this function get the recieved img url and call the update api
   const onFinish = async (imgURL) => {
     console.log(imgURL);
     try {
       const response = await axios.post(
         `http://localhost:4000/updateUserInfo/${user.uid}`,
-        {profileImg: imgURL}
+        { profileImg: imgURL }
       );
       console.log(response.data);
-    
-    } 
-    catch (err) {
+    } catch (err) {
       console.log(err);
     }
-      setSample(!sample)
+    setSample(!sample);
   };
 
   return (
@@ -84,10 +81,17 @@ function Profile() {
       <div className="containerofprofile">
         <div className="profleft">
           <div
-            className="imgflex" 
-            style={{ display:"flex", marginTop: "2rem", position: "relative" }}
+            className="imgflex"
+            style={{ display: "flex", marginTop: "2rem", position: "relative" }}
           >
-            <img src={avatar? avatar : PROFILEE} alt="" width="100rem" height="100rem" style={{borderRadius:"50%"}}/> <br />
+            <img
+              src={avatar ? avatar : PROFILEE}
+              alt=""
+              width="100rem"
+              height="100rem"
+              style={{ borderRadius: "50%" }}
+            />{" "}
+            <br />
             <Upload
               action="http://localhost:4000/uploads"
               onChange={handleChange}
@@ -95,10 +99,12 @@ function Profile() {
               maxCount={1}
               multiple={false}
             >
-              <button className="changeImg" ><EditOutlined/></button>
+              <button className="changeImg">
+                <EditOutlined />
+              </button>
             </Upload>
-            </div>
-            <h1>{location.state ? location.state : nameFromRedux}</h1>
+          </div>
+          <h1>{location.state ? location.state : nameFromRedux}</h1>
 
           <div>
             <div style={{ display: "flex" }}>
@@ -117,16 +123,16 @@ function Profile() {
 
           {role === "Vendor" ? (
             <>
-            <p
-              className={draftOption === 3 ? "mine1active" : "mine1"}
-              id="mhjq"
-              onClick={() => setDraftOption(3)}
-            >
-              My DashBoard
-            </p>
-          </>
+              <p
+                className={draftOption === 3 ? "mine1active" : "mine1"}
+                id="mhjq"
+                onClick={() => setDraftOption(3)}
+              >
+                My DashBoard
+              </p>
+            </>
           ) : (
-          ""
+            ""
           )}
 
           {role === "Customer" || role === "Vendor" ? (
@@ -201,7 +207,13 @@ function Profile() {
         <div className="profright">
           {draftOption === 0 && <VendorProducts outOfStockActivator={true} />}
           {draftOption === 1 && <VendorDrafts outOfStockActivator={false} />}
-          {draftOption === -1 && <MyProfie name={location.state}  sample={sample} setSample = { setSample} />}
+          {draftOption === -1 && (
+            <MyProfie
+              name={location.state}
+              sample={sample}
+              setSample={setSample}
+            />
+          )}
           {draftOption === 2 && <MyOrders />}
           {draftOption === 3 && <DashBoard />}
           {draftOption === 4 && <AllVendorsProductsForAdmin />}
@@ -235,7 +247,7 @@ function Profile() {
           </>
         )}
 
-        <ProductModalForm open={open} setOpen={setOpen} />
+        <ProductModalForm open={open} setSample={setSample} setOpen={setOpen} sample={sample}/>
       </div>
     </>
   );

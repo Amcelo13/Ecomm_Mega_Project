@@ -226,15 +226,9 @@ function ProductPage() {
                     </b>
   
                     <p id="nmi"> Quantity</p>
-                    <input
-                      id="vb"
-                      type="number"
-                      min="1"
-                      max="6"
-                      value={quanValue}
-                      onChange={(e) => setQuanValue(e.target.value)}
-                      width="10px"
-                    />
+                    <input id="vb" type="number" min="1" max="6" 
+                    value={quanValue} onChange={(e) => setQuanValue(e.target.value)} width="10px" />
+
                     <div>
                       <button
                         className="nnu1"

@@ -3,11 +3,11 @@ import axios from "axios";
 import "./VendorProducts.css";
 import { useSelector } from "react-redux";
 import { EyeOutlined, DeleteOutlined } from "@ant-design/icons/lib/icons";
-import NOM from "../assets/NoData.png"
+import NOM from "../assets/NoData.png";
 import ProductModalForm from "./ProductModalForm";
-import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 
-function VendorProducts({outOfStockActivator}) {
+function VendorProducts({ outOfStockActivator }) {
   const vendEmail = useSelector((state) => state.users.email);
   const [products, setProducts] = useState([]);
   const [singleModelProps, setsingleModelProps] = useState(null);
@@ -19,9 +19,7 @@ function VendorProducts({outOfStockActivator}) {
     } catch (error) {
       console.log(error);
     }
-    setSample(!sample)
-
-  
+    setSample(!sample);
   };
   // Vendor Specific Products
   useEffect(() => {
@@ -36,29 +34,29 @@ function VendorProducts({outOfStockActivator}) {
       }
     };
     getProducts();
-
   }, [sample]);
 
-
-  useEffect(() => { 
+  useEffect(() => {
     // Animations
     const productElement = document.getElementById("prof");
     productElement.classList.add("enter");
     return () => {
       productElement.classList.remove("enter");
     };
-  },[])
+  }, []);
 
-//Edit MODAL 
+  //Edit MODAL
   const handleEdit = (index) => {
     setsingleModelProps(index);
   };
-
+  // const saveSample = (e) => {
+  //   setSample(e);
+  // };
   return (
     <div className="pro--container">
       <p id="head">My Products</p>
       <div className="prodDiv1" id="prof">
-        {products.length !==0  ? (
+        {products.length !== 0 ? (
           products.map((prod, index) => {
             if (prod.isDraft === false) {
               return (
@@ -78,23 +76,23 @@ function VendorProducts({outOfStockActivator}) {
                     </h4>
                   </div>
                   <p id="cat">{prod.category}</p>
-                  <ModeEditOutlineOutlinedIcon 
+                  <ModeEditOutlineOutlinedIcon
                     onClick={() => handleEdit(index)}
                     className="qp"
                     style={{
                       fontSize: "2.1rem",
                       marginRight: "2rem",
                       paddingTop: "2rem",
-                      cursor:"pointer",
+                      cursor: "pointer",
                     }}
                   />
 
                   {/*Opening the Modal*/}
                   {singleModelProps === index && (
                     <ProductModalForm
-                    sample = {sample}
-                    setSample =  {setSample}
-                    outOfStockActivator ={outOfStockActivator}
+                      sample={sample}
+                      setSample={setSample}
+                      outOfStockActivator={outOfStockActivator}
                       open={true}
                       setOpen={() => setsingleModelProps(null)} //means if the setsingleModelProps is null then the modal closes
                       formValues={prod}
@@ -114,8 +112,13 @@ function VendorProducts({outOfStockActivator}) {
             }
             return null;
           })
-        ) : (<>
-          <img src={NOM} alt="No data"  style={{width:'50%', height:"100%", marginLeft:"23%"}}/>
+        ) : (
+          <>
+            <img
+              src={NOM}
+              alt="No data"
+              style={{ width: "50%", height: "100%", marginLeft: "23%" }}
+            />
           </>
         )}
       </div>
