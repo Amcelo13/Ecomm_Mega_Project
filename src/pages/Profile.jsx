@@ -30,7 +30,7 @@ function Profile() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [avatar, setAvatar] = useState("");
-  const  [sample, setSample] = useState(false);
+  const [sample, setSample] = useState(false);
 
   useEffect(() => {
     const getProfileDetails = async () => {

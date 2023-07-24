@@ -134,28 +134,21 @@ router.get("/findVendorInfobyuid/:uid", async (req, res) => {
   }
 });
 
-//Updating the user Info
+//Updating the user Info and Profile IMG
 router.post("/updateUserInfo/:uid", async (req, res) => {
   const uid = req.params.uid;
 
-  const phoneNumber = await userModel.findOne({ phone: req.body.phone })
-
-
-  //If only fotrm form submission is there that is no profile picture updation so run this and check the phone number
-  if (!req.body?.profileImg && phoneNumber) {
-    res.status(202).send("Phone Already Exists");
-  } 
-  
-  //If only image is coming in the form then only run else statement
-  else {
-    try {
-      const user = await userModel.findOneAndUpdate( { uid }, { ...req.body }, { new: true });
-      res.status(200).json(user);
-    } 
-    catch (err) {
-      console.log(err);
-    }
+  try {
+    const user = await userModel.findOneAndUpdate(
+      { uid },
+      { ...req.body },
+      { new: true }
+    );
+    res.status(200).json(user);
+  } catch (err) {
+    console.log(err);
   }
+  // }
 });
 
 //Cart addition of user
