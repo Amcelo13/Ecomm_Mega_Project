@@ -362,8 +362,9 @@ router.get("/getAllVendors", async (req, res) => {
 });
 
 //Setting vendor active status
-router.post("/setVendorActivation/:vendorID", async (req, res) => {
+router.put("/setVendorActivation/:vendorID", async (req, res) => {
   const { boolValue } = req.body;
+  console.log(req.body);
   const vendorID = req.params.vendorID;
   try {
     await userModel.findByIdAndUpdate(vendorID, { status: boolValue });

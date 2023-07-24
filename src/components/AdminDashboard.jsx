@@ -26,6 +26,7 @@ function AdminDashboard() {
   useEffect(() => {
     const getData = async () => {
       const vendorDetails = await getVendorDetails();
+      // console.log(vendorDetails.data)
       setVendorHistory(vendorDetails.data);
     };  
 
