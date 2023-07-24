@@ -114,18 +114,18 @@ function Profile() {
             My Profile
           </p>
 
-          {role === "Customer" || role === "Admin" ? (
-            ""
-          ) : (
+          {role === "Vendor" ? (
             <>
-              <p
-                className={draftOption === 3 ? "mine1active" : "mine1"}
-                id="mhjq"
-                onClick={() => setDraftOption(3)}
-              >
-                My DashBoard
-              </p>
-            </>
+            <p
+              className={draftOption === 3 ? "mine1active" : "mine1"}
+              id="mhjq"
+              onClick={() => setDraftOption(3)}
+            >
+              My DashBoard
+            </p>
+          </>
+          ) : (
+          ""
           )}
 
           {role === "Customer" || role === "Vendor" ? (
