@@ -63,6 +63,7 @@ function Profile() {
 
   //On change this function get the recieved img url and call the update api 
   const onFinish = async (imgURL) => {
+    console.log(imgURL);
     try {
       const response = await axios.post(
         `http://localhost:4000/updateUserInfo/${user.uid}`,

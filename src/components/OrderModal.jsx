@@ -126,7 +126,7 @@ function OrderModal({
           <div className="order-details--container">
             <h3>Order Items:</h3>
             {orderItems.map((item) => (
-              <div key={item._id} className="order-item">
+              <div key={item._id} className="order-item" >
                 <img
                   src={item.images[0]}
                   alt={item.name}

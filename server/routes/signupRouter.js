@@ -137,22 +137,22 @@ router.get("/findVendorInfobyuid/:uid", async (req, res) => {
 //Updating the user Info
 router.post("/updateUserInfo/:uid", async (req, res) => {
   const uid = req.params.uid;
-  const phoneNumber = await userModel.findOne({ phone: req.body.phone });
 
-  if (phoneNumber) {
+  const phoneNumber = await userModel.findOne({ phone: req.body.phone })
+
+
+  //If only fotrm form submission is there that is no profile picture updation so run this and check the phone number
+  if (!req.body?.profileImg && phoneNumber) {
     res.status(202).send("Phone Already Exists");
   } 
   
+  //If only image is coming in the form then only run else statement
   else {
     try {
-      const user = await userModel.findOneAndUpdate(
-        { uid },
-        { ...req.body },
-        { new: true }
-      );
-
+      const user = await userModel.findOneAndUpdate( { uid }, { ...req.body }, { new: true });
       res.status(200).json(user);
-    } catch (err) {
+    } 
+    catch (err) {
       console.log(err);
     }
   }
@@ -364,7 +364,6 @@ router.get("/getAllVendors", async (req, res) => {
 //Setting vendor active status
 router.put("/setVendorActivation/:vendorID", async (req, res) => {
   const { boolValue } = req.body;
-  console.log(req.body);
   const vendorID = req.params.vendorID;
   try {
     await userModel.findByIdAndUpdate(vendorID, { status: boolValue });

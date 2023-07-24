@@ -147,7 +147,6 @@ function Login() {
         .post("http://localhost:4000/goomglepostlogin", obn)
         .then((response) => {
           if (response.status === 200) {
-            console.log(response);
             dispatch(
               setLogin({
                 name: data.displayName,

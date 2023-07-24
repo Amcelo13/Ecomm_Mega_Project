@@ -80,7 +80,7 @@ function Home() {
       <Products sample={sample} setSample={setSample} />
 
       <button id="proda" onClick={scrollDown}>
-        Discover Collection
+        Explore More with Us
       </button>
     </>
   );

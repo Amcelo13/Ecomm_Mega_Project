@@ -25,23 +25,16 @@ function ProductPage() {
   const [vendorData, setVendorData] = useState();
   const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
-  const success = () => {
-    messageApi.open({
-      type: "success",
-      content: "Added to Cart Successfully",
-    });
-  };
 
   //Get specific product info and getting the vendor information alongside by calling its function
   useEffect(() => {
     const getVendor = async (vendID) => {
-      console.log(vendID);
       try {
         await axios
           .get(`http://localhost:4000/findVendorInfo/${vendID}`)
           .then((response) => {
             setVendorData(response.data);
-            console.log(response.data)
+      
           })
           .catch((error) => {
             console.log(error);
@@ -73,6 +66,7 @@ function ProductPage() {
         console.log(err);
       }
     };
+    window.scrollTo(0, 0);
     getProduct();
   }, []);
 
@@ -103,11 +97,11 @@ function ProductPage() {
     setLoading(true);
 
     setTimeout(() => {
-      success();
+      message.success('Cart added successfully');
     }, 1000);
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 2000); 
    }
 
    else{
@@ -123,7 +117,7 @@ function ProductPage() {
         addToCart(prod, vendorData, quanValue, userEmail);
 
         setTimeout(() => {
-          success();
+          message.success('Added to Cart Successfully');
         }, 1000);
         setTimeout(() => {
           setLoadingBuy(false);
@@ -153,7 +147,7 @@ function ProductPage() {
           {prodInfo &&
             prodInfo.map((prod, index) => {
               return (
-                <div className="prodInfo">
+                <div className="prodInfo" key={index}>
                   <div className="leftu" id="LOMGu">
                     <h2>{prod.name}</h2>
                     <p

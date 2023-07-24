@@ -63,7 +63,6 @@ function AddressModalFormCheckout({ isModalOpen, setIsModalOpen, cartItems }) {
 
   //Get address
   useEffect(() => {
-    console.log(selectedAddress)
     const getAddress = async () => {
       await axios
         .get(`http://localhost:4000/getAddress/${userEmail}`)
@@ -201,13 +200,13 @@ function AddressModalFormCheckout({ isModalOpen, setIsModalOpen, cartItems }) {
             Select from Address List
           </h2>
           {gettedAddressData ? (
-            gettedAddressData.map((add) => {
+            gettedAddressData.map((add, index) => {
               const isActive = add._id === selectedAddressId;
 
               return (
                 <div
                   className={`addresses ${isActive ? "active" : ""}`}
-                  key={add._id}
+                  key={index}
                   onClick={() => handleAddressClick(add._id)}
                 >
                   <p>

@@ -197,6 +197,7 @@ function DashBoard() {
         </div>
         <Table columns={columns} dataSource={vendorOrderHistory} />;
         <div className="orderr--left1">
+        
           <VendorControlModal sample =  {sample}  setSample={setSample}
             orderID={currentOrderID}
             open={open}

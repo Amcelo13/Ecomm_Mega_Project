@@ -80,7 +80,7 @@ function MyOrders() {
             <p id="cvvf">My Orders</p>
 
             {orderData &&
-              orderData.map((order) => {
+              orderData.map((order, index) => {
                 return (
                   <div
                     className="cartI1"
