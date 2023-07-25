@@ -15,27 +15,6 @@ function CartPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [animate, setAnimate] = useState(true);
 
-  const success = () => {
-    messageApi.open({
-      type: "success",
-      content: "Wohoo! 😀 Coupon Applied",
-      className: "custom-class",
-      style: {
-        marginTop: "20vh",
-      },
-    });
-  };
-  const error = () => {
-    messageApi.open({
-      type: "error",
-      content: "Wrong Coupon Applied",
-      className: "custom-class",
-      style: {
-        marginTop: "20vh",
-      },
-    });
-  };
-
   const userEmail = useSelector((state) => state.users.email);
   const [cartItems, setCartItems] = useState([]);
   const [sample, setSample] = useState(false);
@@ -149,31 +128,31 @@ function CartPage() {
     if ((!isCouponApplied && coupon !== "FREE SHIP") || "Hola") {
       // Check if the coupon has already been applied
       if (coupon === "FREE SHIP") {
-        success();
+        message.success('Wohoo! 😀 Coupon Applied');
         setCouponDiscount(200);
         setOrderTotal(cartTotal - 200);
         setIsCouponApplied(true); // Set the state variable to true after applying the coupon
       } else if (coupon === "Hola") {
-        success();
+        message.success('Wohoo! 😀 Coupon Applied');
         setCouponDiscount(300);
         setOrderTotal(cartTotal - 300);
         setIsCouponApplied(true); // Set the state variable to true after applying the coupon
       } else {
-        error();
+        message.error('Wrong Coupon Applied');
       }
     } else if ((isCouponApplied && coupon !== "FREE SHIP") || "Hola") {
       if (coupon === "FREE SHIP") {
-        success();
+        message.success('Wohoo! 😀 Coupon Applied');
         setCouponDiscount(200);
         setOrderTotal(cartTotal - 200);
         setIsCouponApplied(true); // Set the state variable to true after applying the coupon
       } else if (coupon === "Hola") {
-        success();
+        message.success('Wohoo! 😀 Coupon Applied');
         setCouponDiscount(300);
         setOrderTotal(cartTotal - 300);
         setIsCouponApplied(true); // Set the state variable to true after applying the coupon
       } else {
-        error();
+        message.error('Wrong Coupon Applied');
       }
     } else {
       warning();
@@ -292,6 +271,7 @@ function CartPage() {
             <button className="ccc12" onClick={showModal}>
               Proceed To Checkout
             </button>
+            
             <AddressModalFormCheckout
               isModalOpen={isModalOpen}
               setIsModalOpen={setIsModalOpen}
