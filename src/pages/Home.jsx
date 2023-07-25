@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import { LoadingOutlined } from "@ant-design/icons";
 import "../components/Products/Products.css";
@@ -6,13 +6,14 @@ import { useLocation } from "react-router-dom";
 import Products from "../components/Products/Products";
 import { Carousel } from "antd";
 import "./Home.css";
+import { useSelector } from "react-redux";
 
 function Home() {
 
   const location = useLocation();
   const [sample, setSample] = useState();
   const [loading, setLoading] = useState(true);
-
+  const user = useSelector((state)=> state.users)
   useEffect(() => {
     const loadingTimer = setTimeout(() => {
       setLoading(false);
@@ -22,6 +23,8 @@ function Home() {
     return () => clearTimeout(loadingTimer);
   }, []);
 
+
+  //Scroll down on click
   const scrollDown = () => {
     const scrollAmount = 120.9 * parseFloat(getComputedStyle(document.documentElement).fontSize);
     window.scrollTo({
@@ -30,9 +33,14 @@ function Home() {
     });
   };
 
+  const NavComponent = useMemo(()=>{
+      return  <Navbar name={location?.state} />
+  },[user?.email])
+
+
   return (
     <>
-      <Navbar name={location?.state} />
+      {NavComponent}
 
       {loading ? (
         <div

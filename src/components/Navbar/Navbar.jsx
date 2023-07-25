@@ -13,7 +13,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { setLogout } from "../../app/features/templateSlice";
 
-function Navbar(props) {
+ function Navbar(props) {
+  console.log('Navbar Rendered')
   const userO = useSelector((state) => state.users?.email);
   const dispatch = useDispatch()
   const navigate = useNavigate();

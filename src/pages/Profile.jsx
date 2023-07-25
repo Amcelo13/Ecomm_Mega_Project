@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import "./Profile.css";
 import { useSelector } from "react-redux";
@@ -74,10 +74,10 @@ function Profile() {
     }
     setSample(!sample);
   };
-
+  
   return (
     <>
-      <Navbar />
+      <Navbar/>
       <div className="containerofprofile">
         <div className="profleft">
           <div

@@ -86,7 +86,7 @@ function Products({sample , setSample}) {
     </>
     ):("")}
 
-      <h1 style={{margin:'4rem', marginTop:"4rem" }}>All Products</h1>
+      <h1 style={{margin:'4rem', marginTop:"4rem" ,marginBottom:"2.5rem"}}>All Products</h1>
 
       <div className="prodDiv" id="prof">
         {product.length !==0 ?(
