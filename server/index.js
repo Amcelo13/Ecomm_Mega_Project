@@ -1,16 +1,15 @@
 const express = require("express");
+const mongoose = require("mongoose");
+const multer = require("multer");
+const path = require("path");
 const cors = require("cors");
 const signupRouter = require("./routes/signupRouter");
 const productRouter = require("./routes/productRouter");
 const orderRouter = require("./routes/orderRouter");
-const mongoose = require("mongoose");
-const multer = require("multer");
-const path = require("path");
-require("dotenv").config();
+require("dotenv").config();    //Dotenv file 
+const connectDB = require("./config/connectDB")
 
-
-
-const port = 4000;
+const port = process.env.SERVER_PORT || 4000;
 const app = express();
 app.use(cors());
 
@@ -46,17 +45,8 @@ app.use("/", signupRouter);
 app.use("/", productRouter);
 app.use("/", orderRouter);
 
-try {
-  mongoose.connect(process.env.MONGO_URL,{
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  );
-  console.log("Connected to MongoDB server");
-} 
-catch (err) {
-  console.log(err);
-}
+//Database Connection to MONGODB
+connectDB()
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
