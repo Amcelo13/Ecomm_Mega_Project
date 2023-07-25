@@ -1,12 +1,11 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 const signupRouter = require("./routes/signupRouter");
 const productRouter = require("./routes/productRouter");
 const orderRouter = require("./routes/orderRouter");
-require("dotenv").config();    //Dotenv file 
+require("dotenv").config();       //Dotenv file 
 const connectDB = require("./config/connectDB")
 
 const port = process.env.SERVER_PORT || 4000;
