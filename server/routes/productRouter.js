@@ -1,66 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-
 const productModel = require("../models/Products");
+const { productAddEdit, getAllProducts, vendorSpecificProducts } = require("../controllers/productController");
 
 //Post new product or update existing
-router.post("/products", async (req, res) => {
-  const {
-    name,
-    description,
-    prodImage,
-    images,
-    price,
-    category,
-    quantity,
-    vendorID,
-    isDraft,
-  } = req.body;
-
-  try {
-    const prod = await productModel.findOne({ name });
-    
-    if (prod) {
-      res.statusMessage = "Product details exists and updated";
-      prod.name = name;
-      prod.description = description;
-      prod.price = price;
-      prod.category = category;
-      prod.images = images;
-      prod.isDraft = isDraft;
-      await prod.save();
-      res.status(209).send("Product details exists and updated");
-    } else {
-      const newProduct = new productModel({
-        name,
-        description,
-        prodImage,
-        price,
-        images,
-        category,
-        quantity,
-        vendorID,
-        isDraft,
-      });
-      await newProduct.save();
-      res.status(200).send("New Product created");
-    }
-  } catch (err) {
-    console.log(err);
-    res.status(400).send("Unable to add product");
-  }
-});
+router.post("/products", productAddEdit );
 
 //Get all products
-router.get("/products", async (req, res) => {
-  try {
-    const ans = await productModel.find();
-    res.status(200).json(ans);
-  } catch (err) {
-    res.status(400).send("Unable to fetch products: " + err.message);
-  }
-});
+router.get("/products", getAllProducts);
 
 //Get Best selling products
 router.get("/bestproducts", async (req, res) => {
@@ -74,14 +22,7 @@ router.get("/bestproducts", async (req, res) => {
 });
 
 //Specific Vendor Products
-router.get("/products/:id", async (req, res) => {
-  try {
-    const ans = await productModel.find({ vendorID: req.params.id });
-    res.status(200).json(ans);
-  } catch (err) {
-    res.status(400).send("Unable to fetch products: " + err.message);
-  }
-});
+router.get("/products/:id", vendorSpecificProducts );
 
 //Deleting a draft
 router.post("/deleteDraft", async (req, res) => {
