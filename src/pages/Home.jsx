@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 import { LoadingOutlined } from "@ant-design/icons";
-import "../components/Products.css";
+import "../components/Products/Products.css";
 import { useLocation } from "react-router-dom";
-import Products from "../components/Products";
+import Products from "../components/Products/Products";
 import { Carousel } from "antd";
 import "./Home.css";
 
 function Home() {
+
   const location = useLocation();
   const [sample, setSample] = useState();
   const [loading, setLoading] = useState(true);

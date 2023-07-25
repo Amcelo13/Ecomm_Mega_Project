@@ -1,8 +1,8 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 import { useLocation } from "react-router-dom";
-import CategoryProducts from "../components/CategoryProducts";
-import '../components/CategoryProducts.css'
+import CategoryProducts from "../components/Products/CategoryProducts";
+import '../components/Products/CategoryProducts.css'
 function CategoryPage() {
 
     const location = useLocation();

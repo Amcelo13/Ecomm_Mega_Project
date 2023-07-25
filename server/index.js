@@ -6,11 +6,16 @@ const orderRouter = require("./routes/orderRouter");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const path = require("path");
+require("dotenv").config();
+
+
 
 const port = 4000;
 const app = express();
 app.use(cors());
 
+
+// dotenv.config()    //<=-----------------doten
 app.use(express.static(path.join(__dirname, "/uploads")));
 // Multer Implementation for product image upload
 const productImgStorage = multer.diskStorage({
@@ -43,8 +48,7 @@ app.use("/", orderRouter);
 
 try {
   mongoose.connect(
-    "mongodb+srv://chetelise:123123123@cluster0.hs2zls9.mongodb.net/?retryWrites=true&w=majority",
-    {
+  process.env.MONGO_URL,{
       useNewUrlParser: true,
       useUnifiedTopology: true,
     }

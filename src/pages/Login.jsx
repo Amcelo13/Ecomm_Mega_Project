@@ -9,7 +9,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../app/features/templateSlice";
 import axios from "axios";
-import { auth, googleProvider } from "../utils/firebase";
+import { auth, googleProvider } from "../config/firebase";
 import { signInWithPopup } from "firebase/auth";
 
 import LOG from "../assets/LOG.svg";

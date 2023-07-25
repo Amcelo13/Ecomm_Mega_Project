@@ -1,0 +1,44 @@
+/* OrderModal.css */
+#btncancel:hover{
+  transform: scale(1.1);
+}
+.order-details--container {
+    padding: 20px;
+    overflow-x: hidden;
+position: relative;
+  }
+  
+  .order-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .order-item-image {
+    width: 80px;
+    margin-right: 2rem;
+
+  }
+  
+  .order-item-details {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: .6rem;
+  }
+  
+  .shipping-address {
+    margin-top: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  h3 {
+    margin: 10px 0;
+  }
+  
+  p {
+    margin: 5px 0;
+  }
+  .flet{
+    display: flex;
+    justify-content: space-between;
+  }

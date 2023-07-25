@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 import "./CartPage.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { getCartItems } from "../utils/getCartItem";
+import { getCartItems } from "../services/getCartItem";
 import { DeleteOutlined } from "@mui/icons-material";
 import { message } from "antd";
 import NOM from "../assets/ECART.png"
-import AddressModalFormCheckout from "../components/AddressModalFormCheckout";
+import AddressModalFormCheckout from "../components/AddressesModals/AddressModalFormCheckout";
 function CartPage() {
   
   const [messageApi, contextHolder] = message.useMessage();

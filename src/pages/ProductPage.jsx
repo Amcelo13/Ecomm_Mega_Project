@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 import {  useLocation, useNavigate } from "react-router-dom";
 import "./ProductPage.css";
 import axios from "axios";
-import { Carousel, Image, Tooltip } from "antd";
+import { Carousel, Image } from "antd";
 import { message } from "antd";
 
 import { LoadingOutlined } from "@ant-design/icons";
 import { getTime } from "../utils/getTime";
-import { addToCart } from "../utils/addToCart";
+import { addToCart } from "../services/addToCart";
 import { useSelector } from "react-redux";
-import AddressModalFormBuy from "../components/AddressModalFormBuy";
+import AddressModalFormBuy from "../components/AddressesModals/AddressModalFormBuy";
 
 function ProductPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);

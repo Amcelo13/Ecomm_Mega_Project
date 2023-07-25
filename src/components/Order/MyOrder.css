@@ -1,0 +1,81 @@
+.order--container {
+  display: flex;
+  margin-left: 6rem;
+}
+
+.orderr--left {
+  width: 70%;
+  margin-right: 3rem;
+  overflow: hidden;
+}
+.cartI1 {
+  position: relative;
+  border: 0.4px solid darkgray;
+  display: flex;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  height: auto;
+  transition: 1s;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
+.cartI1:hover{
+ background-color: rgba(0, 0, 0, .1);
+}
+.order-item {
+  display: flex;
+  position: relative;
+
+  margin-top: 2rem;
+  width: 170%;
+
+  align-items: center;
+  margin-bottom: 3rem;
+}
+.order-item-column {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.order--right {
+  padding-left: 1rem;
+  overflow: hidden;
+}
+#nb1 {
+  height: 220px;
+  width: 200px;
+
+}
+#new1 {
+  margin-top: -3rem;
+}
+#df1 {
+  position: absolute;
+  top: 10%;
+  right: -10rem;
+}
+#fum {
+  position: absolute;
+  top: .5rem;
+  font-size: 12px;
+  right: 1rem;
+}
+#df2 {
+  position: absolute;
+  bottom: 0.1rem;
+  right: 1rem;
+}
+#df3 {
+  position: absolute;
+  bottom: -0.4rem;
+  left: 25rem;
+}
+.step--container {
+  margin-top: 2rem;
+}
+#cvvf {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}

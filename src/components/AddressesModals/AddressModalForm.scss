@@ -1,0 +1,131 @@
+.address {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  padding: 30px;
+
+  form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 10px;
+
+    input {
+      width: 100%;
+      height: 40px;
+      border: 1px solid lightgrey;
+      margin-bottom: 20px;
+      padding: 10px;
+    }
+
+    button {
+      margin-top: 20px;
+      color: white;
+      border: none;
+      cursor: pointer;
+      height: 40px;
+      background-color: #2e2d2d;
+    }
+  }
+
+  .addressItemContainer {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    overflow-y: scroll;
+    flex-direction: column;
+    padding: 0px 20px;
+
+    .addressItems {
+      border: 1px solid lightgrey;
+      padding: 5px;
+      margin-bottom: 10px;
+
+      h3 {
+        font-size: 30px;
+        border-bottom: 1px solid lightgrey;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        i {
+          cursor: pointer;
+          font-size: 20px;
+          color: red;
+        }
+      }
+    }
+  }
+}
+.addright {
+  width: 40rem;
+  padding-left: 4rem;
+  overflow-y: scroll; /* Apply scrollbar only if necessary */
+  height: 48rem;
+}
+
+
+.addright::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.addright::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the thumb */
+  border-radius: 4px; /* Rounded corners of the thumb */
+}
+
+.addright::-webkit-scrollbar-track {
+  background-color: #f2f2f2; /* Color of the track */
+}
+
+.addresses {
+  border: 0.1px solid gray;
+  margin-right: 3rem;
+  border-radius: 0.3rem;
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  padding-top: -1rem;
+  padding-left: 1rem;
+}
+.addresses.active {
+    background-color: #d9d8d8;
+  }
+.delety {
+  // position: absolute;
+  transition: 1s ease;
+  color: red;
+  font-size: 30px;
+  margin-left: auto;
+  padding-top:3rem;
+  right: 1rem;
+  padding-top: 6rem;
+}
+
+.edity {
+  position: absolute;
+  transition: 1s ease;
+  color: black;
+  font-size: 30px;
+  margin-left: auto;
+  top: 0rem;
+  right: -3rem;
+  margin-top: auto;
+  padding-right: 3rem;
+}
+
+.classy{
+    padding-top: 1rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+.cb{
+  margin-top: 20px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  height: 40px;
+  background-color: #2e2d2d ;
+}
