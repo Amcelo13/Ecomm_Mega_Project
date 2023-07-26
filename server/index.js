@@ -1,5 +1,4 @@
 const express = require("express");
-const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 const signupRouter = require("./routes/signupRouter");
@@ -16,6 +15,8 @@ app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//Joining path only for this request below and get the desired image
 app.use("/mediaUpload",express.static(path.join(__dirname, "/uploads")));
 
 app.get("/", (req, res) => {
