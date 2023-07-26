@@ -47,7 +47,7 @@ function ProductModalForm({
     setFileList(newFileList); //Also appending the local list to keep track
     //If send then go and hit the api method
     newFile.status === "done" &&
-      setImage([...image, `http://localhost:4000/${newFile.response}`]);
+      setImage([...image, `http://localhost:4000/mediaUpload/${newFile.response}`]);
   };
 
   const uploadButton = (

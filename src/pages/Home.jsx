@@ -33,15 +33,9 @@ function Home() {
     });
   };
 
-  const NavComponent = useMemo(()=>{
-      return  <Navbar name={location?.state} />
-  },[user?.email])
-
-
   return (
     <>
-      {NavComponent}
-
+    <Navbar name={location?.state} />
       {loading ? (
         <div
           style={{
