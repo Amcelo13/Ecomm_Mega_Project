@@ -4,10 +4,6 @@ const initialState = {
   users: {},
   isLoggedIn: false,
   currentNumber: -1,
-  currentRoom: "-1",
-  CurrentUser: "",
-  CurrentUserId: -1,
-  currentReciever: {},
   userPresent: false,
   cartQuantity: 0,
 };
