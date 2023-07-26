@@ -107,3 +107,8 @@
 .nmi1 {
   font-weight: 600;
 }
+.loaderContainer{
+  /* padding: 10rem; */
+  transition: 1.6s;
+  opacity: 0.5;
+}

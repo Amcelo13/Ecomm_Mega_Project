@@ -116,13 +116,6 @@ function CartPage() {
     }
   }, []);
 
-  const warning = () => {
-    messageApi.open({
-      type: "warning",
-      content: "Already applied coupon",
-    });
-  };
-
   //Apply the coupon
   const handleApply = () => {
     if ((!isCouponApplied && coupon !== "FREE SHIP") || "Hola") {
@@ -155,7 +148,7 @@ function CartPage() {
         message.error('Wrong Coupon Applied');
       }
     } else {
-      warning();
+      message.warning('Already applied coupon');
     }
   };
 

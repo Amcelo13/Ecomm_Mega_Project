@@ -139,7 +139,7 @@ function ProductPage() {
       {/* Show the loader when loading is true */}
       {loading ? (
         <div className="loaderContainer">
-          <LoadingOutlined style={{ fontSize: "2rem", marginTop:"20%" }} />
+          <LoadingOutlined style={{ fontSize: "2rem", marginTop:"20%" , opacity:"1"}} />
         </div>
       ) : (
         // Show the product details when loading is false

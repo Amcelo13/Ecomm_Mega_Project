@@ -72,7 +72,7 @@ function MyOrders() {
         </div>
       ) : (
         <>
-          {globalError !== null ? (
+          {globalError === null ? (
             <div className="orderr--left">
               <p id="cvvf">My Orders</p>
 
