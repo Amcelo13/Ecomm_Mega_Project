@@ -9,7 +9,7 @@
   import EditAddressModal from "./EditAddressModal";
 
   function AddressModalForm({ isModalOpen, setIsModalOpen }) {
-    const userEmail = useSelector((state) => state.users.email);
+    const userEmail = useSelector((state) => state.users.users.email);
     const [open, setOpen] = useState(false);
     const [gettedAddressData, setGettedAddressData] = useState([]);
     const [sample, setSample] = useState(false);

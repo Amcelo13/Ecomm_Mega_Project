@@ -4,7 +4,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import axios from "axios";
 
 import { useDispatch } from "react-redux";
-import { setLogin } from "../app/features/templateSlice";
+import { setLogin } from "../app/features/Users/templateSlice";
 
 function VerifyOTP({ name, expandForm, setExpandForm, fullPhoneNumber, value3,}) {
   const navigate = useNavigate();

@@ -6,9 +6,10 @@ import { EyeOutlined, DeleteOutlined } from "@ant-design/icons/lib/icons";
 import NOM from "../../assets/NoData.png";
 import ProductModalForm from "./ProductModalForm";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
+import { getVendorProducts } from "../../services/getVendorProducts";
 
 function VendorProducts({ outOfStockActivator }) {
-  const vendEmail = useSelector((state) => state.users.email);
+  const vendEmail = useSelector((state) => state.users.users.email);
   const [products, setProducts] = useState([]);
   const [singleModelProps, setsingleModelProps] = useState(null);
   const [sample, setSample] = useState(false);
@@ -21,19 +22,16 @@ function VendorProducts({ outOfStockActivator }) {
     }
     setSample(!sample);
   };
+
   // Vendor Specific Products
   useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:4000/products/${vendEmail}`
-        );
-        setProducts(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getProducts();
+    const getProducts = getVendorProducts(vendEmail);
+    getProducts.then((res) => {
+      setProducts(res);
+    }).catch((err)=>{
+      console.log(err)
+    })
+
   }, [sample]);
 
   useEffect(() => {
@@ -49,9 +47,7 @@ function VendorProducts({ outOfStockActivator }) {
   const handleEdit = (index) => {
     setsingleModelProps(index);
   };
-  // const saveSample = (e) => {
-  //   setSample(e);
-  // };
+
   return (
     <div className="pro--container">
       <p id="head">My Products</p>

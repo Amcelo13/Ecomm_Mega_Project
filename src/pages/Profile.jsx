@@ -20,7 +20,7 @@ import { EditOutlined } from "@ant-design/icons";
 
 function Profile() {
 
-  const user = useSelector((state) => state.users);
+  const user = useSelector((state) => state.users.users);
   const [draftOption, setDraftOption] = useState(-1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [open, setOpen] = useState(false);

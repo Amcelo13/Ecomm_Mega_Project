@@ -12,7 +12,7 @@ import CategoryPage from "./pages/CategoryPage";
 import CartPage from "./pages/CartPage/CartPage";
 
 function App() {
-  const signed_state = useSelector((state) => state.isLoggedIn);
+  const signed_state = useSelector((state) => state.users.isLoggedIn);
   let public1 = [
     { path: "/signup", element: <Signup /> },
     {

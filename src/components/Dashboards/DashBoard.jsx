@@ -13,15 +13,7 @@ function DashBoard() {
   const [currentOrderID, setCurrentOrderID] = useState("");
   const [totalOrderQuantity, setTotalOrderQuantity] = useState(0);
   const [myEarnings, setMyEarnings] = useState(0);
-
-  const error = () => {
-    messageApi.open({
-      type: "error",
-      content: "The order has been canceled",
-    });
-  };
-
-  const userEmail = useSelector((state) => state.users.email);
+  const userEmail = useSelector((state) => state.users.users.email);
   const [vendorOrderHistory, setVendorOrderHistory] = useState([]);
 
   //Getting vendor order details
@@ -75,7 +67,7 @@ function DashBoard() {
 
   //To cancel the order for some reason
   const handleOrderCancellation = (orderID) => {
-    error();
+    message.error('The order has been canceled');
     cancelTheOrder(orderID);
     setSample(!sample)
   };

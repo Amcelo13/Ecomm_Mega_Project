@@ -15,7 +15,7 @@ function ProductModalForm({
   sample,
   setSample,
 }) {
-  const vendorEmail = useSelector((state) => state.users.email);
+  const vendorEmail = useSelector((state) => state.users.users.email);
   const [loading, setLoading] = useState(false);
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState();

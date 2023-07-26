@@ -7,7 +7,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 //redux
 
 import { useDispatch } from "react-redux";
-import { setLogin } from "../app/features/templateSlice";
+import { setLogin } from "../app/features/Users/templateSlice";
 import axios from "axios";
 import { auth, googleProvider } from "../config/firebase";
 import { signInWithPopup } from "firebase/auth";

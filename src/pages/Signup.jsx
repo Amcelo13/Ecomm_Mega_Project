@@ -8,12 +8,14 @@ import { LoadingOutlined } from "@ant-design/icons";
 
 //redux
 import { useDispatch } from "react-redux";
-import { setLogin } from "../app/features/templateSlice";
+import { setLogin } from "../app/features/Users/templateSlice";
+
 import axios from "axios";
 import { auth, googleProvider } from "../config/firebase";
 import { signInWithPopup } from "firebase/auth";
 import { v4 } from "uuid";
 import LOG from "../assets/LOG.svg";
+import { manualSignup } from "../services/manualSignup";
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -54,7 +56,9 @@ const options = [
     value: "Customer",
   },
 ];
+
 function Signup() {
+
   const [api, contextHolder] = notification.useNotification();
   const openNotificationWithIcon = (type) => {
     api[type]({
@@ -97,31 +101,17 @@ function Signup() {
     setloading(true);
     const id = v4()
         if(value3 !== ""){
-          const obn = {
-            name: values.name,
-            email: values.email,
-            password: values.password,
-            designation: value3,
-            jointime: new Date(),
-            uid: id, 
-          }; 
-      
-          try {
-            await axios.post("http://localhost:4000/signup", obn).then((res) => {
-              if (res.status === 200 ) {
+            const res =  manualSignup(values,value3)
+              if (res === 200 ) {
                 navigate("/login", { state: values.name });
               } 
               else {
                 setErr("User Already found Please Log In");
               }
-          
-            });
-          } catch (err) {
-            console.log(err);
-          }
         }
         else{
-          openNotificationWithIcon('error')        }
+          openNotificationWithIcon('error')        
+        }
         setloading(false);
   };
 

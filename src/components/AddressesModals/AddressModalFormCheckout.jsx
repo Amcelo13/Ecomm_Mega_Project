@@ -20,8 +20,8 @@ const success = () => {
 function AddressModalFormCheckout({ isModalOpen, setIsModalOpen, cartItems }) {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
-  const userEmail = useSelector((state) => state.users.email);
-  const userName = useSelector((state) => state.users.name);
+  const userEmail = useSelector((state) => state.users.users.email);
+  const userName = useSelector((state) => state.users.users.name);
   const [gettedAddressData, setGettedAddressData] = useState([]);
   const [sample, setSample] = useState(false);
   const [selectedAddressId, setSelectedAddressId] = useState(null);

@@ -44,7 +44,7 @@ function MyProfile({ namefromNavigate , sample , setSample}) {
   const [form] = Form.useForm();
 
   const [isLoading, setIsLoading] = useState(true);
-  const user = useSelector((state) => state.users);
+  const user = useSelector((state) => state.users.users);
 
   //Getting the details from Database and updating the form
   useEffect(() => {

@@ -15,7 +15,7 @@ function CartPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [animate, setAnimate] = useState(true);
 
-  const userEmail = useSelector((state) => state.users.email);
+  const userEmail = useSelector((state) => state.users.users.email);
   const [cartItems, setCartItems] = useState([]);
   const [sample, setSample] = useState(false);
   const [cartTotal, setCartTotal] = useState(0);

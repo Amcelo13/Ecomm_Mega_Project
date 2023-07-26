@@ -11,11 +11,11 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { setLogout } from "../../app/features/templateSlice";
+import { setLogout } from "../../app/features/Users/templateSlice";
 
  function Navbar(props) {
   console.log('Navbar Rendered')
-  const userO = useSelector((state) => state.users?.email);
+  const userO = useSelector((state) => state.users?.users?.email);
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const [isShown, setIsShown] = useState(false);

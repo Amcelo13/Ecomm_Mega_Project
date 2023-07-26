@@ -10,7 +10,7 @@ function AdminDashboard() {
   const [messageApi, contextHolder] = message.useMessage();
   const [open, setOpen] = useState(false);
   const [currentOrderID, setCurrentOrderID] = useState("");
-  const userEmail = useSelector((state) => state.users.email);
+  const userEmail = useSelector((state) => state.users.users.email);
   const [vendorHistory, setVendorHistory] = useState([]);
   const [sample, setSample] = useState(true);
   const [randomState, setRandomState] = useState(false);
@@ -26,7 +26,6 @@ function AdminDashboard() {
   useEffect(() => {
     const getData = async () => {
       const vendorDetails = await getVendorDetails();
-      // console.log(vendorDetails.data)
       setVendorHistory(vendorDetails.data);
     };  
 

@@ -15,7 +15,7 @@ import AddressModalFormBuy from "../components/AddressesModals/AddressModalFormB
 function ProductPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [addressLength, setAddressLength] = useState();
-  const userEmail = useSelector((state) => state.users.email);
+  const userEmail = useSelector((state) => state.users.users.email);
   const [prodInfo, setProductInfo] = useState();
   const location = useLocation();
   const id = location.state;

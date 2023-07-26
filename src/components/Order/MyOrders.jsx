@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { getOrderItems } from "../../services/getOrderItems.js";
+import { useDispatch, useSelector } from "react-redux";
+import { getOrders } from "../../app/features/GetOrders/myorders.type";
 import OrderModal from "./OrderModal.jsx";
 import "./MyOrder.css";
 import KOKO from "../../assets/order.svg";
@@ -9,32 +9,29 @@ import { getSpecificOrder } from "../../services/getSpecificOrder.js";
 import { LoadingOutlined } from "@ant-design/icons";
 
 function MyOrders() {
-  const userEmail = useSelector((state) => state.users.email);
+  const dispatch = useDispatch();
+  const userEmail = useSelector((state) => state.users.users.email);
   const [orderData, setOrderData] = useState([]);
   const [sample, setSample] = useState(false);
   const [animate, setAnimate] = useState(true);
   const [specificOrderInfo, setSpecificOrderInfo] = useState();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const orderDataFromAsync = useSelector((state) => state.orders.orders);
 
   // Getting the order items  //TODO: Good sorting method defined here for latest orders
   useEffect(() => {
-    const getOrderInfo = getOrderItems(userEmail);
+    dispatch(getOrders(userEmail));
+    
+    let data=[...orderDataFromAsync]  //<-------Deep copying for sort enabling otherwise not working
 
-    getOrderInfo
-      .then((result) => {
-        const sortedOrderData = result.sort(
-          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-        );
-        setOrderData(sortedOrderData);
-        setLoading(false); 
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-      setTimeout(() => {
-          setLoading(false);
-      }, 2000);
+    const sortedOrderData = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    setOrderData(sortedOrderData);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    
   }, [sample, userEmail]);
 
   // Animate
@@ -42,13 +39,13 @@ function MyOrders() {
     if (animate) {
       setTimeout(() => {
         setAnimate(false);
-      }, 2000); 
+      }, 2000);
     }
   }, [animate]);
 
   const orderTime = (createdAt) => {
     const date = new Date(createdAt);
-    return date.toLocaleString(); 
+    return date.toLocaleString();
   };
 
   //Open modal and send the order details to the modal

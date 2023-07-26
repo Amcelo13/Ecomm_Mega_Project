@@ -16,7 +16,7 @@ function AddressModalFormBuy({
   vendorData,
   quanValue,
 }) {
-  const userEmail = useSelector((state) => state.users.email);
+  const userEmail = useSelector((state) => state.users.users.email);
   const [gettedAddressData, setGettedAddressData] = useState([]);
   const [sample, setSample] = useState(false);
   const [selectedAddressId, setSelectedAddressId] = useState(null);
