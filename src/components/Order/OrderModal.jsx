@@ -12,8 +12,8 @@ function OrderModal({
   specificOrderInfo,
   setSample,
   sample,
-  loading,
-  setLoading,
+  isLoading
+  
 }) {
   const [logisticsStatus, setLogisticsStatus] = useState(0);
   const [cancel, setCancel] = useState(true);
@@ -54,9 +54,6 @@ function OrderModal({
       }
     }
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
   }, [specificOrderInfo]);
 
   //Handle  Cancel
@@ -79,7 +76,7 @@ function OrderModal({
 
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         <p style={{ marginTop: "0.2rem" }}>
           {" "}
           <LoadingOutlined
