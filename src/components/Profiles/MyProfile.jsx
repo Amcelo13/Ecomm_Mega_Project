@@ -40,12 +40,7 @@ const tailFormItemLayout = {
 function MyProfile({ namefromNavigate , sample , setSample}) {
 
   const [messageApi, contextHolder] = message.useMessage();
-  const success = () => {
-    messageApi.open({
-      type: "success",
-      content: "Profile Status updated",
-    });
-  };
+
   const [form] = Form.useForm();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -98,7 +93,7 @@ function MyProfile({ namefromNavigate , sample , setSample}) {
     try {
       const response = await axios.post(`http://localhost:4000/updateUserInfo/${user.uid}`,values );
        if(response.status === 200) {
-        success();
+        message.success('Profile Status updated');
        }
        else{
         message.error(response.data)
@@ -136,7 +131,7 @@ function MyProfile({ namefromNavigate , sample , setSample}) {
                 style={{ marginLeft: "10rem", borderRadius: "50%" , width:"24rem", height:"23rem"}}
                 src={form.getFieldValue("profilePic") ? form.getFieldValue("profilePic") : PROFILEE}
                 alt="Profile Picture"
-                      preview={false} 
+                preview={false} 
               />
             )}
           </Form.Item>

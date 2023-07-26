@@ -57,10 +57,10 @@ function Profile() {
 
   const handleChange = ({ file: newFile }) => {
     newFile.status === "done" &&
-      onFinish(`http://localhost:4000/${newFile.response}`);
+      onFinish(`http://localhost:4000/mediaUpload/${newFile.response}`);
   };
 
-  //On change this function get the recieved img url and call the update api
+  //On change this function get the recieved img url and call the update api again
   const onFinish = async (imgURL) => {
     console.log(imgURL);
     try {

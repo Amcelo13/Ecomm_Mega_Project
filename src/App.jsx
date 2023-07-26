@@ -9,7 +9,7 @@ import {  useSelector } from 'react-redux';
 import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
 import CategoryPage from "./pages/CategoryPage";
-import CartPage from "./pages/CartPage";
+import CartPage from "./pages/CartPage/CartPage";
 
 function App() {
   const signed_state = useSelector((state) => state.isLoggedIn);
