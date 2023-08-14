@@ -116,41 +116,63 @@ function CartPage() {
     }
   }, []);
 
-  //Apply the coupon
+  // //Apply the coupon
   const handleApply = () => {
-    if ((!isCouponApplied && coupon !== "FREE SHIP") || "Hola") {
-      // Check if the coupon has already been applied
-      if (coupon === "FREE SHIP") {
-        message.success('Wohoo! 😀 Coupon Applied');
-        setCouponDiscount(200);
-        setOrderTotal(cartTotal - 200);
-        setIsCouponApplied(true); // Set the state variable to true after applying the coupon
-      } else if (coupon === "Hola") {
-        message.success('Wohoo! 😀 Coupon Applied');
-        setCouponDiscount(300);
-        setOrderTotal(cartTotal - 300);
-        setIsCouponApplied(true); // Set the state variable to true after applying the coupon
-      } else {
-        message.error('Wrong Coupon Applied');
-      }
-    } else if ((isCouponApplied && coupon !== "FREE SHIP") || "Hola") {
-      if (coupon === "FREE SHIP") {
-        message.success('Wohoo! 😀 Coupon Applied');
-        setCouponDiscount(200);
-        setOrderTotal(cartTotal - 200);
-        setIsCouponApplied(true); // Set the state variable to true after applying the coupon
-      } else if (coupon === "Hola") {
-        message.success('Wohoo! 😀 Coupon Applied');
-        setCouponDiscount(300);
-        setOrderTotal(cartTotal - 300);
-        setIsCouponApplied(true); // Set the state variable to true after applying the coupon
-      } else {
-        message.error('Wrong Coupon Applied');
-      }
+  if (!isCouponApplied) {
+    let couponDiscount = 0;
+
+    if (coupon === "FREE SHIP") {
+      couponDiscount = 200;
+    } else if (coupon === "Hola") {
+      couponDiscount = 300;
     } else {
-      message.warning('Already applied coupon');
+      message.error('Wrong Coupon Applied');
+      return;
     }
-  };
+
+    message.success('Wohoo! 😀 Coupon Applied');
+    setCouponDiscount(couponDiscount);
+    setOrderTotal(cartTotal - couponDiscount);
+    setIsCouponApplied(true);
+  } else {
+    message.warning('Already applied coupon');
+  }
+};
+
+  // const handleApply = () => {
+  //   if ((!isCouponApplied && coupon !== "FREE SHIP") || "Hola") {
+  //     // Check if the coupon has already been applied
+  //     if (coupon === "FREE SHIP") {
+  //       message.success('Wohoo! 😀 Coupon Applied');
+  //       setCouponDiscount(200);
+  //       setOrderTotal(cartTotal - 200);
+  //       setIsCouponApplied(true); // Set the state variable to true after applying the coupon
+  //     } else if (coupon === "Hola") {
+  //       message.success('Wohoo! 😀 Coupon Applied');
+  //       setCouponDiscount(300);
+  //       setOrderTotal(cartTotal - 300);
+  //       setIsCouponApplied(true); // Set the state variable to true after applying the coupon
+  //     } else {
+  //       message.error('Wrong Coupon Applied');
+  //     }
+  //   } else if ((isCouponApplied && coupon !== "FREE SHIP") || "Hola") {
+  //     if (coupon === "FREE SHIP") {
+  //       message.success('Wohoo! 😀 Coupon Applied');
+  //       setCouponDiscount(200);
+  //       setOrderTotal(cartTotal - 200);
+  //       setIsCouponApplied(true); // Set the state variable to true after applying the coupon
+  //     } else if (coupon === "Hola") {
+  //       message.success('Wohoo! 😀 Coupon Applied');
+  //       setCouponDiscount(300);
+  //       setOrderTotal(cartTotal - 300);
+  //       setIsCouponApplied(true); // Set the state variable to true after applying the coupon
+  //     } else {
+  //       message.error('Wrong Coupon Applied');
+  //     }
+  //   } else {
+  //     message.warning('Already applied coupon');
+  //   }
+  // };
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
