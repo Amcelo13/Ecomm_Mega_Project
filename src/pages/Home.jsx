@@ -13,7 +13,7 @@ function Home() {
   const location = useLocation();
   const [sample, setSample] = useState();
   const [loading, setLoading] = useState(true);
-  const user = useSelector((state)=> state.users)
+  const user = useSelector((state) => state.users)
   useEffect(() => {
     const loadingTimer = setTimeout(() => {
       setLoading(false);
@@ -35,7 +35,7 @@ function Home() {
 
   return (
     <>
-    <Navbar name={location?.state} />
+      <Navbar name={location?.state} />
       {loading ? (
         <div
           style={{
@@ -62,8 +62,9 @@ function Home() {
 
           <div>
             <img
+              alt='img'
               style={{ borderRadius: "2rem", width: "100%", height: "100vh" }}
-              src="https://r.lvmh-static.com/uploads/2014/10/cover-15-2800x1312.jpg"
+              src="https://static.zara.net/assets/public/4b22/e65e/e7664078934c/f2134c33398c/image-landscape-fill-74599ce6-bf87-45d7-85f5-61957d76cb5a-default_0.jpg?ts=1720177239504&w=1260"
             />
           </div>
         </Carousel>
@@ -79,7 +80,7 @@ function Home() {
         ></video>{" "}
       </div>
 
-      
+
       <Products sample={sample} setSample={setSample} />
 
       <button id="proda" onClick={scrollDown}>
