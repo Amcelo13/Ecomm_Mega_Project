@@ -30,7 +30,7 @@ function AddressModalFormBuy({
   useEffect(() => {
     const getAddress = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/getAddress/${userEmail}`);
+        const response = await axios.get(`https://ecomm-mega-project.onrender.com/getAddress/${userEmail}`);
         setGettedAddressData(response.data);
         setLength(response.data.length);
       } catch (error) {
@@ -58,7 +58,7 @@ function AddressModalFormBuy({
     };
 
     try {
-      await axios.post("http://localhost:4000/addAddress", obn);
+      await axios.post("https://ecomm-mega-project.onrender.com/addAddress", obn);
     } catch (err) {
       console.log(err);
     }

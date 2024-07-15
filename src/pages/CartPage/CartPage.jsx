@@ -38,7 +38,7 @@ function CartPage() {
 
     try {
       await axios
-        .post("http://localhost:4000/updateQuantity", inc)
+        .post("https://ecomm-mega-project.onrender.com/updateQuantity", inc)
         .then((response) => {
           if (response.status === 206) {
             console.log("Updated quantity");
@@ -60,7 +60,7 @@ function CartPage() {
     };
     try {
       await axios
-        .post("http://localhost:4000/updateQuantity", dec)
+        .post("https://ecomm-mega-project.onrender.com/updateQuantity", dec)
         .then((response) => {
           if (response.status === 206) {
             setSample(!sample);
@@ -81,7 +81,7 @@ function CartPage() {
     };
     try {
       await axios
-        .post("http://localhost:4000/deleteCartProduct", obg)
+        .post("https://ecomm-mega-project.onrender.com/deleteCartProduct", obg)
         .then((response) => {
           if (response.status === 206) {
             setSample(!sample);

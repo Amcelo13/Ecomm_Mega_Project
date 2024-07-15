@@ -16,7 +16,7 @@ function VendorProducts({ outOfStockActivator }) {
 
   const handleDelete = async (id) => {
     try {
-      await axios.post("http://localhost:4000/deleteDraft", { id });
+      await axios.post("https://ecomm-mega-project.onrender.com/deleteDraft", { id });
     } catch (error) {
       console.log(error);
     }

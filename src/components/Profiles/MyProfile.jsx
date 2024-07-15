@@ -64,7 +64,7 @@ function MyProfile({ namefromNavigate , sample , setSample}) {
     const getProfileDetails = async (req, res) => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/findVendorInfobyuid/${user.uid}`
+          `https://ecomm-mega-project.onrender.com/findVendorInfobyuid/${user.uid}`
         );
 
         handleFill(response.data);
@@ -91,7 +91,7 @@ function MyProfile({ namefromNavigate , sample , setSample}) {
     console.log("Received values of form: ", values);
 
     try {
-      const response = await axios.post(`http://localhost:4000/updateUserInfo/${user.uid}`,values );
+      const response = await axios.post(`https://ecomm-mega-project.onrender.com/updateUserInfo/${user.uid}`,values );
        if(response.status === 200) {
         message.success('Profile Status updated');
        }

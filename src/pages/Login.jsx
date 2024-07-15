@@ -100,7 +100,7 @@ function Login() {
         password: values.password,
       };
       await axios
-        .post("http://localhost:4000/login", ob)
+        .post("https://ecomm-mega-project.onrender.com/login", ob)
         .then((response) => {
           if (response.status === 200) {
             dispatch(
@@ -144,7 +144,7 @@ function Login() {
       };
 
       await axios
-        .post("http://localhost:4000/goomglepostlogin", obn)
+        .post("https://ecomm-mega-project.onrender.com/goomglepostlogin", obn)
         .then((response) => {
           if (response.status === 200) {
             dispatch(
@@ -188,7 +188,7 @@ function Login() {
         uid: uid,
       };
 
-      await axios.post("http://localhost:4000/goomglepost", obn).then((res) => {
+      await axios.post("https://ecomm-mega-project.onrender.com/goomglepost", obn).then((res) => {
         if (res.status === 200) {
           navigate("/");
           dispatch(setLogin(obn));

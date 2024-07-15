@@ -65,7 +65,7 @@ const EditAddressModal = ({setSample,sample, open, setOpen, selectedAddress, set
         email: userEmail,
       };
     try {
-        await axios.post(`http://localhost:4000/updateAddress/${selectedAddressId}`, obn);
+        await axios.post(`https://ecomm-mega-project.onrender.com/updateAddress/${selectedAddressId}`, obn);
         setSample(!sample)
       } catch (err) {
         console.log(err);

@@ -132,7 +132,7 @@ function Signup() {
         
       };
 
-      await axios.post("http://localhost:4000/goomglepost", obn).then((res) => {
+      await axios.post("https://ecomm-mega-project.onrender.com/goomglepost", obn).then((res) => {
         if (res.status === 200) {
           navigate("/");
           dispatch(

@@ -47,7 +47,7 @@ function ProductModalForm({
     setFileList(newFileList); //Also appending the local list to keep track
     //If send then go and hit the api method
     newFile.status === "done" &&
-      setImage([...image, `http://localhost:4000/mediaUpload/${newFile.response}`]);
+      setImage([...image, `https://ecomm-mega-project.onrender.com/mediaUpload/${newFile.response}`]);
   };
 
   const uploadButton = (
@@ -97,7 +97,7 @@ function ProductModalForm({
 
     //Adding the Product
     await axios
-      .post("http://localhost:4000/products", productObj)
+      .post("https://ecomm-mega-project.onrender.com/products", productObj)
       .then((response) => {
         console.log("Product saved successfully ");
       })
@@ -152,7 +152,7 @@ function ProductModalForm({
           <div className="modalcontainer">
             <div className={someData ? "modealwq" : "modalLeft"}>
               <Upload
-                action="http://localhost:4000/uploads"
+                action="https://ecomm-mega-project.onrender.com/uploads"
                 listType="picture-circle"
                 fileList={fileList}
                 onChange={handleChange1}

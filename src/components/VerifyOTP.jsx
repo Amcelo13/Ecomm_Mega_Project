@@ -35,7 +35,7 @@ function VerifyOTP({ name, expandForm, setExpandForm, fullPhoneNumber, value3,})
         // User signed in successfully.
         const user = result.user;
         await axios
-          .post("http://localhost:4000/phones", obn)
+          .post("https://ecomm-mega-project.onrender.com/phones", obn)
           .then((response) => {
             dispatch(setLogin(obn));
             console.log(response.status);

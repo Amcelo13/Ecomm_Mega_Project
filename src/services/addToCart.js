@@ -12,7 +12,7 @@ export const addToCart = async(prod, vendorData,quanValue, userEmail) =>{
         images:prod.images
     }
 
-    await axios.post('http://localhost:4000/addToCart', obj).then((response)=>{
+    await axios.post('https://ecomm-mega-project.onrender.com/addToCart', obj).then((response)=>{
         if(response.status === 200) {
                 console.log('New product added')
         }

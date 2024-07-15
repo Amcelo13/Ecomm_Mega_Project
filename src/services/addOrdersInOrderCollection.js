@@ -8,7 +8,7 @@ export const addOrdersInOrderCollection = async( cartItems, userName, selectedAd
         orderItems: cartItems,
         address:selectedAddress
     }
-    await axios.post('http://localhost:4000/addFinalOrder', orderDetails).then((response)=>{
+    await axios.post('https://ecomm-mega-project.onrender.com/addFinalOrder', orderDetails).then((response)=>{
             if(response.status === 200) {
                 console.log(response)
             }

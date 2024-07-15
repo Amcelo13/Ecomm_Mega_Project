@@ -14,7 +14,7 @@ function VendorProducts({ outOfStockActivator }) {
   useEffect(() => {
     const getProducts = async () => {
       await axios
-        .get("http://localhost:4000/products")
+        .get("https://ecomm-mega-project.onrender.com/products")
         .then((response) => {
           setProduct(response.data);
         })
@@ -42,7 +42,7 @@ function VendorProducts({ outOfStockActivator }) {
   }, []);
   const handleDelete = async (id) => {
     try {
-      await axios.post("http://localhost:4000/deleteDraft", { id });
+      await axios.post("https://ecomm-mega-project.onrender.com/deleteDraft", { id });
       console.log("Draft deleted succcessfully");
       setSample(!sample);
     } catch (error) {

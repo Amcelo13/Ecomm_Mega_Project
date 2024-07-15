@@ -37,7 +37,7 @@ function Profile() {
     const getProfileDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/findVendorInfobyuid/${user.uid}`
+          `https://ecomm-mega-project.onrender.com/findVendorInfobyuid/${user.uid}`
         );
 
         setIsRole(response.data.designation);
@@ -57,7 +57,7 @@ function Profile() {
 
   const handleChange = ({ file: newFile }) => {
     newFile.status === "done" &&
-      onFinish(`http://localhost:4000/mediaUpload/${newFile.response}`);
+      onFinish(`https://ecomm-mega-project.onrender.com/mediaUpload/${newFile.response}`);
   };
 
   //On change this function get the recieved img url and call the update api again
@@ -65,7 +65,7 @@ function Profile() {
     console.log(imgURL);
     try {
       const response = await axios.post(
-        `http://localhost:4000/updateUserInfo/${user.uid}`,
+        `https://ecomm-mega-project.onrender.com/updateUserInfo/${user.uid}`,
         { profileImg: imgURL }
       );
       console.log(response.data);
@@ -93,7 +93,7 @@ function Profile() {
             />{" "}
             <br />
             <Upload
-              action="http://localhost:4000/uploads"
+              action="https://ecomm-mega-project.onrender.com/uploads"
               onChange={handleChange}
               name="image"
               maxCount={1}

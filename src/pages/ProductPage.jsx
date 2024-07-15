@@ -31,7 +31,7 @@ function ProductPage() {
     const getVendor = async (vendID) => {
       try {
         await axios
-          .get(`http://localhost:4000/findVendorInfo/${vendID}`)
+          .get(`https://ecomm-mega-project.onrender.com/findVendorInfo/${vendID}`)
           .then((response) => {
             setVendorData(response.data);
       
@@ -49,7 +49,7 @@ function ProductPage() {
     const getProduct = async () => {
       try {
         await axios
-          .get(`http://localhost:4000/getProducts/${id}`)
+          .get(`https://ecomm-mega-project.onrender.com/getProducts/${id}`)
           .then((response) => {
             if (response.status === 200) {
               const prod = response.data;
@@ -75,7 +75,7 @@ function ProductPage() {
   useEffect(() => {
     const getAddress = async () => {
       await axios
-        .get(`http://localhost:4000/getAddress/${userEmail}`)
+        .get(`https://ecomm-mega-project.onrender.com/getAddress/${userEmail}`)
         .then((response) => {
           if (response.data.length >= 1) {
             setAddressLength(1);

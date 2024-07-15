@@ -14,7 +14,7 @@ function CategoryProducts({ cateGory }) {
    
     const getProducts = async () => {
       await axios
-        .get(`http://localhost:4000/getCategoryProducts/${cateGory}`)
+        .get(`https://ecomm-mega-project.onrender.com/getCategoryProducts/${cateGory}`)
         .then((response) => {
           setProduct(response.data);
         })

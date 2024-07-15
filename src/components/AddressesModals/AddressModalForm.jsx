@@ -35,7 +35,7 @@
     useEffect(() => {
       const getAddress = async () => {
         await axios
-          .get(`http://localhost:4000/getAddress/${userEmail}`)
+          .get(`https://ecomm-mega-project.onrender.com/getAddress/${userEmail}`)
           .then((response) => {
             setGettedAddressData(response.data);
           })
@@ -56,7 +56,7 @@
       }
       e.preventDefault();
       try {
-        await axios.post("http://localhost:4000/addAddress", obn);
+        await axios.post("https://ecomm-mega-project.onrender.com/addAddress", obn);
         setAddressData({
           aname: "",
           hno: "",

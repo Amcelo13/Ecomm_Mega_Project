@@ -14,7 +14,7 @@ function Products({sample , setSample}) {
     setSample(!sample)
     const getProducts = async () => {
       await axios
-        .get("http://localhost:4000/products")
+        .get("https://ecomm-mega-project.onrender.com/products")
         .then((response) => {
           setProduct(response.data);
         })
@@ -27,7 +27,7 @@ function Products({sample , setSample}) {
 
     //Best products /top selling
     const getBestProducts = async () => {
-      await axios.get("http://localhost:4000/bestproducts").then((response) => {
+      await axios.get("https://ecomm-mega-project.onrender.com/bestproducts").then((response) => {
         setBestProduct(response.data);
         })
         .catch((error) => {

@@ -1,2 +1,2 @@
 import axios from "axios"
-export const getVendorDetails = ()=> axios.get('http://localhost:4000/getAllVendors')
+export const getVendorDetails = ()=> axios.get('https://ecomm-mega-project.onrender.com/getAllVendors')

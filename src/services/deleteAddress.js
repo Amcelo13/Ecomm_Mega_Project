@@ -2,7 +2,7 @@ import axios from "axios"
 export const deleteAddress  =async(id, email, setSample)=>{
     
     try{
-            await axios.post('http://localhost:4000/deleteAddress', {
+            await axios.post('https://ecomm-mega-project.onrender.com/deleteAddress', {
                 id,
                 email
             }).then((response)=>{

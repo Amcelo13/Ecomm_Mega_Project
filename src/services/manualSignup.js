@@ -13,7 +13,7 @@ export const manualSignup = async (values, value3) => {
   };
 
   try {
-    await axios.post("http://localhost:4000/signup", obn).then((res) => {
+    await axios.post("https://ecomm-mega-project.onrender.com/signup", obn).then((res) => {
       if (res.status === 200) {
         return 200;
       } else {
