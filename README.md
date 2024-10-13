@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-MERN E-Commerce Project
+# MERN E-Commerce Project🚀
 
 This project is an E-Commerce platform built using the MERN stack (MongoDB, Express.js, React, Node.js). It consists of functionalities for customers, vendors, and administrators.
 Customer
